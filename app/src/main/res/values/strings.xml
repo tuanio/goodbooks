@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">GoodBooks</string>
+    <string name="bookTitle">bookTitle</string>
+    <string name="userRating">userRating</string>
+    <string name="authors">authors</string>
+    <string name="heartBtn">Heart Button</string>
+    <string name="averageRatingStar">average rating star</string>
+
+<!--    book info beside book image-->
+    <string name="book_background">book background</string>
+    <string name="book_image">book image</string>
+    <string name="book_title">Anh Thợ Sửa Ống Nước</string>
+    <string name="book_authors">Cô chủ nhà koten</string>
+    <string name="your_rating_text">Your rating</string>
+
+<!--    book review metric-->
+    <string name="total_rating_text">Total rating</string>
+    <string name="total_rating">127</string>
+
+    <string name="average_rating_text">Average rating</string>
+    <string name="average_rating">0.5</string>
+
+<!--    book detail text-->
+    <string name="api_get_book">content of desc from api "get book"</string>
+    <string name="api_book_overview">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+
+
 </resources>
