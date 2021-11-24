@@ -6,13 +6,213 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="30dp"
+        android:elevation="3dp"
+        app:itemRippleColor="@color/teal_700"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        android:background="@drawable/rounded"
+        app:itemIconTint="@drawable/item_selector"
+        app:menu="@menu/bottom_menu"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="hello may anh chay "
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="409dp"-->
+<!--        android:layout_height="643dp"-->
+<!--        android:layout_marginStart="1dp"-->
+<!--        android:layout_marginTop="1dp"-->
+<!--        android:layout_marginEnd="1dp"-->
+<!--        android:layout_marginBottom="1dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="28dp"-->
+<!--            android:text="Sách Yêu Thích"-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.165"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
+<!--        <HorizontalScrollView-->
+<!--            android:id="@+id/horizontalScrollView"-->
+<!--            android:layout_width="410dp"-->
+<!--            android:layout_height="203dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView2">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent">-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book1"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="12dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:srcCompat="@drawable/book__1_"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book2"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/book1"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/book1"-->
+<!--                    app:srcCompat="@drawable/book__2_"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book3"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/book2"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/book2"-->
+<!--                    app:srcCompat="@drawable/book__3_"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book4"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/book3"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/book3"-->
+<!--                    app:srcCompat="@drawable/book__4_"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book5"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/book4"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/book4"-->
+<!--                    app:srcCompat="@drawable/book__5_"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
+<!--                >-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        </HorizontalScrollView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView3"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="45dp"-->
+<!--            android:text="Sách đã xem"-->
+<!--            android:textSize="30sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.141"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />-->
+
+<!--        <HorizontalScrollView-->
+<!--            android:id="@+id/horizontalScrollView2"-->
+<!--            android:layout_width="410dp"-->
+<!--            android:layout_height="203dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.0"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textView3">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent">-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book6"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="12dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:srcCompat="@drawable/book__6_"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book7"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/book6"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/book6"-->
+<!--                    app:srcCompat="@drawable/book__7_"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book8"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/book7"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/book7"-->
+<!--                    app:srcCompat="@drawable/book__8_"-->
+<!--                    tools:ignore="SpeakableTextPresentCheck" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book9"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/book8"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/book8"-->
+<!--                    app:srcCompat="@drawable/book__9_" />-->
+
+<!--                <ImageButton-->
+<!--                    android:id="@+id/book10"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginStart="5dp"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/book9"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/book9"-->
+<!--                    app:srcCompat="@drawable/book__10_" />-->
+<!--                >-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        </HorizontalScrollView>-->
+
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>
