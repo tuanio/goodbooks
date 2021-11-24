@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">GoodBooks</string>
+    <string name="txtSearch">Search</string>
+    <string name="txtGenre">Genres</string>
+    <string name="txtAuthor">Authors</string>
+    <string name="txtDiscover">Discover</string>
+    <string name="txtPlaceHolder">TextView</string>
+    <string name="txtSkeleton">Explore books using filters</string>
+
+    <string-array name="authors">
+        <item>P.T. Trung</item>
+        <item>N.V.A. Tuấn</item>
+        <item>H.M. Toàn</item>
+        <item>P.H.T. Thịnh</item>
+        <item>Đ.T. Anh</item>
+    </string-array>
+
+    <string-array name="genres">
+        <item>Kinh dị</item>
+        <item>Sci-fi</item>
+    </string-array>
+
 </resources>
