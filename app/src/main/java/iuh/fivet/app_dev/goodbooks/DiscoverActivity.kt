@@ -64,4 +64,5 @@ class DiscoverActivity : AppCompatActivity() {
         val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(v.windowToken, 0)
     }
+
 }
