@@ -4,190 +4,319 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/bookRoot">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintBookDetail"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".BookDetailsActivity">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/container"
-            android:layout_width="0dp"
-            android:layout_height="155dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="632dp"
-            android:background="@drawable/container_bg"
-            android:contentDescription="@string/book_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.187" />
-
-        <Button
-            android:id="@+id/heartBnt"
-            style="@style/btnStyle"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/container"
-            app:layout_constraintTop_toTopOf="@+id/container"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        <ImageView
-
-            android:id="@+id/item_book_img"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:contentDescription="@string/book_image"
-            android:scaleType="centerCrop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/container"
-            app:srcCompat="@drawable/book1" />
-
-        <TextView
-            android:id="@+id/item_book_title"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintBookDetail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/book_title"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/item_book_img"
-            app:layout_constraintTop_toTopOf="@+id/item_book_img" />
+            tools:context=".BookDetailsActivity">
 
-        <TextView
-            android:id="@+id/item_book_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/book_authors"
-            app:layout_constraintStart_toEndOf="@+id/item_book_img"
-            app:layout_constraintTop_toBottomOf="@+id/item_book_title" />
+            <ImageView
+                android:id="@+id/container"
+                android:layout_width="0dp"
+                android:layout_height="155dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="632dp"
+                android:background="@drawable/container_bg"
+                android:contentDescription="@string/book_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.187" />
 
-        <RatingBar
-            android:id="@+id/your_rating_bar"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/item_book_img"
-            app:layout_constraintTop_toBottomOf="@+id/your_rating_text" />
+            <Button
+                android:id="@+id/heartBnt"
+                style="@style/btnStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/container"
+                app:layout_constraintTop_toTopOf="@+id/container"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-        <TextView
-            android:id="@+id/your_rating_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/your_rating_text"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/item_book_img"
-            app:layout_constraintTop_toBottomOf="@+id/item_book_author" />
+            <ImageView
 
-        <TextView
-            android:id="@+id/ratingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/average_rating_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_book_img" />
-
-        <ImageView
-            android:id="@+id/starImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:contentDescription="@string/averageRatingStar"
-            app:layout_constraintStart_toStartOf="@+id/ratingText"
-            app:layout_constraintTop_toBottomOf="@+id/ratingText"
-            app:srcCompat="@drawable/star" />
-
-        <TextView
-            android:id="@+id/reviewText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/total_rating_text"
-            app:layout_constraintStart_toEndOf="@+id/ratingText"
-            app:layout_constraintTop_toBottomOf="@+id/item_book_img" />
-
-        <TextView
-            android:id="@+id/totalRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:text="@string/total_rating"
-            app:layout_constraintStart_toStartOf="@+id/reviewText"
-            app:layout_constraintTop_toBottomOf="@+id/reviewText" />
-
-        <RelativeLayout
-            android:id="@+id/tabBookInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/totalRating">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/bookDetailTabLayout"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:id="@+id/item_book_img"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
                 android:layout_marginStart="24dp"
-                app:tabMode="fixed">
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/book_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/container"
+                app:srcCompat="@drawable/book1" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/overviewTab"
+            <TextView
+                android:id="@+id/item_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/book_title"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/item_book_img"
+                app:layout_constraintTop_toTopOf="@+id/item_book_img" />
+
+            <TextView
+                android:id="@+id/item_book_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/book_authors"
+                app:layout_constraintStart_toEndOf="@+id/item_book_img"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_title" />
+
+            <RatingBar
+                android:id="@+id/your_rating_bar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:clickable="true"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="4"
+                android:scaleX="1.3"
+                android:scaleY="1.3"
+                android:stepSize="1"
+                app:layout_constraintBottom_toBottomOf="@+id/container"
+                app:layout_constraintStart_toEndOf="@+id/item_book_img"
+                app:layout_constraintTop_toBottomOf="@+id/your_rating_text" />
+
+            <TextView
+                android:id="@+id/your_rating_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/your_rating_text"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/item_book_img"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_author" />
+
+            <TextView
+                android:id="@+id/ratingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/average_rating_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_img" />
+
+            <RatingBar
+                android:id="@+id/averageRatingStar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:rating="0"
+                android:clickable="false"
+                android:stepSize="0.01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:contentDescription="@string/averageRatingStar"
+                app:layout_constraintStart_toStartOf="@+id/ratingText"
+                app:layout_constraintTop_toBottomOf="@+id/ratingText"
+                app:srcCompat="@drawable/star" />
+
+            <TextView
+                android:id="@+id/totalRatingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/total_rating_text"
+                app:layout_constraintStart_toEndOf="@+id/ratingText"
+                app:layout_constraintTop_toBottomOf="@+id/item_book_img" />
+
+            <TextView
+                android:id="@+id/totalRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/total_rating"
+                app:layout_constraintStart_toStartOf="@id/totalRatingText"
+                app:layout_constraintTop_toBottomOf="@+id/totalRatingText" />
+
+            <RelativeLayout
+                android:id="@+id/tabBookInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/totalRating">
+
+                <TextView
+                    android:id="@+id/bookSuggestViewLabel"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="24dp"
+                    android:text="BOOK SUGGEST"
+                    android:textStyle="bold" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/moreInfoTab"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/bookDetailTabLayout"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="24dp"
+                    app:tabMode="fixed">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/overviewTab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/moreInfoTab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="45dp"
+                    tools:ignore="SpeakableTextPresentCheck">
+
+                </androidx.viewpager.widget.ViewPager>
+
+            </RelativeLayout>
+
+            <HorizontalScrollView
+                android:layout_width="391dp"
+                android:layout_height="148dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tabBookInfo">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent">
 
-            </com.google.android.material.tabs.TabLayout>
+                    <ImageButton
+                        android:id="@+id/bookSuggest1"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="12dp"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="45dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                    <ImageButton
+                        android:id="@+id/bookSuggest2"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
-        </RelativeLayout>
+                    <ImageButton
+                        android:id="@+id/bookSuggest3"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
-        <ScrollView
-            android:layout_width="391dp"
-            android:layout_height="148dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabBookInfo"
-            tools:ignore="SpeakableTextPresentCheck">
+                    <ImageButton
+                        android:id="@+id/bookSuggest4"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
+                    <ImageButton
+                        android:id="@+id/bookSuggest5"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageButton
+                        android:id="@+id/bookSuggest6"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest5"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageButton
+                        android:id="@+id/bookSuggest7"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest6"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageButton
+                        android:id="@+id/bookSuggest8"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest7"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageButton
+                        android:id="@+id/bookSuggest9"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest8"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageButton
+                        android:id="@+id/bookSuggest10"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"
+                        app:layout_constraintStart_toEndOf="@+id/bookSuggest9"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/gatsby"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </HorizontalScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

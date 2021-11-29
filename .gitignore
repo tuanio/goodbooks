@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+rating_bar.xml
+BarRatingActivity.java
+BarRatingFragment.java

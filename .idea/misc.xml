@@ -9,18 +9,20 @@
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/drawable/ic_favorite_black_24dp.xml" value="0.21388888888888888" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/drawable/star.xml" value="0.1814814814814815" />
-        <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/activity_book_details.xml" value="0.25" />
+        <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/activity_book_details.xml" value="0.3990740740740741" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/custom_layout.xml" value="0.19953703703703704" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_1.xml" value="0.19953703703703704" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_2.xml" value="0.18703703703703703" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_3.xml" value="0.19953703703703704" />
+        <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_bar_rating.xml" value="0.1" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_favourites.xml" value="0.19953703703703704" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_home.xml" value="0.19953703703703704" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_more_info.xml" value="0.19953703703703704" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_one.xml" value="0.22" />
-        <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_overview.xml" value="0.19953703703703704" />
+        <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/fragment_overview.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/overview_tab_icon.xml" value="0.1" />
+        <entry key="..\:/Users/HP/OneDrive - Industrial University of HoChiMinh City/Desktop/APP DEV/BookSugestion/goodbooks/app/src/main/res/layout/rating_bar.xml" value="0.1" />
       </map>
     </option>
   </component>

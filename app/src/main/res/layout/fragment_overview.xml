@@ -7,12 +7,13 @@
     tools:context=".fragments.OverviewFragment">
 
         <com.borjabravo.readmoretextview.ReadMoreTextView
-            android:id="@+id/book_overview_text"
-            style="@style/book_overview_text"
+            android:id="@+id/book_moreinfo_text"
+            android:scrollbars="vertical"
             app:trimExpandedText="@string/read_less"
             app:trimCollapsedText="@string/read_more"
             app:trimLength="20"
             app:trimLines="5"
-            app:colorClickableText="#2196F3"/>
+            app:colorClickableText="#2196F3"
+            style="@style/book_overview_text" />
 
 </RelativeLayout>
