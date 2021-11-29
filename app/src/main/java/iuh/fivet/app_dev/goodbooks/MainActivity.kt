@@ -2,20 +2,18 @@ package iuh.fivet.app_dev.goodbooks
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
-import android.view.MenuItem
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.RequestCreator
-import iuh.fivet.app_dev.goodbooks.R.id.*
+import iuh.fivet.app_dev.goodbooks.fragment.HomeFragment
+import iuh.fivet.app_dev.goodbooks.fragment.MyFavFragment
+import iuh.fivet.app_dev.goodbooks.fragment.SearchFragment
+import iuh.fivet.app_dev.goodbooks.fragment.UserFragment
+import iuh.fivet.app_dev.goodbooks.repository.MainViewModel
+import iuh.fivet.app_dev.goodbooks.repository.Repository
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: BottomNavigationView ;
@@ -23,22 +21,24 @@ class MainActivity : AppCompatActivity() {
     private val searchFragment = SearchFragment();
     private val myfavFragment = MyFavFragment();
     private val userFragment = UserFragment();
+    private lateinit var viewModel : MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        val url : String = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1344409006l/142296.jpg"
-//        val ap : ImageButton = findViewById(R.id.book10);
-//
-//        val url2: String = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1408500437l/7094569.jpg"
-//        val ap2 :ImageButton = findViewById(R.id.book9);
-//        Picasso.get().load(url).into(ap)
-//        Picasso.get().load(url2).into(ap2)
-
-        replaceFragment(homeFragment)
+//        val repository = Repository()
+//        val viewModelFacotry = MainViewModelFacotry(repository)
+//        viewModel = ViewModelProvider(this, viewModelFacotry).get(MainViewModel::class.java)
+//        viewModel.getBooks()
+//        viewModel.myResponse.observe(this, Observer { response ->
+//            val img :ImageButton = findViewById(R.id.book111)
+//            val  url = response.data.list_books.get(0).image_url.toString();
+//            Picasso.get().load(url).into(img);
+//        });
+//        replaceFragment(homeFragment)
         navigationView = findViewById(R.id.bottom_navigation)
         navigationView.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.nav_home -> replaceFragment(homeFragment)
                 R.id.nav_search -> replaceFragment(searchFragment)
                 R.id.nav_myfav -> replaceFragment(myfavFragment)
@@ -46,8 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        }
+    }
         private  fun replaceFragment (fragment : Fragment){
             if(fragment != null){
                 val transaction = supportFragmentManager.beginTransaction()
