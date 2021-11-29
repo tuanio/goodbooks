@@ -1,4 +1,4 @@
-package iuh.fivet.app_dev.goodbooks
+package iuh.fivet.app_dev.goodbooks.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import com.squareup.picasso.Picasso
+import iuh.fivet.app_dev.goodbooks.MainActivity
+import iuh.fivet.app_dev.goodbooks.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +38,7 @@ class MyFavFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_fav, container, false)
+        return inflater.inflate(R.layout.fragment_my_fav, container, false);
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
