@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import iuh.fivet.app_dev.goodbooks.api.ApiService
 import iuh.fivet.app_dev.goodbooks.models.DataAuthors
+import iuh.fivet.app_dev.goodbooks.models.DataBooks
 import iuh.fivet.app_dev.goodbooks.models.DataGenres
 import iuh.fivet.app_dev.goodbooks.util.Constants.Companion.BASE_URL
 import retrofit2.Call
@@ -16,11 +17,18 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.StringBuilder
 
 class DiscoverActivity : AppCompatActivity() {
     private var isHidden: Boolean = true
     private lateinit var arrayAuthors: ArrayList<String>
     private lateinit var arrayGenres: ArrayList<String>
+
+    val retrofitBuilder = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(ApiService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,12 +61,6 @@ class DiscoverActivity : AppCompatActivity() {
     }
 
     private fun initAuthorsFilter() {
-        val retrofitBuilder = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiService::class.java)
-
         val retrofitData = retrofitBuilder.getListAuthors()
         retrofitData.enqueue(object: Callback<DataAuthors> {
             override fun onResponse(call: Call<DataAuthors>, response: Response<DataAuthors>) {
@@ -80,12 +82,6 @@ class DiscoverActivity : AppCompatActivity() {
     }
 
     private fun initGenresFilter() {
-        val retrofitBuilder = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiService::class.java)
-
         val retrofitData = retrofitBuilder.getListGenres()
         retrofitData.enqueue(object: Callback<DataGenres> {
             override fun onResponse(call: Call<DataGenres>, response: Response<DataGenres>) {
@@ -124,10 +120,33 @@ class DiscoverActivity : AppCompatActivity() {
         val txtGenre = findViewById<EditText>(R.id.genresFilter).text.toString()
 
         if (txtAuthor != "" && txtGenre != "") {
-            hideView(v)
-            isHidden = true
-            Log.d("res", txtAuthor + " " + arrayAuthors.indexOf(txtAuthor))
-            Log.d("res", txtGenre + " " + arrayGenres.indexOf(txtGenre))
+//            hideView(v)
+//            isHidden = true
+
+            /* Add 1 because author id in server side begin at 1 */
+            val authorId = arrayAuthors.indexOf(txtAuthor) + 1
+            val genreId = arrayGenres.indexOf(txtGenre) + 1
+
+            val retrofitData = retrofitBuilder.getBooksByAuthorAndGenre(authorId = authorId, genreId = genreId)
+            retrofitData.enqueue(object: Callback<DataBooks> {
+                override fun onResponse(call: Call<DataBooks>, response: Response<DataBooks>) {
+                    val res = response.body()!!
+                    val arrayBooks = StringBuilder()
+
+                    for (book in res.data.listBooks) {
+                        arrayBooks.append(book.title)
+                        arrayBooks.append("\n")
+                    }
+
+                    Log.d("res", res.data.numBooks.toString())
+                    Log.d("res", arrayBooks.toString())
+                }
+
+                override fun onFailure(call: Call<DataBooks>, t: Throwable) {
+                    Toast.makeText(this@DiscoverActivity, "Cannot get list books", Toast.LENGTH_SHORT).show()
+                }
+
+            })
         } else {
             Toast.makeText(this, "Choose author and genre!", Toast.LENGTH_SHORT).show()
         }
