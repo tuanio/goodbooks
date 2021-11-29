@@ -3,12 +3,10 @@ package iuh.fivet.app_dev.goodbooks
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.Toast
+import android.widget.*
 import iuh.fivet.app_dev.goodbooks.api.ApiService
 import iuh.fivet.app_dev.goodbooks.models.DataAuthors
 import iuh.fivet.app_dev.goodbooks.models.DataGenres
@@ -21,6 +19,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class DiscoverActivity : AppCompatActivity() {
     private var isHidden: Boolean = true
+    private lateinit var arrayAuthors: ArrayList<String>
+    private lateinit var arrayGenres: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +47,8 @@ class DiscoverActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnSearch).setOnClickListener {
-            hideView(tvFilter)
             hideSoftKeyboard(it)
-            isHidden = true
+            searchFilter(tvFilter)
         }
     }
 
@@ -64,8 +63,8 @@ class DiscoverActivity : AppCompatActivity() {
         retrofitData.enqueue(object: Callback<DataAuthors> {
             override fun onResponse(call: Call<DataAuthors>, response: Response<DataAuthors>) {
                 val res = response.body()!!
-                val arrayAuthors = ArrayList<String>()
 
+                arrayAuthors = ArrayList()
                 for (author in res.data.listAuthors) {
                     arrayAuthors.add(author.fullName)
                 }
@@ -91,8 +90,8 @@ class DiscoverActivity : AppCompatActivity() {
         retrofitData.enqueue(object: Callback<DataGenres> {
             override fun onResponse(call: Call<DataGenres>, response: Response<DataGenres>) {
                 val res = response.body()!!
-                val arrayGenres = ArrayList<String>()
 
+                arrayGenres = ArrayList()
                 for (genre in res.data.listGenres) {
                     arrayGenres.add(genre.kind)
                 }
@@ -118,5 +117,19 @@ class DiscoverActivity : AppCompatActivity() {
     fun hideSoftKeyboard(v: View) {
         val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(v.windowToken, 0)
+    }
+
+    private fun searchFilter(v: View) {
+        val txtAuthor = findViewById<EditText>(R.id.authorsFilter).text.toString()
+        val txtGenre = findViewById<EditText>(R.id.genresFilter).text.toString()
+
+        if (txtAuthor != "" && txtGenre != "") {
+            hideView(v)
+            isHidden = true
+            Log.d("res", txtAuthor + " " + arrayAuthors.indexOf(txtAuthor))
+            Log.d("res", txtGenre + " " + arrayGenres.indexOf(txtGenre))
+        } else {
+            Toast.makeText(this, "Choose author and genre!", Toast.LENGTH_SHORT).show()
+        }
     }
 }
