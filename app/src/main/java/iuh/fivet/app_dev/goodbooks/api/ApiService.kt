@@ -17,7 +17,6 @@ interface ApiService {
 
     @GET("api/get-list-books-by-author-genre/{author_id}/{genre_id}")
     fun getBooksByAuthorAndGenre(
-        @Query()
         @Path("author_id") authorId: Int,
         @Path("genre_id") genreId: Int
     ): Call<DataBooks>
