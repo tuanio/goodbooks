@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="iuh.fivet.app_dev.goodbooks">
 
+    <!-- In order for our app to access the Internet, we need to define this permission. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoodBooks">
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

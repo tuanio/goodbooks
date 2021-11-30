@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="top100books"
+            type="iuh.fivet.app_dev.goodbooks.models.Top100Books" />
+    </data>
+
+
+    <LinearLayout
+        android:id="@+id/authorBook1VerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/image"
+            android:layout_width="120dp"
+            android:layout_height="170dp"
+            android:adjustViewBounds="true"
+            android:padding="2dp"
+            android:scaleType="fitXY"
+            app:imgUrl="@{top100books.imgUrl}"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:stepSize="0.01"
+            app:rating="@{top100books.weighted_rating}"
+            android:isIndicator="true" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@{top100books.title}"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+
+
+</layout>
