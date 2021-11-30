@@ -6,7 +6,6 @@ import iuh.fivet.app_dev.goodbooks.models.DataGenres
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiService {
     @GET("api/get-all-authors")
@@ -20,4 +19,7 @@ interface ApiService {
         @Path("author_id") authorId: Int,
         @Path("genre_id") genreId: Int
     ): Call<DataBooks>
+
+//    @GET("api/get-list-book-rated/1")
+//    fun getBooks() : ListBookRating
 }
