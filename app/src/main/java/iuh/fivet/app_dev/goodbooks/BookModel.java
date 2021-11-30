@@ -37,19 +37,14 @@ public class BookModel {
 
     @Override
     public String toString() {
-        return  "Authors='" + authors + '\'' +
-                "\nBook_url='" + book_url + '\'' +
-                "\nDesc='" + desc + '\'' +
-                "\nGenres='" + genres + '\'' +
-                "\nid=" + id +
-                "\nImage_url='" + image_url + '\'' +
-                "\nisbn='" + isbn + '\'' +
-                "\nisbn13='" + isbn13 + '\'' +
-                "\nPages=" + pages +
-                "\nRating=" + rating +
-                "\nReviews=" + reviews +
-                "\nTitle='" + title + '\'' +
-                "\nTotal_ratings=" + total_ratings;
+        return  "Authors \uD83D\uDC49 " + authors + "\n" +
+                "\nBook's link \uD83D\uDC49 " + book_url + "\n" +
+                "\nGenres \uD83D\uDC49 " + genres + "\n" +
+                "\nisbn \uD83D\uDC49 " + isbn + "\n" +
+                "\nPages \uD83D\uDC49 " + pages + "\n" +
+                "\nRating \uD83D\uDC49 " + rating + "\n" +
+                "\nReviews \uD83D\uDC49 " + reviews + "\n" +
+                "\nTotal_ratings \uD83D\uDC49 " + total_ratings;
     }
 
     public String getAuthors() {

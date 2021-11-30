@@ -13,11 +13,9 @@ import iuh.fivet.app_dev.goodbooks.BookDetailsActivity
 import iuh.fivet.app_dev.goodbooks.BookModel
 import iuh.fivet.app_dev.goodbooks.MySingleton
 import iuh.fivet.app_dev.goodbooks.R
-import kotlinx.android.synthetic.main.fragment_overview.*
 import org.json.JSONObject
 import android.text.method.ScrollingMovementMethod
-
-
+import kotlinx.android.synthetic.main.fragment_more_info.*
 
 
 class MoreInfoFragment : Fragment() {
@@ -27,17 +25,13 @@ class MoreInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_more_info, container, false)
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         val urlApiGetBook = BookDetailsActivity().urlApiGetBook
 
-        var authors: String?
+        var authors = ""
         var bookUrl: String?
         var desc: String?
-        var genres: String?
+        var genres = ""
         var id: Int
         var imageUrl: String?
         var isbn: String?
@@ -54,10 +48,20 @@ class MoreInfoFragment : Fragment() {
                 val message = "Success get book!"
                 val book: JSONObject = response.getJSONObject("data")
 
-                authors = book.getString("authors")
+                val listAuthors = book.getJSONArray("authors")
+                for (author in 0 until listAuthors.length()) {
+                    val au = listAuthors.get(author)
+                    authors += "$au, "
+                }
+
+                val listGenres = book.getJSONArray("genres")
+                for (genre in 0 until listGenres.length()) {
+                    val gen = listGenres.get(genre)
+                    genres += "$gen, "
+                }
+
                 bookUrl = book.getString("book_url")
                 desc = book.getString("desc")
-                genres = book.getString("genres")
                 id = book.getInt("id")
                 imageUrl = book.getString("image_url")
                 isbn = book.getString("isbn")
@@ -68,12 +72,28 @@ class MoreInfoFragment : Fragment() {
                 title = book.getString("title")
                 totalRatings = book.getInt("total_ratings")
 
-                val bookModel = BookModel(authors, bookUrl, desc, genres, id, imageUrl, isbn, isbn13, pages, rating, reviews, title, totalRatings)
-
-                book_moreinfo_text.text = bookModel.toString()
+                val bookInfo = """
+                    Authors 👉 $authors
+                    
+                    Book's link 👉 $bookUrl
+                    
+                    Genres 👉 $genres
+                    
+                    isbn 👉 $isbn
+                    
+                    Pages 👉 $pages
+                    
+                    Rating 👉 $rating
+                    
+                    Reviews 👉 $reviews
+                    
+                    Total_ratings 👉 $totalRatings
+                    """.trimIndent()
                 book_moreinfo_text.movementMethod = ScrollingMovementMethod()
-                book_moreinfo_text.setTrimExpandedText("show less")
-                book_moreinfo_text.setTrimCollapsedText("show more")
+                book_moreinfo_text.text = bookInfo
+                book_moreinfo_text.setTrimExpandedText(" show less")
+                book_moreinfo_text.setTrimCollapsedText(" show more")
+                book_moreinfo_text.setTrimLength(20)
                 book_moreinfo_text.setTrimLines(5)
                 book_moreinfo_text.setColorClickableText(Color.BLUE)
 
@@ -86,6 +106,12 @@ class MoreInfoFragment : Fragment() {
         )
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(context).addToRequestQueue(bookDetailRequest)
+
+        return inflater.inflate(R.layout.fragment_more_info, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
     
 }

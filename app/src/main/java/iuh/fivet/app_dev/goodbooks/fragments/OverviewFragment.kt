@@ -14,6 +14,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import iuh.fivet.app_dev.goodbooks.BookDetailsActivity
 import iuh.fivet.app_dev.goodbooks.MySingleton
 import iuh.fivet.app_dev.goodbooks.R
+import kotlinx.android.synthetic.main.fragment_more_info.*
 import kotlinx.android.synthetic.main.fragment_overview.*
 import org.json.JSONObject
 
@@ -24,11 +25,7 @@ class OverviewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_overview, container, false)
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         val urlApiGetBook = BookDetailsActivity().urlApiGetBook
 
         val bookDetailRequest = JsonObjectRequest(
@@ -39,12 +36,14 @@ class OverviewFragment : Fragment() {
 
                 val bookDesc = book.getString("desc")
                 Log.e("LoiDesc", bookDesc)
-                book_moreinfo_text.text = bookDesc
-                book_moreinfo_text.movementMethod = ScrollingMovementMethod()
-                book_moreinfo_text.setTrimExpandedText("show less")
-                book_moreinfo_text.setTrimCollapsedText("show more")
-                book_moreinfo_text.setTrimLines(5)
-                book_moreinfo_text.setColorClickableText(Color.BLUE)
+
+                book_overview_text.movementMethod = ScrollingMovementMethod()
+                book_overview_text.text = bookDesc
+                book_overview_text.setTrimExpandedText(" show less")
+                book_overview_text.setTrimCollapsedText(" show more")
+                book_overview_text.setTrimLength(20)
+                book_overview_text.setTrimLines(5)
+                book_overview_text.setColorClickableText(Color.BLUE)
 
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             },
@@ -55,6 +54,12 @@ class OverviewFragment : Fragment() {
         )
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(context).addToRequestQueue(bookDetailRequest)
+
+        return inflater.inflate(R.layout.fragment_overview, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
 }

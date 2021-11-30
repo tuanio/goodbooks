@@ -7,10 +7,12 @@ import androidx.viewpager.widget.ViewPager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.INDICATOR_GRAVITY_BOTTOM
 import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.fragments.MoreInfoFragment
 import iuh.fivet.app_dev.goodbooks.fragments.OverviewFragment
 import iuh.fivet.app_dev.goodbooks.fragments.adapters.ViewPagerAdapter
+import kotlinx.android.synthetic.main.activity_book_details.*
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -19,8 +21,8 @@ class BookDetailsActivity : AppCompatActivity() {
 
     private var clickChecker:Boolean = false
 
-    var urlApiGetBook = "https://backend-recommender-system-book.up.railway.app/api/get-book/2"
-    var urlApiGetBookSimilar = "https://backend-recommender-system-book.up.railway.app/api/get-book-similar/2"
+    var urlApiGetBook = "https://backend-recommender-system-book.up.railway.app/api/get-book/123"
+    var urlApiGetBookSimilar = "https://backend-recommender-system-book.up.railway.app/api/get-book-similar/123"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +60,6 @@ class BookDetailsActivity : AppCompatActivity() {
             Toast.makeText(this, "Your click on RatingBar", Toast.LENGTH_SHORT).show()
         }
 
-
-//        val intent = Intent(this, ratingBar::class.java)
-//        ratingBar.setOnClickListener(View.OnClickListener { startActivity(intent) })
-
         val bookSimilarRequest = JsonObjectRequest(Request.Method.GET, urlApiGetBookSimilar, null,
             { response ->
                 val message = "Success get book similar images!  \uD83D\uDE41"
@@ -91,8 +89,14 @@ class BookDetailsActivity : AppCompatActivity() {
                 val message = "Success get book!"
                 val book:JSONObject = response.getJSONObject("data")
 
+                var authors = ""
+                val listAuthors = book.getJSONArray("authors")
+                for (author in 0 until listAuthors.length()) {
+                    val au = listAuthors.get(author)
+                    authors += "$au, "
+                }
+                bookAuthors.text = authors.dropLast(2)
                 bookTitle.text = book.getString("title")
-                bookAuthors.text = book.getString("authors")
                 Picasso.get().load(book.getString("image_url")).into(bookPoster)
                 bookAverageRating.rating = (book.getDouble("rating").toFloat())
                 bookTotalRating.text = book.getInt("total_ratings").toString()
@@ -107,39 +111,34 @@ class BookDetailsActivity : AppCompatActivity() {
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(bookDetailRequest)
 
-        bookRatingBar.setOnClickListener {
-            Toast.makeText(this, "Your click on bookRatingBar", Toast.LENGTH_SHORT).show()
-//            val transaction = supportFragmentManager.beginTransaction()
-//            transaction.replace(R.id.bookDetailTabLayout, BarRatingFragment())
-//            transaction.addToBackStack(null)
-//            transaction.commit()
-        }
+        val checkRatingBox = findViewById<CheckBox>(R.id.checkRatingBox)
+        bookRatingBar.onRatingBarChangeListener =
+            RatingBar.OnRatingBarChangeListener { _, p1, p2 ->
 
+                val message: String = when (p1.toInt()) {
+                    0 -> "No Summit Rating"
+                    1 -> "A bad book \uD83D\uDE41 "
+                    2 -> "Not interest book \uD83D\uDE15 "
+                    3 -> "A few interest \uD83D\uDE09 "
+                    4 -> "A nice book \uD83D\uDE03 "
+                    5 -> "Goodread \uD83D\uDE0D "
+                    else -> ""
+                }
 
+                Toast.makeText(this@BookDetailsActivity, message, Toast.LENGTH_SHORT).show()
+                checkRatingBox.isChecked = p2
+                checkRatingBox.setOnClickListener {
+                    if (!checkRatingBox.isChecked) {
+                        bookRatingBar.rating = 0.toFloat()
+                    }
+                }
+            }
+
+        // Setup something
         setUpHeartButton()
         setUpTabs()
         setBookSuggestionImage(imageUrls, bookSuggest)
     }
-
-//        fun setInformation(book_id: String) {
-//            BookDataService.getBook_id(
-//                et_dataInput.getText().toString(),
-//                object : BookDataService.VolleyResponseListener() {
-//                    override fun onError(message: String?) {
-//                        Toast.makeText(this.Bo, "Something wrong", Toast.LENGTH_SHORT)
-//                            .show()
-//                    }
-//
-//                    override fun onResponse(cityID: String) {
-//                        Toast.makeText(
-//                            this@MainActivity,
-//                            "Returned an ID of $cityID",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                })
-//        }
-
 
     private fun setUpHeartButton() {
         val heartBtn = findViewById<Button>(R.id.heartBnt)
@@ -163,22 +162,13 @@ class BookDetailsActivity : AppCompatActivity() {
 
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
+        tabs.setSelectedTabIndicatorGravity(INDICATOR_GRAVITY_BOTTOM)
     }
 
     private fun setBookSuggestionImage(imageUrls: Array<String>, bookSuggest: Array<ImageButton>) {
         for ((url, book) in (imageUrls zip bookSuggest)) {
             Picasso.get().load(url).into(book)
         }
-//        for (book in bookSuggest) {
-//            book.setOnClickListener {
-//                var C: View = findViewById(R.id.bookRoot)
-//                val parent = C.getParent()
-//                val index = parent.indexOfChild(C)
-//                parent.removeView(C)
-//                C = layoutInflater.inflate(optionId, parent, false)
-//                parent.addView(C, index)
-//            }
-//        }
     }
 
 }

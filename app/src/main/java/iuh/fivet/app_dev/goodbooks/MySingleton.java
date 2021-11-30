@@ -1,16 +1,17 @@
 package iuh.fivet.app_dev.goodbooks;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 public class MySingleton {
+    @SuppressLint("StaticFieldLeak")
     private static MySingleton instance;
     private RequestQueue requestQueue;
+    @SuppressLint("StaticFieldLeak")
     private static Context ctx;
 
     private MySingleton(Context context) {
