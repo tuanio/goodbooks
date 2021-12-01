@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoodBooks">
+
+        <activity
+            android:name=".fragment.DiscoverActivity"
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

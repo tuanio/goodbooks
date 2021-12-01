@@ -1,13 +1,21 @@
 package iuh.fivet.app_dev.goodbooks.fragment
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import com.squareup.picasso.Picasso
+import android.widget.*
+import androidx.fragment.app.Fragment
 import iuh.fivet.app_dev.goodbooks.R
+import iuh.fivet.app_dev.goodbooks.api.Api
+import iuh.fivet.app_dev.goodbooks.models.DataAuthors
+import iuh.fivet.app_dev.goodbooks.models.DataBooks
+import iuh.fivet.app_dev.goodbooks.models.DataGenres
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +31,9 @@ class SearchFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var isHidden: Boolean? = null
+    private lateinit var arrayAuthors: ArrayList<String>
+    private lateinit var arrayGenres: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +48,124 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        val context = container!!.context as Context
+
+        initAuthorsFilter(view, context)
+        initGenresFilter(view, context)
+
+        val tvFilter: View = view.findViewById(R.id.filterLayout)
+        val tvSkeleton: View = view.findViewById(R.id.skeleton)
+        isHidden = true
+        hideView(tvFilter)
+        showView(tvSkeleton)
+
+        view.findViewById<Button>(R.id.btnFilter).setOnClickListener {
+            isHidden = if (isHidden == true) {
+                hideView(tvSkeleton)
+                showView(tvFilter)
+                false
+            } else {
+                hideView(tvFilter)
+                showView(tvSkeleton)
+                true
+            }
+
+        }
+
+        view.findViewById<Button>(R.id.btnSearch).setOnClickListener {
+            searchFilter(view, context, tvFilter)
+        }
+
+        return view
+    }
+
+    private fun initAuthorsFilter(view: View, context: Context) {
+        val retrofitData = Api.retrofitService.getListAuthors()
+        retrofitData.enqueue(object: Callback<DataAuthors> {
+            override fun onResponse(call: Call<DataAuthors>, response: Response<DataAuthors>) {
+                val res = response.body()!!
+
+                arrayAuthors = ArrayList()
+                for (author in res.data.listAuthors) {
+                    arrayAuthors.add(author.fullName)
+                }
+
+                val authorsAdapter = ArrayAdapter(context,
+                    R.layout.dropdown_item, arrayAuthors)
+                view.findViewById<AutoCompleteTextView>(R.id.authorsFilter).setAdapter(authorsAdapter)
+            }
+
+            override fun onFailure(call: Call<DataAuthors>, t: Throwable) {
+                Toast.makeText(context, "Cannot get list authors", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun initGenresFilter(view: View, context: Context) {
+        val retrofitData = Api.retrofitService.getListGenres()
+        retrofitData.enqueue(object: Callback<DataGenres> {
+            override fun onResponse(call: Call<DataGenres>, response: Response<DataGenres>) {
+                val res = response.body()!!
+
+                arrayGenres = ArrayList()
+                for (genre in res.data.listGenres) {
+                    arrayGenres.add(genre.kind)
+                }
+
+                val genresAdapter = ArrayAdapter(context,
+                    R.layout.dropdown_item, arrayGenres)
+                view.findViewById<AutoCompleteTextView>(R.id.genresFilter).setAdapter(genresAdapter)
+            }
+
+            override fun onFailure(call: Call<DataGenres>, t: Throwable) {
+                Toast.makeText(context, "Cannot get list genres", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun hideView(view: View) {
+        view.visibility = View.INVISIBLE
+    }
+
+    private fun showView(view: View) {
+        view.visibility = View.VISIBLE
+    }
+
+    private fun searchFilter(view: View, context: Context, tv: View) {
+        val txtAuthor = view.findViewById<EditText>(R.id.authorsFilter).text.toString()
+        val txtGenre = view.findViewById<EditText>(R.id.genresFilter).text.toString()
+
+        if (txtAuthor != "" && txtGenre != "") {
+            hideView(tv)
+            isHidden = true
+
+            /* Add 1 because author id in server side begin at 1 */
+            val authorId = arrayAuthors.indexOf(txtAuthor) + 1
+            val genreId = arrayGenres.indexOf(txtGenre) + 1
+
+            val retrofitData = Api.retrofitService.getBooksByAuthorAndGenre(authorId, genreId)
+            retrofitData.enqueue(object: Callback<DataBooks> {
+                override fun onResponse(call: Call<DataBooks>, response: Response<DataBooks>) {
+                    val res = response.body()!!
+                    val arrayBooks = StringBuilder()
+
+                    for (book in res.data.listBooks) {
+                        arrayBooks.append(book.title)
+                        arrayBooks.append("\n")
+                    }
+
+                    Log.d("res", res.data.noBooks.toString())
+                    Log.d("res", arrayBooks.toString())
+                }
+
+                override fun onFailure(call: Call<DataBooks>, t: Throwable) {
+                    Toast.makeText(context, "Cannot get list books", Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else {
+            Toast.makeText(context, "Choose author and genre!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {
@@ -60,4 +187,5 @@ class SearchFragment : Fragment() {
                 }
             }
     }
+
 }

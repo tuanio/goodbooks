@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">GoodBooks</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="txtSearch">Search</string>
+    <string name="txtGenre">Genres</string>
+    <string name="txtAuthor">Authors</string>
+    <string name="txtDiscover">Discover</string>
+    <string name="txtPlaceHolder">TextView</string>
+    <string name="txtSkeleton">Explore books using filters</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

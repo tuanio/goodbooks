@@ -1,19 +1,13 @@
 package iuh.fivet.app_dev.goodbooks
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.fragment.HomeFragment
 import iuh.fivet.app_dev.goodbooks.fragment.MyFavFragment
 import iuh.fivet.app_dev.goodbooks.fragment.SearchFragment
 import iuh.fivet.app_dev.goodbooks.fragment.UserFragment
-import iuh.fivet.app_dev.goodbooks.repository.MainViewModel
-import iuh.fivet.app_dev.goodbooks.repository.Repository
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: BottomNavigationView ;
@@ -21,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     private val searchFragment = SearchFragment();
     private val myfavFragment = MyFavFragment();
     private val userFragment = UserFragment();
-    private lateinit var viewModel : MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 //            val  url = response.data.list_books.get(0).image_url.toString();
 //            Picasso.get().load(url).into(img);
 //        });
-//        replaceFragment(homeFragment)
+        replaceFragment(homeFragment)
         navigationView = findViewById(R.id.bottom_navigation)
         navigationView.setOnItemSelectedListener {
             when (it.itemId) {
@@ -48,12 +41,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
         private  fun replaceFragment (fragment : Fragment){
-            if(fragment != null){
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.fragment_container,fragment)
-                transaction.commit()
-            }
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container,fragment)
+            transaction.commit()
         }
-    }
+}
 
 
