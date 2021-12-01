@@ -21,8 +21,9 @@ class BookDetailsActivity : AppCompatActivity() {
 
     private var clickChecker:Boolean = false
 
-    var urlApiGetBook = "https://backend-recommender-system-book.up.railway.app/api/get-book/123"
-    var urlApiGetBookSimilar = "https://backend-recommender-system-book.up.railway.app/api/get-book-similar/123"
+    var urlApiGetBook = "https://backend-recommender-system-book.up.railway.app/api/get-book/23"
+    var urlApiGetBookSimilar = "https://backend-recommender-system-book.up.railway.app/api/get-book-similar/23"
+    var urlApiUpdateUserRating = "https://backend-recommender-system-book.up.railway.app/api/update-user-rating/1/2/5"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,17 +53,9 @@ class BookDetailsActivity : AppCompatActivity() {
         )
         var imageUrls:Array<String> = arrayOf()
 
-        bookTotalRating.setOnClickListener {
-            Toast.makeText(this, "Your click on total Rating", Toast.LENGTH_SHORT).show()
-        }
-
-        bookRatingBar.setOnClickListener {
-            Toast.makeText(this, "Your click on RatingBar", Toast.LENGTH_SHORT).show()
-        }
-
         val bookSimilarRequest = JsonObjectRequest(Request.Method.GET, urlApiGetBookSimilar, null,
             { response ->
-                val message = "Success get book similar images!  \uD83D\uDE41"
+//                val message = "Success get book similar images!  \uD83D\uDE41"
                 val book:JSONObject = response.getJSONObject("data")
                 val data:JSONArray = book.getJSONArray("list_books")
                 for (i in 0 until data.length()) {
@@ -74,7 +67,7 @@ class BookDetailsActivity : AppCompatActivity() {
                     Picasso.get().load(url).into(book)
                 }
 
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             },
             {
                 val message = "Something wrong"
@@ -86,7 +79,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
         val bookDetailRequest = JsonObjectRequest(Request.Method.GET, urlApiGetBook, null,
             { response ->
-                val message = "Success get book!"
+//                val message = "Success get book!"
                 val book:JSONObject = response.getJSONObject("data")
 
                 var authors = ""
@@ -101,7 +94,7 @@ class BookDetailsActivity : AppCompatActivity() {
                 bookAverageRating.rating = (book.getDouble("rating").toFloat())
                 bookTotalRating.text = book.getInt("total_ratings").toString()
 
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             },
             {
                 val message = "Something wrong"
@@ -124,6 +117,42 @@ class BookDetailsActivity : AppCompatActivity() {
                     5 -> "Goodread \uD83D\uDE0D "
                     else -> ""
                 }
+
+
+
+//                val parameters = mutableMapOf<Any?, Any?>()
+//                parameters["user_id"] = 1
+//                parameters["book_id"] = 2
+//                parameters["user_rating"] = 5
+//                val jsonObject = JSONObject(parameters)
+//                Toast.makeText(this, jsonObject.toString(), Toast.LENGTH_LONG).show()
+//
+//                // Volley post request with parameters
+//                val updateUserRatingRequest = JsonObjectRequest(Request.Method.POST,urlApiUpdateUserRating, jsonObject,
+//                    { response ->
+//                        // Process the json
+//                        try {
+//                            Toast.makeText(this, "Response: $response", Toast.LENGTH_SHORT).show()
+//                        }catch (e:Exception){
+//                            Toast.makeText(this, "Exception: $e", Toast.LENGTH_SHORT).show()
+//                        }
+//
+//                    },
+//                    {
+//                        // Error in request
+//                        Toast.makeText(this, "Volley error: $it", Toast.LENGTH_SHORT).show()
+//                    })
+//
+//
+//                // Volley request policy, only one time request to avoid duplicate transaction
+//                updateUserRatingRequest.retryPolicy = DefaultRetryPolicy(
+//                    DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+//                    // 0 means no retry
+//                    0, // DefaultRetryPolicy.DEFAULT_MAX_RETRIES = 2
+//                    1f // DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+//                )
+//
+//                MySingleton.getInstance(this).addToRequestQueue(updateUserRatingRequest)
 
                 Toast.makeText(this@BookDetailsActivity, message, Toast.LENGTH_SHORT).show()
                 checkRatingBox.isChecked = p2
