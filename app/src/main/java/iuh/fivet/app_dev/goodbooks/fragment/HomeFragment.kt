@@ -1,6 +1,7 @@
 package iuh.fivet.app_dev.goodbooks.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater)
 
@@ -26,4 +28,6 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
+
 }

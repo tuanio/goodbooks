@@ -1,9 +1,7 @@
 package iuh.fivet.app_dev.goodbooks
 
-import android.net.Uri
 import android.view.View
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.net.toUri
