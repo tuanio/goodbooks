@@ -9,16 +9,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import iuh.fivet.app_dev.goodbooks.R
-import iuh.fivet.app_dev.goodbooks.api.ApiService
+import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.models.DataAuthors
 import iuh.fivet.app_dev.goodbooks.models.DataBooks
 import iuh.fivet.app_dev.goodbooks.models.DataGenres
-import iuh.fivet.app_dev.goodbooks.utils.Constants.Companion.BASE_URL
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,19 +35,11 @@ class SearchFragment : Fragment() {
     private lateinit var arrayAuthors: ArrayList<String>
     private lateinit var arrayGenres: ArrayList<String>
 
-    private val retrofitBuilder = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(ApiService::class.java)
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
-            isHidden = true
         }
 
     }
@@ -67,6 +56,7 @@ class SearchFragment : Fragment() {
 
         val tvFilter: View = view.findViewById(R.id.filterLayout)
         val tvSkeleton: View = view.findViewById(R.id.skeleton)
+        isHidden = true
         hideView(tvFilter)
         showView(tvSkeleton)
 
@@ -91,7 +81,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun initAuthorsFilter(view: View, context: Context) {
-        val retrofitData = retrofitBuilder.getListAuthors()
+        val retrofitData = Api.retrofitService.getListAuthors()
         retrofitData.enqueue(object: Callback<DataAuthors> {
             override fun onResponse(call: Call<DataAuthors>, response: Response<DataAuthors>) {
                 val res = response.body()!!
@@ -113,7 +103,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun initGenresFilter(view: View, context: Context) {
-        val retrofitData = retrofitBuilder.getListGenres()
+        val retrofitData = Api.retrofitService.getListGenres()
         retrofitData.enqueue(object: Callback<DataGenres> {
             override fun onResponse(call: Call<DataGenres>, response: Response<DataGenres>) {
                 val res = response.body()!!
@@ -154,7 +144,7 @@ class SearchFragment : Fragment() {
             val authorId = arrayAuthors.indexOf(txtAuthor) + 1
             val genreId = arrayGenres.indexOf(txtGenre) + 1
 
-            val retrofitData = retrofitBuilder.getBooksByAuthorAndGenre(authorId, genreId)
+            val retrofitData = Api.retrofitService.getBooksByAuthorAndGenre(authorId, genreId)
             retrofitData.enqueue(object: Callback<DataBooks> {
                 override fun onResponse(call: Call<DataBooks>, response: Response<DataBooks>) {
                     val res = response.body()!!

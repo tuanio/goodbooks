@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 //            val  url = response.data.list_books.get(0).image_url.toString();
 //            Picasso.get().load(url).into(img);
 //        });
-//        replaceFragment(homeFragment)
+        replaceFragment(homeFragment)
         navigationView = findViewById(R.id.bottom_navigation)
         navigationView.setOnItemSelectedListener {
             when (it.itemId) {
