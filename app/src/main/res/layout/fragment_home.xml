@@ -38,8 +38,10 @@
                     android:id="@+id/bestBook"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:text="The Best Book"
+                    android:textAlignment="center"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -109,7 +111,7 @@
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/book_img"
+                    android:id="@+id/top100BookInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
@@ -120,20 +122,21 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:listData="@{viewModel.top100Books}"
+                    app:top100Books="@{viewModel.topBooks}"
                     app:spanCount="1"
-                    tools:listitem="@layout/book_view" >
+                    tools:listitem="@layout/top100_book_view" >
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <ImageButton
-                    android:id="@+id/status_book_img"
-                    android:layout_width="39dp"
-                    android:layout_height="35dp"
-                    app:ApiStatus="@{viewModel.status}"
+                    android:id="@+id/status_book_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:ApiStatus="@{viewModel.status}" />
+
 
                 <TextView
                     android:id="@+id/authorTextView"
@@ -146,47 +149,22 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <HorizontalScrollView
-                    android:id="@+id/authorScrollView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:id="@+id/topAuthorBookHerLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/authorBook1VerLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageButton
-                                android:id="@+id/authorBook1Btn"
-                                android:layout_width="150dp"
-                                android:layout_height="200dp"
-                                app:srcCompat="@drawable/ic_broken_image" />
-
-                            <RatingBar
-                                android:id="@+id/topAuthorBook1Rating"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:numStars="5"
-                                android:isIndicator="true" />
-
-                            <TextView
-                                android:id="@+id/authorBook1Name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="authorBook1Name" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </HorizontalScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/topAuthorBookInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:TopAuthorBooks="@{viewModel.topBooksByAuthor}"
+                    app:spanCount="1"
+                    tools:listitem="@layout/top_author_book_view" >
+                </androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
                     android:id="@+id/topGenreTextView"
@@ -199,49 +177,22 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"/>
 
-                <HorizontalScrollView
-                    android:id="@+id/genreScrollView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:id="@+id/genreHerLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/genreBook1VerLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageButton
-                                android:id="@+id/genreBook1Btn"
-                                android:layout_width="150dp"
-                                android:layout_height="200dp"
-                                app:srcCompat="@drawable/ic_broken_image"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-                            <RatingBar
-                                android:id="@+id/topGenreBook1Rating"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:numStars="5"
-                                android:isIndicator="true" />
-
-                            <TextView
-                                android:id="@+id/genreBook1Name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="authorBook1Name" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-                </HorizontalScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/topGenreBookInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:TopGenreBooks="@{viewModel.topBooksByGenre}"
+                    app:spanCount="1"
+                    tools:listitem="@layout/top_genre_book_view" >
+                </androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
                     android:id="@+id/top100BookUserCareTextView"
@@ -253,53 +204,26 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"/>
 
-                <HorizontalScrollView
-                    android:id="@+id/top100BookUserCareScrollView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/topSimilarBookInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:TopSimilarBooks="@{viewModel.topBooksSimilar}"
+                    app:spanCount="1"
+                    tools:listitem="@layout/top_similar_book_view" >
+                </androidx.recyclerview.widget.RecyclerView>
 
-                    <LinearLayout
-                        android:id="@+id/top100BookUserCareLauOut"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:id="@+id/top100BookUserCareBook1VerLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageButton
-                                android:id="@+id/top100BookUserCareBook1Btn"
-                                android:layout_width="150dp"
-                                android:layout_height="200dp"
-                                app:srcCompat="@drawable/ic_broken_image" />
-
-                            <RatingBar
-                                android:id="@+id/top100BookUserCareBook1Rating"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:numStars="5"
-                                android:isIndicator="true" />
-
-                            <TextView
-                                android:id="@+id/top100BookUserCareBook1Name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="authorBook1Name" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </HorizontalScrollView>
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
 </layout>

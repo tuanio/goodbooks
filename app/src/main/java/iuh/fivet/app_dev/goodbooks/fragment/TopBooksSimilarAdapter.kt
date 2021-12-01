@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import iuh.fivet.app_dev.goodbooks.databinding.TopAuthorBookViewBinding
 import iuh.fivet.app_dev.goodbooks.models.TopBooks
-import iuh.fivet.app_dev.goodbooks.databinding.Top100BookViewBinding
 
-class Top100BookAdapter :
-    ListAdapter<TopBooks, Top100BookAdapter.top100BookViewHolder>(DiffCallback) {
+class TopBooksSimilarAdapter :
+    ListAdapter<TopBooks, TopBooksSimilarAdapter.topBooksSimilarViewHolder>(DiffCallback) {
 
-    class top100BookViewHolder(
-        private var binding: Top100BookViewBinding
+    class topBooksSimilarViewHolder(
+        private var binding: TopAuthorBookViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(topBooks: TopBooks) {
-            binding.top100books = topBooks
+            binding.topAuthorBooks = topBooks
 
             binding.executePendingBindings()
         }
@@ -34,14 +34,14 @@ class Top100BookAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): top100BookViewHolder {
-        return top100BookViewHolder(
-            Top100BookViewBinding.inflate(LayoutInflater.from(parent.context))
+    ): TopBooksSimilarAdapter.topBooksSimilarViewHolder {
+        return TopBooksSimilarAdapter.topBooksSimilarViewHolder(
+            TopAuthorBookViewBinding.inflate(LayoutInflater.from(parent.context))
         )
     }
 
-    override fun onBindViewHolder(holder: top100BookViewHolder, position: Int) {
-        val top100Books = getItem(position)
-        holder.bind(top100Books)
+    override fun onBindViewHolder(holder: TopBooksSimilarAdapter.topBooksSimilarViewHolder, position: Int) {
+        val topAuthorBooks = getItem(position)
+        holder.bind(topAuthorBooks)
     }
 }

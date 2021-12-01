@@ -8,15 +8,34 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import iuh.fivet.app_dev.goodbooks.fragment.ApiStatus
-import iuh.fivet.app_dev.goodbooks.fragment.Top100BookAdapter
-import iuh.fivet.app_dev.goodbooks.models.Top100Books
+import iuh.fivet.app_dev.goodbooks.fragment.*
+import iuh.fivet.app_dev.goodbooks.models.TopBooks
 
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Top100Books>?) {
+@BindingAdapter("top100Books")
+fun top100ListBooks(recyclerView: RecyclerView, data: List<TopBooks>?) {
     val adapter = recyclerView.adapter as Top100BookAdapter
     adapter.submitList(data)
 }
+
+@BindingAdapter("TopAuthorBooks")
+fun bindTopAuthorBooks(recyclerView: RecyclerView, data: List<TopBooks>?) {
+    val adapter = recyclerView.adapter as TopBooksByAuthorAdapter
+    adapter.submitList(data)
+}
+
+
+@BindingAdapter("TopGenreBooks")
+fun bindTopGenreBooks(recyclerView: RecyclerView, data: List<TopBooks>?) {
+    val adapter = recyclerView.adapter as TopBooksByGenreAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("TopSimilarBooks")
+fun bindTopBooksSimilar(recyclerView: RecyclerView, data: List<TopBooks>?) {
+    val adapter = recyclerView.adapter as TopBooksSimilarAdapter
+    adapter.submitList(data)
+}
+
 
 @BindingAdapter("imgUrl")
 fun bindImage(imgView: ImageButton, imgUrl: String?) {

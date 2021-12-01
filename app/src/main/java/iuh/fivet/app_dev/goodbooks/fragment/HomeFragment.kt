@@ -1,7 +1,6 @@
 package iuh.fivet.app_dev.goodbooks.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +23,13 @@ class HomeFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        binding.bookImg.adapter = Top100BookAdapter()
+        binding.top100BookInfo.adapter = Top100BookAdapter()
+
+        binding.topAuthorBookInfo.adapter = TopBooksByAuthorAdapter()
+
+        binding.topGenreBookInfo.adapter = TopBooksByGenreAdapter()
+
+        binding.topSimilarBookInfo.adapter = TopBooksSimilarAdapter()
 
         return binding.root
     }
