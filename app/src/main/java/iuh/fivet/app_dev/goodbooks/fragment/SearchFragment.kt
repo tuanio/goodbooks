@@ -8,8 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import iuh.fivet.app_dev.goodbooks.R
+import iuh.fivet.app_dev.goodbooks.RecyclerAdapter
 import iuh.fivet.app_dev.goodbooks.api.Api
+import iuh.fivet.app_dev.goodbooks.models.Book
 import iuh.fivet.app_dev.goodbooks.models.DataAuthors
 import iuh.fivet.app_dev.goodbooks.models.DataBooks
 import iuh.fivet.app_dev.goodbooks.models.DataGenres
@@ -34,6 +38,9 @@ class SearchFragment : Fragment() {
     private var isHidden: Boolean? = null
     private lateinit var arrayAuthors: ArrayList<String>
     private lateinit var arrayGenres: ArrayList<String>
+    private lateinit var recycleView: RecyclerView
+    private lateinit var recyclerAdapter: RecyclerAdapter
+    private var arrayBooks: ArrayList<Book> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +60,8 @@ class SearchFragment : Fragment() {
 
         initAuthorsFilter(view, context)
         initGenresFilter(view, context)
+        initRecycleView(view)
+
 
         val tvFilter: View = view.findViewById(R.id.filterLayout)
         val tvSkeleton: View = view.findViewById(R.id.skeleton)
@@ -62,7 +71,9 @@ class SearchFragment : Fragment() {
 
         view.findViewById<Button>(R.id.btnFilter).setOnClickListener {
             isHidden = if (isHidden == true) {
+
                 hideView(tvSkeleton)
+                hideView(recycleView)
                 showView(tvFilter)
                 false
             } else {
@@ -124,6 +135,10 @@ class SearchFragment : Fragment() {
         })
     }
 
+    private fun initRecycleView(view: View) {
+        recycleView = view.findViewById(R.id.rvBooks)
+    }
+
     private fun hideView(view: View) {
         view.visibility = View.INVISIBLE
     }
@@ -148,15 +163,12 @@ class SearchFragment : Fragment() {
             retrofitData.enqueue(object: Callback<DataBooks> {
                 override fun onResponse(call: Call<DataBooks>, response: Response<DataBooks>) {
                     val res = response.body()!!
-                    val arrayBooks = StringBuilder()
-
-                    for (book in res.data.listBooks) {
-                        arrayBooks.append(book.title)
-                        arrayBooks.append("\n")
-                    }
-
-                    Log.d("res", res.data.noBooks.toString())
-                    Log.d("res", arrayBooks.toString())
+                    arrayBooks = res.data.listBooks as ArrayList<Book>
+                    recyclerAdapter = RecyclerAdapter(arrayBooks)
+                    val llManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+                    recycleView.layoutManager = llManager
+                    recycleView.adapter = recyclerAdapter
+                    showView(recycleView)
                 }
 
                 override fun onFailure(call: Call<DataBooks>, t: Throwable) {
@@ -167,6 +179,7 @@ class SearchFragment : Fragment() {
             Toast.makeText(context, "Choose author and genre!", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     companion object {
         /**

@@ -58,8 +58,8 @@
                 android:id="@+id/authorsFilter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/txtAuthor"
                 android:cursorVisible="true"
+                android:hint="@string/txtAuthor"
                 android:textColor="@color/black"
                 tools:ignore="TextContrastCheck" />
 
@@ -76,8 +76,8 @@
                 android:id="@+id/genresFilter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/txtGenre"
                 android:cursorVisible="true"
+                android:hint="@string/txtGenre"
                 tools:ignore="TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -98,13 +98,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="192dp"
         android:text="@string/txtSkeleton"
-        android:textColor="@color/black"
-        android:textSize="25sp"
         android:textAlignment="center"
         android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="25sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDiscover" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBooks"
+        android:layout_width="409dp"
+        android:layout_height="602dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiscover"
+        tools:listitem="@layout/book_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
