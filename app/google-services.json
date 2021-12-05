@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "563824858979",
+    "project_id": "goodbooks-b3f67",
+    "storage_bucket": "goodbooks-b3f67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563824858979:android:2098864e3e9afb5424e556",
+        "android_client_info": {
+          "package_name": "iuh.fivet.app_dev.goodbooks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563824858979-3385qlou4dpc2s1nu1vemcbo9d51tr9o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQJxS71hVaWuwGwhy_ZfeRmZ6YiOkCYDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563824858979-3385qlou4dpc2s1nu1vemcbo9d51tr9o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
