@@ -3,6 +3,7 @@ package iuh.fivet.app_dev.goodbooks.api
 import iuh.fivet.app_dev.goodbooks.models.DataAuthors
 import iuh.fivet.app_dev.goodbooks.models.DataBooks
 import iuh.fivet.app_dev.goodbooks.models.DataGenres
+import iuh.fivet.app_dev.goodbooks.models.toan.DataBookRated
 import iuh.fivet.app_dev.goodbooks.utils.Constants
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -27,6 +28,10 @@ interface ApiService {
         @Path("author_id") authorId: Int,
         @Path("genre_id") genreId: Int
     ): Call<DataBooks>
+    @GET("api/get-list-book-rated/{user_id}")
+    fun getBookListBookRated(
+        @Path("user_id") userId : Int,
+    ): Call<DataBookRated>
 }
 
 object Api {
