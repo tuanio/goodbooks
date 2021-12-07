@@ -9,12 +9,14 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import iuh.fivet.app_dev.goodbooks.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+    private val FirebaseTAG = "FirebaseTAG"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,7 +71,10 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // sign in success, update UI
-                    Log.d(TAG, "createUserWithEmail:success")
+                    Log.d(FirebaseTAG, "createUserWithEmail:success")
+
+                    val profileUpdates = userProfileChangeRequest { displayName = username }
+                    auth.currentUser!!.updateProfile(profileUpdates)
 
                     Toast.makeText(
                         baseContext,
@@ -77,11 +82,11 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    val intentToMainActivity = Intent(this, RegisterActivity::class.java)
+                    val intentToMainActivity = Intent(this, MainActivity::class.java)
                     startActivity(intentToMainActivity)
                 } else {
                     // if sign in fails, display a message to the user
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Log.w(FirebaseTAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
                         baseContext,
                         "Authentication failed.",
