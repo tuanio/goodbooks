@@ -5,5 +5,5 @@ import iuh.fivet.app_dev.goodbooks.models.Book
 
 data class ListBooksRated(
     @SerializedName("list_books")
-    val listBooks: List<Book>
+    val listBooks: List<BookRated>
 )

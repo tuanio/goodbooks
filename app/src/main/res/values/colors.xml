@@ -10,4 +10,13 @@
 
     <color name="home">#DADEFF</color>
 
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#FFB300</color>
+
+    <color name="light_medium_gray" >#f3f3f3</color>
+    <color name="fav_icon_tint">#CAC7C7</color>
+
+    <color name="red">#F44336</color>
+    <color name="gray">#ED787676</color>
 </resources>

@@ -10,11 +10,11 @@ import iuh.fivet.app_dev.goodbooks.fragment.SearchFragment
 import iuh.fivet.app_dev.goodbooks.fragment.UserFragment
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var navigationView: BottomNavigationView ;
-    private val homeFragment = HomeFragment();
-    private val searchFragment = SearchFragment();
-    private val myfavFragment = MyFavFragment();
-    private val userFragment = UserFragment();
+    private lateinit var navigationView: BottomNavigationView
+    private val homeFragment = HomeFragment()
+    private val searchFragment = SearchFragment()
+    private val myfavFragment = MyFavFragment()
+    private val userFragment = UserFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-        private  fun replaceFragment (fragment : Fragment){
+        private  fun replaceFragment(fragment : Fragment){
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fragment_container,fragment)
             transaction.commit()

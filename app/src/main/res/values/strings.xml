@@ -6,5 +6,52 @@
     <string name="txtDiscover">Discover</string>
     <string name="txtPlaceHolder">TextView</string>
     <string name="txtSkeleton">Explore books using filters</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="bookTitle">bookTitle</string>
+    <string name="userRating">userRating</string>
+    <string name="authors">authors</string>
+    <string name="heartBtn">Heart Button</string>
+    <string name="averageRatingStar">average rating star</string>
+
+    <!--    book info beside book image-->
+    <string name="book_background">book background</string>
+    <string name="book_image">book image</string>
+    <string name="book_title">book title</string>
+    <string name="book_authors">book authors</string>
+    <string name="your_rating_text">Your rating</string>
+
+    <!--    book review metric-->
+    <string name="total_rating_text">Total rating</string>
+    <string name="total_rating">127</string>
+
+    <string name="average_rating_text">Average rating</string>
+    <string name="average_rating">0.5</string>
+
+    <!--    book detail text-->
+    <string name="api_get_book">content of desc from api "get book"</string>
+    <string name="api_book_overview">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="bookSuggestDescription">BOOK SUGGEST</string>
+    <string name="bookSuggest1">book suggest 1</string>
+    <string name="bookSuggest2">book suggest 2</string>
+    <string name="bookSuggest3">book suggest 3</string>
+    <string name="bookSuggest4">book suggest 4</string>
+    <string name="bookSuggest5">book suggest 5</string>
+    <string name="bookSuggest6">book suggest 6</string>
+    <string name="bookSuggest7">book suggest 7</string>
+    <string name="bookSuggest8">book suggest 8</string>
+    <string name="bookSuggest9">book suggest 9</string>
+    <string name="bookSuggest10">book suggest 10</string>
+    <string name="bookSuggestImage">book Suggest Image</string>
+    <string name="nameCategory">Sachyeutich</string>
 </resources>

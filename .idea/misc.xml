@@ -14,9 +14,14 @@
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/rounded.xml" value="0.17864583333333334" />
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/rounded_comer.xml" value="0.22447916666666667" />
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/activity_main.xml" value="0.24307692307692308" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/book_item.xml" value="0.20260416666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/bookrated_item.xml" value="0.1917808219178082" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/category_item.xml" value="0.1875" />
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/dropdown_item.xml" value="0.20260416666666667" />
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_home.xml" value="0.19270833333333334" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_more_info.xml" value="0.20260416666666667" />
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_my_fav.xml" value="0.1" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_overview.xml" value="0.20260416666666667" />
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_search.xml" value="0.15677083333333333" />
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_user.xml" value="0.17083333333333334" />
         <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/recycleview_item_book.xml" value="0.14114583333333333" />
