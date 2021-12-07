@@ -11,10 +11,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
-import iuh.fivet.app_dev.goodbooks.BookDetailsActivity
-import iuh.fivet.app_dev.goodbooks.MySingleton
+import iuh.fivet.app_dev.goodbooks.activities.BookDetailsActivity
+import iuh.fivet.app_dev.goodbooks.api.MySingleton
 import iuh.fivet.app_dev.goodbooks.R
-import kotlinx.android.synthetic.main.fragment_more_info.*
 import kotlinx.android.synthetic.main.fragment_overview.*
 import org.json.JSONObject
 

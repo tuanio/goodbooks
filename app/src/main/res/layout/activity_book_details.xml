@@ -15,7 +15,7 @@
             android:id="@+id/constraintBookDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".BookDetailsActivity">
+            tools:context=".activities.BookDetailsActivity">
 
             <ImageView
                 android:id="@+id/container"
@@ -56,7 +56,8 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/container"
-                app:srcCompat="@drawable/book1" />
+                app:srcCompat="@drawable/book1"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/item_book_title"
@@ -95,7 +96,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/container"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toBottomOf="@+id/your_rating_text"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+                android:focusable="true" />
 
             <TextView
                 android:id="@+id/your_rating_text"
@@ -205,7 +207,7 @@
 
             <HorizontalScrollView
                 android:layout_width="391dp"
-                android:layout_height="148dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
@@ -218,104 +220,262 @@
 
                     <ImageButton
                         android:id="@+id/bookSuggest1"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
                         android:layout_marginStart="12dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar1"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest1"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest1"
+                        app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest2"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest1"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar2"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest2"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest2"
+                        app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest3"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest2"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar3"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest3"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest4"
+                        app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest4"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest3"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar4"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest4"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest4"
+                        app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest5"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest4"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar5"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest5"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest5"
+                        app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest6"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest5"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar6"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest6"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest6"
+                        app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest7"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest6"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar7"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest7"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest7"
+                        app:srcCompat="@drawable/star" />
                     <ImageButton
                         android:id="@+id/bookSuggest8"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest7"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar8"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest8"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest8"
+                        app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest9"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest8"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
 
+                    <RatingBar
+                        android:id="@+id/averageRatingStar9"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest9"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest9"
+                        app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest10"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
+                        android:layout_width="110dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="7dp"
+                        android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest9"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/gatsby"
                         tools:ignore="SpeakableTextPresentCheck" />
+
+                    <RatingBar
+                        android:id="@+id/averageRatingStar10"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:clickable="false"
+                        android:contentDescription="@string/averageRatingStar"
+                        android:rating="0"
+                        android:stepSize="0.01"
+                        app:layout_constraintStart_toStartOf="@+id/bookSuggest10"
+                        app:layout_constraintTop_toBottomOf="@+id/bookSuggest10"
+                        app:srcCompat="@drawable/star" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </HorizontalScrollView>
@@ -327,7 +487,8 @@
                 android:layout_marginStart="12dp"
                 app:layout_constraintBottom_toBottomOf="@+id/container"
                 app:layout_constraintStart_toEndOf="@+id/your_rating_bar"
-                app:layout_constraintTop_toBottomOf="@+id/your_rating_text" />
+                app:layout_constraintTop_toBottomOf="@+id/your_rating_text"
+                tools:ignore="TouchTargetSizeCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

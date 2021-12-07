@@ -1,4 +1,4 @@
-package iuh.fivet.app_dev.goodbooks;
+package iuh.fivet.app_dev.goodbooks.api;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

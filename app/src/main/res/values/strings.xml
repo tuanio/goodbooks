@@ -37,6 +37,6 @@
     <string name="bookSuggest8">book suggest 8</string>
     <string name="bookSuggest9">book suggest 9</string>
     <string name="bookSuggest10">book suggest 10</string>
-
+    <string name="bookSuggestImage">book Suggest Image</string>
 
 </resources>
