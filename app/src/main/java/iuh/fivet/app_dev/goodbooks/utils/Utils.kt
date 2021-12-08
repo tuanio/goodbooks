@@ -2,7 +2,6 @@ package iuh.fivet.app_dev.goodbooks.utils
 
 import android.content.Context
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import iuh.fivet.app_dev.goodbooks.models.utils.UserData
 import java.io.File
