@@ -26,6 +26,22 @@ class LoginActivity : AppCompatActivity() {
         binding.textViewAskUser.setOnClickListener { goToRegister() }
     }
 
+    public override fun onStart() {
+        super.onStart()
+        // check if user is signed in (not-null)
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            Toast.makeText(
+                baseContext,
+                "Welcome back!",
+                Toast.LENGTH_LONG
+            ).show()
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
     private fun processingLogin() {
         val email = binding.editTextEmail.text.toString()
         val password = binding.editTextPassword.text.toString()

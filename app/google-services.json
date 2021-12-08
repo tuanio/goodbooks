@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "563824858979",
-    "project_id": "goodbooks-b3f67",
-    "storage_bucket": "goodbooks-b3f67.appspot.com"
+    "project_number": "478473492039",
+    "firebase_url": "https://goodbooks-e6d87-default-rtdb.firebaseio.com",
+    "project_id": "goodbooks-e6d87",
+    "storage_bucket": "goodbooks-e6d87.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:563824858979:android:2098864e3e9afb5424e556",
+        "mobilesdk_app_id": "1:478473492039:android:05447339abdafafa3c0362",
         "android_client_info": {
           "package_name": "iuh.fivet.app_dev.goodbooks"
         }
       },
       "oauth_client": [
         {
-          "client_id": "563824858979-3385qlou4dpc2s1nu1vemcbo9d51tr9o.apps.googleusercontent.com",
+          "client_id": "478473492039-i35ck2rcoec8hn0nsrscj8vs3mqph6q3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQJxS71hVaWuwGwhy_ZfeRmZ6YiOkCYDE"
+          "current_key": "AIzaSyAGL_lPC3z-kJgDJRL8nUzMgM2s3p_rGJQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "563824858979-3385qlou4dpc2s1nu1vemcbo9d51tr9o.apps.googleusercontent.com",
+              "client_id": "478473492039-i35ck2rcoec8hn0nsrscj8vs3mqph6q3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

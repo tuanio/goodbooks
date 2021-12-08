@@ -53,5 +53,8 @@
     <string name="bookSuggest9">book suggest 9</string>
     <string name="bookSuggest10">book suggest 10</string>
     <string name="bookSuggestImage">book Suggest Image</string>
-    <string name="nameCategory">Sachyeutich</string>
+    <string name="nameCategory">BookRated > </string>
+
+    <string name="username">Username: %s</string>
+    <string name="email">Email: %s</string>
 </resources>
