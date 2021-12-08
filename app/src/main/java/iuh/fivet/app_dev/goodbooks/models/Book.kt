@@ -1,9 +1,10 @@
 package iuh.fivet.app_dev.goodbooks.models
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class Book(
-    @SerializedName("image_url")
+    @Json(name="image_url")
     val imageUrl: String,
     val title: String,
     val id: Int,

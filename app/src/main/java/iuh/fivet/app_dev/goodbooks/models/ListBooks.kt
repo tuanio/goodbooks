@@ -1,10 +1,11 @@
 package iuh.fivet.app_dev.goodbooks.models
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class ListBooks(
-    @SerializedName("list_book")
+    @Json(name="list_book")
     val listBook: List<Book>,
-    @SerializedName("no_books")
+    @Json(name="no_books")
     val noBooks: Int
 )

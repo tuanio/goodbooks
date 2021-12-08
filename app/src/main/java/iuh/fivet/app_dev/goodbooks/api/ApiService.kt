@@ -47,7 +47,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("/api/create-user")
-    fun createUser(@Body userData: PostUserData): Call<CreateUserData>
+    fun createUser(@Body userData: PostUserData): Call<CreateUserData> 
 
     @GET("/api/get-user/{uid}")
     fun getUser(@Path("uid") uid: String): Call<GetUserData>
