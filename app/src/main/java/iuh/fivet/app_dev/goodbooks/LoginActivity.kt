@@ -1,20 +1,26 @@
 package iuh.fivet.app_dev.goodbooks
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.databinding.ActivityLoginBinding
+import iuh.fivet.app_dev.goodbooks.models.get_user.GetUserData
+import iuh.fivet.app_dev.goodbooks.utils.Utils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private val loginActivityTag = "LoginActivityTAG"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +48,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun setLoading(isLoading: Boolean) {
+        binding.buttonLogin.text = when (isLoading) {
+            true -> "Loading ..."
+            false -> "Login"
+        }
+    }
+
     private fun processingLogin() {
         val email = binding.editTextEmail.text.toString()
         val password = binding.editTextPassword.text.toString()
@@ -59,24 +72,57 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(email: String, password: String) {
+        setLoading(true)
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithEmail:success")
+                    Log.d(loginActivityTag, "signInWithEmail:success")
 
-                    Toast.makeText(
-                        baseContext,
-                        "Login successfully!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    auth.currentUser?.let { user ->
+                        val retrofitData = Api.retrofitService.getUser(user.uid)
+                        retrofitData.enqueue(object : Callback<GetUserData> {
+                            override fun onResponse(
+                                call: Call<GetUserData>,
+                                response: Response<GetUserData>
+                            ) {
+                                val res = response.body()!!
+                                when (res.statusCode) {
+                                    1 -> {
+                                        Utils.writeContentToFile(
+                                            applicationContext,
+                                            "userid",
+                                            res.data.user.id.toString()
+                                        )
 
-                    val intentToMainActivity = Intent(this, MainActivity::class.java)
-                    startActivity(intentToMainActivity)
+                                        Toast.makeText(
+                                            baseContext,
+                                            "Login successfully!",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+
+                                        val intentToMainActivity = Intent(this@LoginActivity, MainActivity::class.java)
+                                        startActivity(intentToMainActivity)
+                                    }
+                                    else -> {
+                                        Log.e(loginActivityTag, "Fail to create user account!")
+                                        setLoading(false)
+                                    }
+                                }
+                                Log.v(loginActivityTag, res.msg)
+                            }
+
+                            override fun onFailure(call: Call<GetUserData>, t: Throwable) {
+                                Log.e(loginActivityTag, "Fail login! $t")
+                                setLoading(false)
+                            }
+                        })
+                    }
                 } else {
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Log.w(loginActivityTag, "signInWithEmail:failure", task.exception)
+                    setLoading(false)
                     Toast.makeText(
                         baseContext,
-                        "Authentication failed.",
+                        task.exception?.message.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
