@@ -35,13 +35,9 @@ class BookCaseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_fav, container, false);
+        return inflater.inflate(R.layout.fragment_my_fav, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
     companion object {
         /**
          * Use this factory method to create a new instance of

@@ -2,7 +2,6 @@ package iuh.fivet.app_dev.goodbooks.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -163,7 +162,7 @@ class SearchFragment : Fragment() {
             retrofitData.enqueue(object: Callback<DataBooks> {
                 override fun onResponse(call: Call<DataBooks>, response: Response<DataBooks>) {
                     val res = response.body()!!
-                    arrayBooks = res.data.listBooks as ArrayList<Book>
+                    arrayBooks = res.data.listBook as ArrayList<Book>
                     recyclerAdapter = RecyclerAdapter(arrayBooks)
                     val llManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
                     recycleView.layoutManager = llManager

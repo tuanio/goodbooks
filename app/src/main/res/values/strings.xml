@@ -56,4 +56,6 @@
 
     <string name="username">Username: %s</string>
     <string name="email">Email: %s</string>
+    <string name="button_register">Register</string>
+    <string name="text_view_user_id">User id %s</string>
 </resources>

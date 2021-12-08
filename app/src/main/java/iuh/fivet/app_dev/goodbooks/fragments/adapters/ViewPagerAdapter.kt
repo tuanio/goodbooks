@@ -3,8 +3,6 @@ package iuh.fivet.app_dev.goodbooks.fragments.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import kotlinx.android.synthetic.main.fragment_more_info.*
-import kotlinx.android.synthetic.main.fragment_overview.*
 
 class ViewPagerAdapter(supportFragmentManager: FragmentManager):
     FragmentPagerAdapter(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
@@ -21,7 +19,7 @@ class ViewPagerAdapter(supportFragmentManager: FragmentManager):
         return mFragmentList[position]
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return mFragmentTitleList[position]
     }
 
