@@ -2,6 +2,7 @@ package iuh.fivet.app_dev.goodbooks.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,7 @@ class SearchFragment : Fragment() {
     private lateinit var recycleView: RecyclerView
     private lateinit var recyclerAdapter: RecyclerAdapter
     private var arrayBooks: ArrayList<Book> = ArrayList()
+    private val searchFragmentTag = "SearchFragmentTag"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,13 +103,13 @@ class SearchFragment : Fragment() {
                     arrayAuthors.add(author.fullName)
                 }
 
-                val authorsAdapter = ArrayAdapter(context,
-                    R.layout.dropdown_item, arrayAuthors)
+                val authorsAdapter = ArrayAdapter(context, R.layout.dropdown_item, arrayAuthors)
                 view.findViewById<AutoCompleteTextView>(R.id.authorsFilter).setAdapter(authorsAdapter)
             }
 
             override fun onFailure(call: Call<DataAuthors>, t: Throwable) {
                 Toast.makeText(context, "Cannot get list authors", Toast.LENGTH_SHORT).show()
+                Log.e(searchFragmentTag, t.toString())
             }
         })
     }
@@ -130,6 +132,7 @@ class SearchFragment : Fragment() {
 
             override fun onFailure(call: Call<DataGenres>, t: Throwable) {
                 Toast.makeText(context, "Cannot get list genres", Toast.LENGTH_SHORT).show()
+                Log.e(searchFragmentTag, t.toString())
             }
         })
     }
@@ -172,6 +175,7 @@ class SearchFragment : Fragment() {
 
                 override fun onFailure(call: Call<DataBooks>, t: Throwable) {
                     Toast.makeText(context, "Cannot get list books", Toast.LENGTH_SHORT).show()
+                    Log.e(searchFragmentTag, t.toString())
                 }
             })
         } else {
