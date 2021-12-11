@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/Android/goodbooks/app/src/main/res/layout/book_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/Android/goodbooks/app/src/main/res/layout/dropdown_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/Android/goodbooks/app/src/main/res/layout/fragment_search.xml" value="0.33" />
         <entry key="..\:/Users/ANH/Desktop/goodbooks/app/src/main/res/drawable/ic_broken_image.xml" value="0.1" />
         <entry key="..\:/Users/ANH/Desktop/goodbooks/app/src/main/res/drawable/ic_connection_error.xml" value="0.1" />
         <entry key="..\:/Users/ANH/Desktop/goodbooks/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
