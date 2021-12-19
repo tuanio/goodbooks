@@ -1,4 +1,4 @@
-package iuh.fivet.app_dev.goodbooks
+package iuh.fivet.app_dev.goodbooks.models.list_books
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +8,9 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import iuh.fivet.app_dev.goodbooks.models.Book
+import iuh.fivet.app_dev.goodbooks.R
 
-class RecyclerAdapter(private val listBooks: List<Book>): RecyclerView.Adapter<RecyclerAdapter.BookViewHolder>() {
+class BookAdapter(private val listBooks: List<Book>): RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
     class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.bookImage)
         val title: TextView = itemView.findViewById(R.id.txtBookTitle)

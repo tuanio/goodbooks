@@ -1,4 +1,4 @@
-package iuh.fivet.app_dev.goodbooks.models
+package iuh.fivet.app_dev.goodbooks.models.list_authors
 
 import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json

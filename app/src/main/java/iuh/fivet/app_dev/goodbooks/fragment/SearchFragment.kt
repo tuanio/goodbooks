@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import iuh.fivet.app_dev.goodbooks.R
-import iuh.fivet.app_dev.goodbooks.RecyclerAdapter
+import iuh.fivet.app_dev.goodbooks.models.list_books.BookAdapter
 import iuh.fivet.app_dev.goodbooks.api.Api
-import iuh.fivet.app_dev.goodbooks.models.Book
-import iuh.fivet.app_dev.goodbooks.models.DataAuthors
-import iuh.fivet.app_dev.goodbooks.models.DataBooks
-import iuh.fivet.app_dev.goodbooks.models.DataGenres
+import iuh.fivet.app_dev.goodbooks.models.list_books.Book
+import iuh.fivet.app_dev.goodbooks.models.list_authors.DataAuthors
+import iuh.fivet.app_dev.goodbooks.models.list_books.DataBooks
+import iuh.fivet.app_dev.goodbooks.models.list_genres.DataGenres
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,7 +41,7 @@ class SearchFragment : Fragment() {
     private lateinit var arrayGenres: ArrayList<String>
     private lateinit var recycleView: RecyclerView
     private lateinit var divider: RecyclerView.ItemDecoration
-    private lateinit var recyclerAdapter: RecyclerAdapter
+    private lateinit var bookAdapter: BookAdapter
     private var arrayBooks: ArrayList<Book> = ArrayList()
     private val searchFragmentTag = "SearchFragmentTag"
 
@@ -170,12 +170,12 @@ class SearchFragment : Fragment() {
                 override fun onResponse(call: Call<DataBooks>, response: Response<DataBooks>) {
                     val res = response.body()!!
                     arrayBooks = res.data.listBook as ArrayList<Book>
-                    recyclerAdapter = RecyclerAdapter(arrayBooks)
+                    bookAdapter = BookAdapter(arrayBooks)
                     val llManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
                     recycleView.layoutManager = llManager
                     recycleView.addItemDecoration(divider)
-                    recycleView.adapter = recyclerAdapter
+                    recycleView.adapter = bookAdapter
                     showView(recycleView)
                 }
 
