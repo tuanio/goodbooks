@@ -1,5 +1,6 @@
 package iuh.fivet.app_dev.goodbooks.fragment.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.R
-import iuh.fivet.app_dev.goodbooks.models.Book
+import iuh.fivet.app_dev.goodbooks.models.list_books.Book
+import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
 
-class TopBookHomeAdapter(private val listBooks: List<Book>): RecyclerView.Adapter<TopBookHomeAdapter.BookViewHolder>() {
+class TopBookHomeAdapter(val context: Context, private val listBooks: List<Book>): RecyclerView.Adapter<TopBookHomeAdapter.BookViewHolder>() {
     class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val image: ImageButton = itemView.findViewById(R.id.topBookImgUrl)
         val title: TextView = itemView.findViewById(R.id.topBookTitle)
@@ -32,7 +33,7 @@ class TopBookHomeAdapter(private val listBooks: List<Book>): RecyclerView.Adapte
         holder.rating.rating = String.format("%.1f", book.rating).toFloat()
 
         holder.image.setOnClickListener {
-            Log.d(this.toString(), book.id.toString())
+            showBook(context, book.id)
         }
     }
 

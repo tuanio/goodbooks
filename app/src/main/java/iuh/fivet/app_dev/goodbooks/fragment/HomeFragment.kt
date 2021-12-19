@@ -2,7 +2,6 @@ package iuh.fivet.app_dev.goodbooks.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +16,9 @@ import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.fragment.adapter.TopBookHomeAdapter
-import iuh.fivet.app_dev.goodbooks.models.Book
+import iuh.fivet.app_dev.goodbooks.models.list_books.Book
 import iuh.fivet.app_dev.goodbooks.models.DataBooksHome
 import iuh.fivet.app_dev.goodbooks.models.DataTop1Book
-import iuh.fivet.app_dev.goodbooks.models.Top1Book
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -121,7 +118,7 @@ class HomeFragment : Fragment() {
                 val res100 = response.body()!!
                 listTop100Book = res100.data.listBooks as ArrayList<Book>
 
-                top100BookAdapter = TopBookHomeAdapter(listTop100Book)
+                top100BookAdapter = TopBookHomeAdapter(context, listTop100Book)
                 val llManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 top100BookView.layoutManager = llManager
                 top100BookView.adapter = top100BookAdapter
@@ -140,7 +137,7 @@ class HomeFragment : Fragment() {
                 val resAuthor = response.body()!!
                 listTopBookByAuthor = resAuthor.data.listBooks as ArrayList<Book>
 
-                topAuthorBookAdapter = TopBookHomeAdapter(listTopBookByAuthor)
+                topAuthorBookAdapter = TopBookHomeAdapter(context, listTopBookByAuthor)
                 val llManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 topBookByAuthorView.layoutManager = llManager
                 topBookByAuthorView.adapter = topAuthorBookAdapter
@@ -159,7 +156,7 @@ class HomeFragment : Fragment() {
                 val resGenre = response.body()!!
                 listTopBookByGenre = resGenre.data.listBooks as ArrayList<Book>
 
-                topGenreBookAdapter = TopBookHomeAdapter(listTopBookByGenre)
+                topGenreBookAdapter = TopBookHomeAdapter(context, listTopBookByGenre)
                 val llManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 topBookByGenreView.layoutManager = llManager
                 topBookByGenreView.adapter = topGenreBookAdapter
@@ -178,7 +175,7 @@ class HomeFragment : Fragment() {
                 val resSimilar = response.body()!!
                 listTopBookSimilar = resSimilar.data.listBooks as ArrayList<Book>
 
-                topSimilarBookAdapter = TopBookHomeAdapter(listTopBookSimilar)
+                topSimilarBookAdapter = TopBookHomeAdapter(context, listTopBookSimilar)
                 val llManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 topBookSimilarView.layoutManager = llManager
                 topBookSimilarView.adapter = topSimilarBookAdapter

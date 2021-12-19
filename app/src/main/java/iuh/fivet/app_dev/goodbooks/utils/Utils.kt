@@ -1,8 +1,10 @@
 package iuh.fivet.app_dev.goodbooks.utils
 
 import android.content.Context
+import android.content.Intent
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import iuh.fivet.app_dev.goodbooks.activities.BookDetailsActivity
 import iuh.fivet.app_dev.goodbooks.models.utils.UserData
 import java.io.File
 
@@ -33,5 +35,11 @@ object Utils {
     fun readContentFromFile(context: Context, filename: String): String {
         val file = File(context.filesDir, filename)
         return file.readText()
+    }
+
+    fun showBook(context: Context, bookId: Int) {
+        Variables.bookId = bookId
+        val intent = Intent(context, BookDetailsActivity::class.java)
+        context.startActivity(intent)
     }
 }

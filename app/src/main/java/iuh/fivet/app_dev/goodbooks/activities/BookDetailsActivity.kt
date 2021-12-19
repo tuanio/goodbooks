@@ -1,48 +1,144 @@
 package iuh.fivet.app_dev.goodbooks.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.INDICATOR_GRAVITY_BOTTOM
 import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.api.APIServiceUpdate
+import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.fragments.MoreInfoFragment
 import iuh.fivet.app_dev.goodbooks.fragments.OverviewFragment
 import iuh.fivet.app_dev.goodbooks.fragments.adapters.ViewPagerAdapter
 import iuh.fivet.app_dev.goodbooks.model.UpdateResponse
-import iuh.fivet.app_dev.goodbooks.api.MySingleton
+import iuh.fivet.app_dev.goodbooks.models.get_book.DataBook
+import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
+import iuh.fivet.app_dev.goodbooks.models.get_book_similar.BookSimilar
+import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataBookSimilar
+import iuh.fivet.app_dev.goodbooks.utils.Constants.Companion.BASE_URL
+import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
+import iuh.fivet.app_dev.goodbooks.utils.Variables
 import kotlinx.android.synthetic.main.activity_book_details.*
-import org.json.JSONArray
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-//const val USER_ID = "iuh.fivet.app_dev.goodbooks.USER_ID"
-//const val BOOK_ID = "iuh.fivet.app_dev.goodbooks.BOOK_ID"
-
 class BookDetailsActivity : AppCompatActivity() {
 
-    private var bookId = 23
+    private var bookId = 1
     private val userId = 1
-    private val baseURL = "https://backend-recommender-system-book.up.railway.app"
     private var clickChecker:Boolean = false
-    private var urlApiGetBookSimilar = "$baseURL/api/get-book-similar/$bookId"
-
-    var urlApiGetBook = "$baseURL/api/get-book/$bookId"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
-        // subview in activity_book_details
+        try {
+//            val sharedPref = this.getSharedPreferences(
+//                getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+//            bookId = sharedPref.getInt(R.string.preference_file_key.toString(), 1)
+            bookId = Variables.bookId
+        } catch (e: Exception) {
+            Toast.makeText(this@BookDetailsActivity, "ExceptionBookId, $e", Toast.LENGTH_SHORT).show()
+            Log.e("bookId_error", "$e")
+        }
+    }
+
+    // Functions to Setup UI and display API data
+
+    private fun setUpHeartButton() {
+        val heartBtn = findViewById<Button>(R.id.heartBnt)
+        heartBtn.setOnClickListener {
+            clickChecker = clickChecker xor true
+            if (clickChecker) {
+                heartBtn.setBackgroundResource(R.drawable.heart_on)
+            }
+            else {
+                heartBtn.setBackgroundResource(R.drawable.heart_off)
+            }
+
+            try {
+                val retrofit = Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(BASE_URL)
+                    .build()
+                val apiServiceUpdate = retrofit.create(APIServiceUpdate::class.java)
+                val putCall: Call<UpdateResponse> = apiServiceUpdate.updateUserFavourite(userId, bookId)
+                putCall.enqueue(object: Callback<UpdateResponse>
+                {
+                    override fun onResponse(
+                        call: Call<UpdateResponse>,
+                        response: Response<UpdateResponse>
+                    ) {
+                        Log.d("UserLIKE_Success", "Response: ${response.body()!!.msg}")
+                    }
+
+                    override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
+                        Log.d("UserLIKE_Fail", "Throwable $t")
+                    }
+
+                })
+
+            } catch (e: Exception) {
+                Log.d("UserLIKE_Exception", "Exception: $e")
+            }
+        }
+    }
+
+    private fun setUpTabs() {
+    // TODO: Adapter for Overview and More info tabs
+        val viewPager = findViewById<ViewPager>(R.id.viewPager)
+        val tabs = findViewById<TabLayout>(R.id.bookDetailTabLayout)
+        val adapter = ViewPagerAdapter(supportFragmentManager)
+        adapter.addFragment(OverviewFragment(), "Overview")
+        adapter.addFragment(MoreInfoFragment(), "More info")
+
+        viewPager.adapter = adapter
+        tabs.setupWithViewPager(viewPager)
+        tabs.setSelectedTabIndicatorGravity(INDICATOR_GRAVITY_BOTTOM)
+    }
+
+    private fun updateUserFavourite() {
+    // TODO: Update favourite for User data via API
+        try {
+            val retrofit = Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BASE_URL)
+                .build()
+            val apiServiceUpdate = retrofit.create(APIServiceUpdate::class.java)
+            val putCall: Call<UpdateResponse> = apiServiceUpdate.updateCountAuthorGenre(userId, bookId)
+            putCall.enqueue(object: Callback<UpdateResponse>
+            {
+                override fun onResponse(
+                    call: Call<UpdateResponse>,
+                    response: Response<UpdateResponse>
+                ) {
+                    Log.d("UserFavourite_Success", "Response: ${response.body()!!.msg}")
+                }
+
+                override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
+                    Log.d("UserFavourite_Fail", "Failure: $t")
+                }
+
+            })
+
+        } catch (e: Exception) {
+            Log.d("UserFavourite_Exception", "Exception: $e")
+        }
+    }
+
+
+    public override fun onStart() {
+        super.onStart()
+
+        // VARIABLES: views in BookDetailsActivity
         val bookRatingBar = findViewById<RatingBar>(R.id.your_rating_bar)
         val bookTitle = findViewById<TextView>(R.id.item_book_title)
         val bookAuthors = findViewById<TextView>(R.id.item_book_author)
@@ -63,6 +159,7 @@ class BookDetailsActivity : AppCompatActivity() {
             findViewById(R.id.bookSuggest9),
             findViewById<ImageButton>(R.id.bookSuggest10)
         )
+
         // rating of 10 book suggest
         val ratingBookSuggest = arrayOf(
             findViewById(R.id.averageRatingStar1),
@@ -76,84 +173,75 @@ class BookDetailsActivity : AppCompatActivity() {
             findViewById(R.id.averageRatingStar9),
             findViewById<RatingBar>(R.id.averageRatingStar10)
         )
-        // empty imagesUrls
-        var imageUrls:Array<String> = arrayOf()
 
-        // GET 10 BOOK SUGGESTED
-        val bookSimilarRequest = JsonObjectRequest(Request.Method.GET, urlApiGetBookSimilar, null,
-            { response ->
-                // val message = "Success get book similar images!  \uD83D\uDE41"
-                val book:JSONObject = response.getJSONObject("data")
-                val data:JSONArray = book.getJSONArray("list_books")
+        // TODO: get and display 10BookSimilar via API
+        val requestGetBookSimilar = Api.retrofitService.getBookSimilar(bookId)
+        requestGetBookSimilar.enqueue(object : Callback<DataBookSimilar> {
+            override fun onResponse(
+                call: Call<DataBookSimilar>,
+                response: Response<DataBookSimilar>
+            ) {
+                val data:ArrayList<BookSimilar> = response.body()!!.data.listBook as ArrayList<BookSimilar>
                 var listId: Array<Int> = arrayOf()
-                for (i in 0 until data.length()) {
-                    val jsonObject:JSONObject = data.getJSONObject(i)
-                    imageUrls +=  jsonObject.getString("image_url")
-                    ratingBookSuggest[i].rating = jsonObject.getDouble("rating").toFloat()
-                    listId += jsonObject.getInt("id")
-                }
-                @Suppress("NAME_SHADOWING")
-                for ((url, book) in (imageUrls zip bookSuggest)) {
-                    Picasso.get().load(url).into(book)
+                for (i in 0 until data.size) {
+                    val b:BookSimilar = data[i]
+                    ratingBookSuggest[i].rating = b.rating.toFloat()
+                    listId += b.id
+                    Picasso.get().load(b.imageUrl).into(bookSuggest[i])
                 }
 
                 for (i in listId.indices) {
+                    // TODO: make new book view when click
                     bookSuggest[i].setOnClickListener {
-//                        val intent = Intent(this, BookDetailsActivity::class.java)
-//                        BookDetailsActivity().bookId = listId[i]
-                        val intent = BookDetailsActivity().apply {
-                            bookId = listId[i]
-                        }.intent
-                        startActivity(intent)
-//                        finish()
+//                        Utils.writeContentToFile(applicationContext, "BookId", listId[i].toString())
+//                        val intent = Intent(this@BookDetailsActivity, BookDetailsActivity::class.java)
+//                        startActivity(intent)
+//                        val sharedPref = this@BookDetailsActivity.getPreferences(Context.MODE_PRIVATE)
+//                        with (sharedPref.edit()) {
+//                            putInt(getString(R.string.preference_file_key), listId[i])
+//                            apply()
+//                        }
+                        showBook(this@BookDetailsActivity, listId[i])
                     }
                 }
 
                 // Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            },
-            {
-                val message = "Something wrong"
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
-        )
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(this).addToRequestQueue(bookSimilarRequest)
 
-        // GET BOOK DETAIL INFORMATION
-        val bookDetailRequest = JsonObjectRequest(Request.Method.GET, urlApiGetBook, null,
-            { response ->
+            override fun onFailure(call: Call<DataBookSimilar>, t: Throwable) {
+                Log.d("bookSimilar_Failure", "$t")
+            }
+        })
+
+        // TODO: get and display information of main book
+        val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
+        requestGetBookDetail.enqueue(object : Callback<DataGetBook> {
+            override fun onResponse(call: Call<DataGetBook>, response: Response<DataGetBook>) {
                 // val message = "Success get book!"
-                val book:JSONObject = response.getJSONObject("data")
+                val book: DataBook = response.body()!!.data
+                val authors: ArrayList<String> = book.authors as ArrayList<String>
 
-                var authors = ""
-                val listAuthors = book.getJSONArray("authors")
-                for (author in 0 until listAuthors.length()) {
-                    val au = listAuthors.get(author)
-                    authors += "$au, "
-                }
-                bookAuthors.text = authors.dropLast(2)
-                bookTitle.text = book.getString("title")
-                Picasso.get().load(book.getString("image_url")).into(bookPoster)
-                bookAverageRating.rating = (book.getDouble("rating").toFloat())
-                bookTotalRating.text = book.getInt("total_ratings").toString()
+                bookAuthors.text = authors.joinToString(", ")
+                bookTitle.text = book.title
+                Picasso.get().load(book.imageUrl).into(bookPoster)
+                bookAverageRating.rating = book.rating.toFloat()
+                bookTotalRating.text = book.totalRatings.toString()
 
                 // Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            },
-            {
-                val message = "Something wrong"
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
-        )
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(this).addToRequestQueue(bookDetailRequest)
 
-        // UPDATE USER RATING
+            override fun onFailure(call: Call<DataGetBook>, t: Throwable) {
+                Log.d("bookInformation error", "$t")
+            }
+        })
+
+        // TODO: update user rating via API
         val checkRatingBox = findViewById<CheckBox>(R.id.checkRatingBox)
         bookRatingBar.onRatingBarChangeListener =
             RatingBar.OnRatingBarChangeListener { _, p1, p2 ->
 
                 val message: String = when (p1.toInt()) {
-                    0 -> "No Summit Rating"
+                    0 -> "No Summit New Rating"
                     1 -> "A bad book \uD83D\uDE41 "
                     2 -> "Not interest book \uD83D\uDE15 "
                     3 -> "A few interest \uD83D\uDE09 "
@@ -165,7 +253,7 @@ class BookDetailsActivity : AppCompatActivity() {
                 try {
                     val retrofit = Retrofit.Builder()
                         .addConverterFactory(GsonConverterFactory.create())
-                        .baseUrl(baseURL)
+                        .baseUrl(BASE_URL)
                         .build()
                     val apiServiceUpdate = retrofit.create(APIServiceUpdate::class.java)
                     val putCall: Call<UpdateResponse> = apiServiceUpdate.updateUserRating(userId, bookId, p1.toInt())
@@ -198,92 +286,16 @@ class BookDetailsActivity : AppCompatActivity() {
                 }
             }
 
-        // UPDATE USER FAVOURITE
+        // TODO: update user favourite
         updateUserFavourite()
 
-        // Setup something
+        // TODO: make heartButton interactive and update user LIKE
         setUpHeartButton()
+
+        // TODO: make Overview and More info tabs interactive
         setUpTabs()
+
         Toast.makeText(this, "$bookId", Toast.LENGTH_LONG).show()
-    }
-
-    private fun setUpHeartButton() {
-        val heartBtn = findViewById<Button>(R.id.heartBnt)
-        heartBtn.setOnClickListener {
-            clickChecker = clickChecker xor true
-            if (clickChecker) {
-                heartBtn.setBackgroundResource(R.drawable.heart_on)
-            }
-            else {
-                heartBtn.setBackgroundResource(R.drawable.heart_off)
-            }
-
-            try {
-                val retrofit = Retrofit.Builder()
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl(baseURL)
-                    .build()
-                val apiServiceUpdate = retrofit.create(APIServiceUpdate::class.java)
-                val putCall: Call<UpdateResponse> = apiServiceUpdate.updateUserFavourite(userId, bookId)
-                putCall.enqueue(object: Callback<UpdateResponse>
-                {
-                    override fun onResponse(
-                        call: Call<UpdateResponse>,
-                        response: Response<UpdateResponse>
-                    ) {
-                        Toast.makeText(this@BookDetailsActivity, "Response: ${response.body()!!.msg}", Toast.LENGTH_LONG).show()
-                    }
-
-                    override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
-                        Toast.makeText(this@BookDetailsActivity, "Failure: $t", Toast.LENGTH_LONG).show()
-                    }
-
-                })
-
-            } catch (e: Exception) {
-                Toast.makeText(this@BookDetailsActivity, "$e", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun setUpTabs() {
-        val viewPager = findViewById<ViewPager>(R.id.viewPager)
-        val tabs = findViewById<TabLayout>(R.id.bookDetailTabLayout)
-        val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(OverviewFragment(), "Overview")
-        adapter.addFragment(MoreInfoFragment(), "More info")
-
-        viewPager.adapter = adapter
-        tabs.setupWithViewPager(viewPager)
-        tabs.setSelectedTabIndicatorGravity(INDICATOR_GRAVITY_BOTTOM)
-    }
-
-    private fun updateUserFavourite() {
-        try {
-            val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(baseURL)
-                .build()
-            val apiServiceUpdate = retrofit.create(APIServiceUpdate::class.java)
-            val putCall: Call<UpdateResponse> = apiServiceUpdate.updateCountAuthorGenre(userId, bookId)
-            putCall.enqueue(object: Callback<UpdateResponse>
-            {
-                override fun onResponse(
-                    call: Call<UpdateResponse>,
-                    response: Response<UpdateResponse>
-                ) {
-                    Toast.makeText(this@BookDetailsActivity, "Response: ${response.body()!!.msg}", Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
-                    Toast.makeText(this@BookDetailsActivity, "Failure: $t", Toast.LENGTH_LONG).show()
-                }
-
-            })
-
-        } catch (e: Exception) {
-            Toast.makeText(this@BookDetailsActivity, "$e", Toast.LENGTH_SHORT).show()
-        }
     }
 
 }
