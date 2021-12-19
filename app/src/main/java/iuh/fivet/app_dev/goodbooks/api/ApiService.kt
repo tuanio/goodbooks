@@ -2,9 +2,9 @@ package iuh.fivet.app_dev.goodbooks.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import iuh.fivet.app_dev.goodbooks.models.DataAuthors
-import iuh.fivet.app_dev.goodbooks.models.DataBooks
-import iuh.fivet.app_dev.goodbooks.models.DataGenres
+import iuh.fivet.app_dev.goodbooks.models.list_authors.DataAuthors
+import iuh.fivet.app_dev.goodbooks.models.list_books.DataBooks
+import iuh.fivet.app_dev.goodbooks.models.list_genres.DataGenres
 import iuh.fivet.app_dev.goodbooks.models.book_rated_favorited.DataBookRated
 import iuh.fivet.app_dev.goodbooks.models.create_user.CreateUserData
 import iuh.fivet.app_dev.goodbooks.models.create_user.PostUserData
