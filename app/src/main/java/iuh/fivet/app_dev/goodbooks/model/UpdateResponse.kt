@@ -2,12 +2,13 @@ package iuh.fivet.app_dev.goodbooks.model
 
 
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class UpdateResponse(
-    @SerializedName("data")
+   @Json(name="data")
     val `data`: Data,
-    @SerializedName("msg")
+    @Json(name="msg")
     val msg: String,
-    @SerializedName("status_code")
+    @Json(name="status_code")
     val statusCode: Int
 )

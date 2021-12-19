@@ -60,11 +60,12 @@ class BookCaseFragment : Fragment() {
                     override fun onResponse(
                         call: Call<DataBookRated>,
                         response: Response<DataBookRated>
-                    ){
+                    ){  Log.d("bookcasefragment", response.body()?.statusCode.toString())
                         val res = response.body()!!
+
                         arrayBooks = res.data.listBooks as MutableList<BookRated>
                         rcvCategory = view.findViewById(R.id.rcv_book_rated)
-                        bookAdapter = BookRatedAdapter(arrayBooks)
+                        bookAdapter = BookRatedAdapter(context,arrayBooks)
                         val linearLayoutManager =
                             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                         rcvCategory.layoutManager = linearLayoutManager
@@ -73,7 +74,7 @@ class BookCaseFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<DataBookRated>, t: Throwable) {
-                        TODO("Not yet implemented")
+                        Log.d("bookcasefragmentfail",t.toString())
                     }
                 })
     }
@@ -83,11 +84,11 @@ class BookCaseFragment : Fragment() {
             override fun onResponse(
                 call: Call<DataBookRated>,
                 response: Response<DataBookRated>
-            ){
+            ){  Log.d("bookcasefragment", response.body()?.statusCode.toString())
                 val res = response.body()!!
                 arrayBooks = res.data.listBooks as MutableList<BookRated>
                 rcvCategory = view.findViewById(R.id.rcv_book_favorited)
-                bookAdapter = BookRatedAdapter(arrayBooks)
+                bookAdapter = BookRatedAdapter(context,arrayBooks)
                 val linearLayoutManager =
                     LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
                 rcvCategory.layoutManager = linearLayoutManager
@@ -96,7 +97,7 @@ class BookCaseFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<DataBookRated>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.d("bookcasefragmentfail",t.toString())
             }
         })
     }
