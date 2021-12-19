@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.187" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/heartBnt"
                 style="@style/btnStyle"
                 android:layout_width="30dp"
@@ -67,6 +67,9 @@
                 android:layout_marginTop="14dp"
                 android:text="@string/book_title"
                 android:textStyle="bold"
+                android:ellipsize="end"
+                android:ems="13"
+                android:lines="1"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toTopOf="@+id/item_book_img" />
 
@@ -77,6 +80,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/book_authors"
+                android:ellipsize="end"
+                android:ems="13"
+                android:lines="1"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toBottomOf="@+id/item_book_title" />
 
@@ -165,8 +171,8 @@
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/bookDetailTabLayout"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
+                    android:layout_width="277dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     app:tabMode="fixed">
 

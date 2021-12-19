@@ -4,18 +4,20 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
-import iuh.fivet.app_dev.goodbooks.activities.BookDetailsActivity
-import iuh.fivet.app_dev.goodbooks.api.MySingleton
+import androidx.fragment.app.Fragment
 import iuh.fivet.app_dev.goodbooks.R
+import iuh.fivet.app_dev.goodbooks.api.Api
+import iuh.fivet.app_dev.goodbooks.models.get_book.DataBook
+import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
+import iuh.fivet.app_dev.goodbooks.utils.Variables
 import kotlinx.android.synthetic.main.fragment_overview.*
-import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OverviewFragment : Fragment() {
 
@@ -25,16 +27,15 @@ class OverviewFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val urlApiGetBook = BookDetailsActivity().urlApiGetBook
+        val bookId = Variables.bookId
 
-        val bookDetailRequest = JsonObjectRequest(
-            Request.Method.GET, urlApiGetBook, null,
-            { response ->
+        val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
+        requestGetBookDetail.enqueue(object : Callback<DataGetBook> {
+            override fun onResponse(call: Call<DataGetBook>, response: Response<DataGetBook>) {
+                // val message = "Success get book!"
+                val book: DataBook = response.body()!!.data
                 val message = "Success get book!"
-                val book: JSONObject = response.getJSONObject("data")
-
-                val bookDesc = book.getString("desc")
-                Log.e("LoiDesc", bookDesc)
+                val bookDesc = book.desc
 
                 book_overview_text.movementMethod = ScrollingMovementMethod()
                 book_overview_text.text = bookDesc
@@ -45,14 +46,12 @@ class OverviewFragment : Fragment() {
                 book_overview_text.setColorClickableText(Color.BLUE)
 
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-            },
-            {
-                val message = "Something wrong"
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
-        )
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(context).addToRequestQueue(bookDetailRequest)
+
+            override fun onFailure(call: Call<DataGetBook>, t: Throwable) {
+                Log.e("set overview error", "$t")
+            }
+        })
 
         return inflater.inflate(R.layout.fragment_overview, container, false)
     }

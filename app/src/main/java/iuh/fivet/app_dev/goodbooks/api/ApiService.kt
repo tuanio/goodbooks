@@ -7,6 +7,8 @@ import iuh.fivet.app_dev.goodbooks.models.DataBooks
 import iuh.fivet.app_dev.goodbooks.models.DataGenres
 import iuh.fivet.app_dev.goodbooks.models.create_user.CreateUserData
 import iuh.fivet.app_dev.goodbooks.models.create_user.PostUserData
+import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
+import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataBookSimilar
 import iuh.fivet.app_dev.goodbooks.models.get_user.GetUserData
 import iuh.fivet.app_dev.goodbooks.utils.Constants
 import retrofit2.Call
@@ -42,6 +44,12 @@ interface ApiService {
 
     @GET("/api/get-user/{uid}")
     fun getUser(@Path("uid") uid: String): Call<GetUserData>
+
+    @GET("/api/get-book-similar/{book_id}")
+    fun getBookSimilar(@Path("book_id") book_id: Int): Call<DataBookSimilar>
+
+    @GET("/api/get-book/{book_id}")
+    fun getBookDetail(@Path("book_id") book_id: Int): Call<DataGetBook>
 }
 
 object Api {

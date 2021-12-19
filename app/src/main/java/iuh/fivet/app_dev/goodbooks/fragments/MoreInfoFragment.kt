@@ -2,19 +2,22 @@ package iuh.fivet.app_dev.goodbooks.fragments
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.toolbox.JsonObjectRequest
-import iuh.fivet.app_dev.goodbooks.activities.BookDetailsActivity
-import iuh.fivet.app_dev.goodbooks.api.MySingleton
+import androidx.fragment.app.Fragment
 import iuh.fivet.app_dev.goodbooks.R
-import org.json.JSONObject
-import android.text.method.ScrollingMovementMethod
+import iuh.fivet.app_dev.goodbooks.api.Api
+import iuh.fivet.app_dev.goodbooks.models.get_book.DataBook
+import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
+import iuh.fivet.app_dev.goodbooks.utils.Variables
 import kotlinx.android.synthetic.main.fragment_more_info.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MoreInfoFragment : Fragment() {
 
@@ -24,69 +27,46 @@ class MoreInfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val urlApiGetBook = BookDetailsActivity().urlApiGetBook
+        val bookId = Variables.bookId
 
-        var authors = ""
-        var bookUrl: String?
-        var desc: String?
-        var genres = ""
-        var id: Int
-        var imageUrl: String?
-        var isbn: String?
-        var isbn13: String?
-        var pages: Int
-        var rating: Float
-        var reviews: Int
-        var title: String?
-        var totalRatings: Int
+        val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
+        requestGetBookDetail.enqueue(object : Callback<DataGetBook> {
+            override fun onResponse(call: Call<DataGetBook>, response: Response<DataGetBook>) {
 
-        val bookDetailRequest = JsonObjectRequest(
-            Request.Method.GET, urlApiGetBook, null,
-            { response ->
-                val message = "Success get book!"
-                val book: JSONObject = response.getJSONObject("data")
+                val message = "SetMoreInfoTab!"
+                val book: DataBook = response.body()!!.data
+                val authors: ArrayList<String> = book.authors as ArrayList<String>
 
-                val listAuthors = book.getJSONArray("authors")
-                for (author in 0 until listAuthors.length()) {
-                    val au = listAuthors.get(author)
-                    authors += "$au, "
-                }
-
-                val listGenres = book.getJSONArray("genres")
-                for (genre in 0 until listGenres.length()) {
-                    val gen = listGenres.get(genre)
-                    genres += "$gen, "
-                }
-
-                bookUrl = book.getString("book_url")
-                desc = book.getString("desc")
-                id = book.getInt("id")
-                imageUrl = book.getString("image_url")
-                isbn = book.getString("isbn")
-                isbn13 = book.getString("isbn13")
-                pages = book.getInt("pages")
-                rating = book.getDouble("rating").toFloat()
-                reviews = book.getInt("reviews")
-                title = book.getString("title")
-                totalRatings = book.getInt("total_ratings")
+                val authorsString = authors.joinToString(", ")
+                val title = book.title
+                val rating = book.rating.toFloat()
+                val totalRatings = book.totalRatings.toString()
+                val bookUrl = book.bookUrl
+                val isbn = book.isbn
+                val pages = book.pages
+                val reviews = book.reviews
+                val genres = book.genres.joinToString(", ")
 
                 val bookInfo = """
-                    Authors 👉 $authors
+                    Title 👉 $title
                     
+                    Authors 👉 $authorsString
+
                     Book's link 👉 $bookUrl
-                    
+
                     Genres 👉 $genres
-                    
+
                     isbn 👉 $isbn
-                    
+
                     Pages 👉 $pages
-                    
+
                     Rating 👉 $rating
-                    
+
                     Reviews 👉 $reviews
-                    
+
                     Total_ratings 👉 $totalRatings
                     """.trimIndent()
+
                 book_moreinfo_text.movementMethod = ScrollingMovementMethod()
                 book_moreinfo_text.text = bookInfo
                 book_moreinfo_text.setTrimExpandedText(" show less")
@@ -96,14 +76,12 @@ class MoreInfoFragment : Fragment() {
                 book_moreinfo_text.setColorClickableText(Color.BLUE)
 
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-            },
-            {
-                val message = "Something wrong"
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
-        )
-        // Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(context).addToRequestQueue(bookDetailRequest)
+
+            override fun onFailure(call: Call<DataGetBook>, t: Throwable) {
+                Log.d("MoreInfoTabError", "$t")
+            }
+        })
 
         return inflater.inflate(R.layout.fragment_more_info, container, false)
     }
