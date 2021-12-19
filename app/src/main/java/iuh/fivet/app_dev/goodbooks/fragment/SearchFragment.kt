@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import iuh.fivet.app_dev.goodbooks.R
@@ -39,6 +40,7 @@ class SearchFragment : Fragment() {
     private lateinit var arrayAuthors: ArrayList<String>
     private lateinit var arrayGenres: ArrayList<String>
     private lateinit var recycleView: RecyclerView
+    private lateinit var divider: RecyclerView.ItemDecoration
     private lateinit var recyclerAdapter: RecyclerAdapter
     private var arrayBooks: ArrayList<Book> = ArrayList()
     private val searchFragmentTag = "SearchFragmentTag"
@@ -67,6 +69,8 @@ class SearchFragment : Fragment() {
         val tvFilter: View = view.findViewById(R.id.filterLayout)
         val tvSkeleton: View = view.findViewById(R.id.skeleton)
         isHidden = true
+        divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+
         hideView(tvFilter)
         showView(tvSkeleton)
 
@@ -168,7 +172,9 @@ class SearchFragment : Fragment() {
                     arrayBooks = res.data.listBook as ArrayList<Book>
                     recyclerAdapter = RecyclerAdapter(arrayBooks)
                     val llManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
                     recycleView.layoutManager = llManager
+                    recycleView.addItemDecoration(divider)
                     recycleView.adapter = recyclerAdapter
                     showView(recycleView)
                 }
