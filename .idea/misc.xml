@@ -57,6 +57,37 @@
         <entry key="..\:/Users/nvatu/Desktop/goodbooks/app/src/main/res/layout/fragment_overview.xml" value="0.21875" />
         <entry key="..\:/Users/nvatu/Desktop/goodbooks/app/src/main/res/layout/fragment_search.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/nvatu/Desktop/goodbooks/app/src/main/res/layout/fragment_user.xml" value="0.38697916666666665" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22447916666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.22447916666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.22447916666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/ic_baseline_menu_book_24.xml" value="0.22447916666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.22447916666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/ic_filter.xml" value="0.19444444444444445" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22447916666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.21875" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/item_selector.xml" value="0.17864583333333334" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/rounded.xml" value="0.17864583333333334" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/rounded_comer.xml" value="0.22447916666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/drawable/star.xml" value="0.19444444444444445" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/activity_continue.xml" value="0.20364583333333333" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/activity_login.xml" value="0.20364583333333333" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/activity_main.xml" value="0.24307692307692308" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/book_item.xml" value="0.20260416666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/bookrated_item.xml" value="0.1917808219178082" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/category_item.xml" value="0.1875" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/dropdown_item.xml" value="0.20260416666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_home.xml" value="0.19270833333333334" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_more_info.xml" value="0.20260416666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_my_fav.xml" value="0.18" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_overview.xml" value="0.20260416666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_search.xml" value="0.15677083333333333" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/fragment_user.xml" value="0.17083333333333334" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/recycleview_item_book.xml" value="0.14114583333333333" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/shape.xml" value="0.20364583333333333" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/layout/top_author_book_view.xml" value="0.20260416666666667" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/menu/bottom_menu.xml" value="0.25" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21875" />
+        <entry key="..\:/android goodbook/goodbooks/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.21875" />
       </map>
     </option>
   </component>

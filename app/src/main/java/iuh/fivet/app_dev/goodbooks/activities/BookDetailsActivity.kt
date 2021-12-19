@@ -16,7 +16,7 @@ import iuh.fivet.app_dev.goodbooks.fragments.OverviewFragment
 import iuh.fivet.app_dev.goodbooks.fragments.adapters.ViewPagerAdapter
 import iuh.fivet.app_dev.goodbooks.model.UpdateResponse
 import iuh.fivet.app_dev.goodbooks.api.MySingleton
-import kotlinx.android.synthetic.main.activity_book_details.*
+//import kotlinx.android.synthetic.main.activity_book_details.*
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
