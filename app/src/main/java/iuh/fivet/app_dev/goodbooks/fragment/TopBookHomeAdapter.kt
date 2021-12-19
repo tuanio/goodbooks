@@ -1,11 +1,13 @@
 package iuh.fivet.app_dev.goodbooks.fragment.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.R
@@ -26,8 +28,12 @@ class TopBookHomeAdapter(private val listBooks: List<Book>): RecyclerView.Adapte
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val book: Book = listBooks[position]
         Picasso.get().load(book.imageUrl).into(holder.image)
-        holder.title.text = String.format("%.15s", book.title) + ".."
+        holder.title.text = book.title
         holder.rating.rating = String.format("%.1f", book.rating).toFloat()
+
+        holder.image.setOnClickListener {
+            Log.d(this.toString(), book.id.toString())
+        }
     }
 
     override fun getItemCount(): Int {

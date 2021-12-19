@@ -2,10 +2,7 @@ package iuh.fivet.app_dev.goodbooks.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import iuh.fivet.app_dev.goodbooks.models.DataAuthors
-import iuh.fivet.app_dev.goodbooks.models.DataBooks
-import iuh.fivet.app_dev.goodbooks.models.DataBooksHome
-import iuh.fivet.app_dev.goodbooks.models.DataGenres
+import iuh.fivet.app_dev.goodbooks.models.*
 import iuh.fivet.app_dev.goodbooks.models.create_user.CreateUserData
 import iuh.fivet.app_dev.goodbooks.models.create_user.PostUserData
 import iuh.fivet.app_dev.goodbooks.models.get_user.GetUserData
@@ -44,20 +41,23 @@ interface ApiService {
     @GET("/api/get-user/{uid}")
     fun getUser(@Path("uid") uid: String): Call<GetUserData>
 
-    @GET("api/get-top-100-books")
+    @GET("/api/get-one-top-book")
+    fun getTheBestBooks(): Call<DataTop1Book>
+
+    @GET("/api/get-top-100-books")
     fun getTop100Books(): Call<DataBooksHome>
 
-    @GET("api/get-list-book-recommend-by-author/{user_id}")
+    @GET("/api/get-list-book-recommend-by-author/{user_id}")
     fun getTopBooksByAuthor(
         @Path("user_id") userId: Int
     ): Call<DataBooksHome>
 
-    @GET("api/get-list-book-recommend-by-genre/{user_id}")
+    @GET("/api/get-list-book-recommend-by-genre/{user_id}")
     fun getTopBooksByGenre(
         @Path("user_id") userId: Int
     ): Call<DataBooksHome>
 
-    @GET("api/get-some-book-similar-at-all/{user_id}")
+    @GET("/api/get-some-book-similar-at-all/{user_id}")
     fun getTopBooksSimilar(
         @Path("user_id") userId: Int
     ): Call<DataBooksHome>

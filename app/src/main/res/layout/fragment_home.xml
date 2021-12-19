@@ -25,6 +25,105 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/theBestBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="The Best Book"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/theBestBookImgUrl"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/book_view"
+                    android:padding="10dp"
+                    android:scaleType="fitXY" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/theBestBookTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="theBestBookTitle" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="15dp">
+
+                            <TextView
+                                android:id="@+id/theBestBookTotalRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="totalRating" />
+
+                            <TextView
+                                android:id="@+id/theBestBookTotalReview"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="totalReview" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/theBestBookGenre"
+                            android:layout_marginLeft="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="theBestBookGenre" />
+
+                        <TextView
+                            android:id="@+id/theBestBookAuthor"
+                            android:layout_marginLeft="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="theBestBookAuthor" />
+
+                        <RatingBar
+                            android:id="@+id/theBestBookRating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:numStars="5"
+                            android:rating="5"
+                            android:isIndicator="true"
+                            android:stepSize="0.01" />
+
+                        <TextView
+                            android:id="@+id/theBestBookDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="theBestBookDesc" />
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+
+            <TextView
                 android:id="@+id/top100Book"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +137,7 @@
                 android:id="@+id/top100BookScroll"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                tools:context=".fragment.HomeFragment"
+                android:background="@drawable/list_book_background"
                 tools:listitem="@layout/top_book_home_view" />
 
             <TextView
@@ -71,6 +170,7 @@
                 android:id="@+id/topBookByGenreScroll"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
+                android:background="@drawable/list_book_background"
                 tools:listitem="@layout/top_book_home_view" />
 
             <TextView
