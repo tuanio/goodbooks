@@ -18,7 +18,8 @@
             android:id="@+id/book_moreinfo_text"
             style="@style/book_overview_text"
             android:layout_height="wrap_content"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:textAlignment="viewStart" />
 
 
     </RelativeLayout>

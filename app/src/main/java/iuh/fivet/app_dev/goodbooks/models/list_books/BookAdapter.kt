@@ -1,5 +1,6 @@
 package iuh.fivet.app_dev.goodbooks.models.list_books
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.R
+import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
 
-class BookAdapter(private val listBooks: List<Book>): RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+class BookAdapter(var context: Context, private val listBooks: List<Book>): RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
     class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.bookImage)
         val title: TextView = itemView.findViewById(R.id.txtBookTitle)
@@ -27,6 +29,8 @@ class BookAdapter(private val listBooks: List<Book>): RecyclerView.Adapter<BookA
         Picasso.get().load(book.imageUrl).into(holder.image)
         holder.title.text = book.title
         holder.mRating.rating = book.rating.toFloat()
+        holder.title.setOnClickListener { showBook(context, book.id) }
+        holder.image.setOnClickListener { showBook(context, book.id) }
     }
 
     override fun getItemCount(): Int {

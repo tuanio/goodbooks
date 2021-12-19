@@ -170,7 +170,7 @@ class SearchFragment : Fragment() {
                 override fun onResponse(call: Call<DataBooks>, response: Response<DataBooks>) {
                     val res = response.body()!!
                     arrayBooks = res.data.listBook as ArrayList<Book>
-                    bookAdapter = BookAdapter(arrayBooks)
+                    bookAdapter = BookAdapter(context, arrayBooks)
                     val llManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
                     recycleView.layoutManager = llManager
