@@ -21,6 +21,7 @@ import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
 import iuh.fivet.app_dev.goodbooks.models.get_book_similar.BookSimilar
 import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataBookSimilar
 import iuh.fivet.app_dev.goodbooks.utils.Constants.Companion.BASE_URL
+import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
 import iuh.fivet.app_dev.goodbooks.utils.Variables
 import kotlinx.android.synthetic.main.activity_book_details.*
 import retrofit2.Call
@@ -200,9 +201,7 @@ class BookDetailsActivity : AppCompatActivity() {
 //                            putInt(getString(R.string.preference_file_key), listId[i])
 //                            apply()
 //                        }
-                        Variables.bookId = listId[i]
-                        val intent = Intent(this@BookDetailsActivity, BookDetailsActivity::class.java)
-                        startActivity(intent)
+                        showBook(this@BookDetailsActivity, listId[i])
                     }
                 }
 
