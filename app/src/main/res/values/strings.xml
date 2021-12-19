@@ -53,10 +53,12 @@
     <string name="bookSuggest9">book suggest 9</string>
     <string name="bookSuggest10">book suggest 10</string>
     <string name="bookSuggestImage">book Suggest Image</string>
+    <string name="nameCategory">BookRated > </string>
 
     <string name="username">Username: %s</string>
     <string name="email">Email: %s</string>
     <string name="button_register">Register</string>
     <string name="text_view_user_id">User id %s</string>
-    <string name="preference_file_key">BOOK_ID</string>
+    <string name="click_to_test">Click to test</string>
+    <string name="get_user_id">Get user id</string>
 </resources>
