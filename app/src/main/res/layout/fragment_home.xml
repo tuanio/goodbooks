@@ -255,6 +255,16 @@
                 android:background="@drawable/list_book_background"
                 tools:listitem="@layout/top_book_home_view" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="center"
+                android:text="Powered by 5T"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 
