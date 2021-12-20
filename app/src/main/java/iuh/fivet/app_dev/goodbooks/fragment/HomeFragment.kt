@@ -2,14 +2,12 @@ package iuh.fivet.app_dev.goodbooks.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.RatingBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
@@ -69,7 +67,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val context = container!!.context as Context
 
-        bindTheBestBook(view)
+        bindTheBestBook(view,context)
         bindTop100(view, context)
         bindTopAuthor(view, context)
         bindTopGenre(view, context)
@@ -78,27 +76,29 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    private fun bindTheBestBook(view: View) {
+    private fun bindTheBestBook(view: View,context: Context) {
 
         val theBestBook = Api.retrofitService.getTheBestBooks()
         theBestBook.enqueue(object: Callback<DataTop1Book> {
             override fun onResponse(call: Call<DataTop1Book>, response: Response<DataTop1Book>) {
                 val resBestBook = response.body()!!.data
-
                 val theBestBookTotalRating: TextView = view.findViewById(R.id.theBestBookTotalRating)
                 val theBestBookTotalReview: TextView = view.findViewById(R.id.theBestBookTotalReview)
                 val theBestBookGenre: TextView = view.findViewById(R.id.theBestBookGenre)
                 val theBestBookAuthor: TextView = view.findViewById(R.id.theBestBookAuthor)
                 val theBestBookRating: RatingBar = view.findViewById(R.id.theBestBookRating)
-                val theBestBookImgUrl: ImageButton = view.findViewById(R.id.theBestBookImgUrl)
+                val theBestBookImgUrl: ImageView = view.findViewById(R.id.theBestBookImgUrl)
                 val theBestBookDesc: TextView = view.findViewById(R.id.theBestBookDesc)
 
                 theBestBookTotalRating.text = resBestBook.title
                 theBestBookTotalReview.text = resBestBook.reviews.toString()
-                theBestBookGenre.text = resBestBook.genres
-                theBestBookAuthor.text = resBestBook.authors
+                theBestBookGenre.text = resBestBook.genres[0]
+                theBestBookAuthor.text = resBestBook.authors[0]
                 theBestBookRating.rating = resBestBook.rating
                 Picasso.get().load(resBestBook.image_url).into(theBestBookImgUrl)
+                theBestBookImgUrl.setOnClickListener {
+                    Toast.makeText(context, resBestBook.image_url.toString(), Toast.LENGTH_SHORT).show()
+                }
                 theBestBookDesc.text = resBestBook.desc
             }
             override fun onFailure(call: Call<DataTop1Book>, t: Throwable) {

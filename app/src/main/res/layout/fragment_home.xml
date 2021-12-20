@@ -40,13 +40,14 @@
                 android:layout_height="200dp"
                 android:orientation="horizontal">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/theBestBookImgUrl"
                     android:layout_width="150dp"
                     android:layout_height="200dp"
-                    android:background="@drawable/book_view"
                     android:padding="10dp"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY">
+
+                </ImageView>
 
                 <ScrollView
                     android:layout_width="match_parent"

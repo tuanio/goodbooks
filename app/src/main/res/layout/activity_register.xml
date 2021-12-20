@@ -6,60 +6,85 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="SIGN UP"
+        android:textAlignment="center"
+        android:textColor="@color/teal_700"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/edit_text_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="40dp"
-        android:padding="20dp"
+        android:background="@drawable/round_edittext"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/edit_text_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
         android:hint="Username"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_email"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/edit_text_email" />
 
     <EditText
         android:id="@+id/edit_text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_username"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_username" />
 
     <EditText
         android:id="@+id/edit_text_confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_edittext"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_password"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_password" />
 
     <Button
         android:id="@+id/button_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/button_register"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_confirm_password"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/edit_text_confirm_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

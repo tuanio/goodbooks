@@ -3,14 +3,19 @@ package iuh.fivet.app_dev.goodbooks.models
 import com.squareup.moshi.Json
 
 data class Top1Book(
-    @Json(name = "author")
-    val authors: String,
+    val authors: List<String>,
     val desc: String,
-    val genres: String,
+    @Json(name="book_url")
+    val bookUrl: String,
+    val genres: List<String>,
     val id: Int,
     val image_url: String,
+    val isbn : String,
+    val isbn13 : String,
+    val pages : Int,
     val rating: Float,
     val reviews: Int,
     val title: String,
-    val total_ratings: Int
+    @Json(name="total_ratings")
+    val totalRatings: Int
 )
