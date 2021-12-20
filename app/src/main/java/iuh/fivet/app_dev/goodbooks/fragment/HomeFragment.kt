@@ -16,6 +16,7 @@ import iuh.fivet.app_dev.goodbooks.fragment.adapter.TopBookHomeAdapter
 import iuh.fivet.app_dev.goodbooks.models.list_books.Book
 import iuh.fivet.app_dev.goodbooks.models.DataBooksHome
 import iuh.fivet.app_dev.goodbooks.models.DataTop1Book
+import iuh.fivet.app_dev.goodbooks.utils.Utils
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import kotlinx.android.synthetic.main.fragment_user.view.*
 import retrofit2.Call
@@ -68,7 +69,7 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val context = container!!.context as Context
 
-        bindTheBestBook(view)
+        bindTheBestBook(view, context)
         bindTop100(view, context)
         bindTopAuthor(view, context)
         bindTopGenre(view, context)
@@ -77,7 +78,7 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    private fun bindTheBestBook(view: View) {
+    private fun bindTheBestBook(view: View, context: Context) {
 
         val theBestBook = Api.retrofitService.getTheBestBooks()
         theBestBook.enqueue(object: Callback<DataTop1Book> {
@@ -101,6 +102,10 @@ class HomeFragment : Fragment() {
                 theBestBookDesc.text = resBestBook.desc
                 theBestBookTitle.text = resBestBook.title
                 Picasso.get().load(resBestBook.image_url).into(theBestBookImgUrl)
+
+                theBestBookImgUrl.setOnClickListener {
+                    Utils.showBook(context, resBestBook.id)
+                }
             }
             override fun onFailure(call: Call<DataTop1Book>, t: Throwable) {
                 Toast.makeText(context, "get the best book failed", Toast.LENGTH_LONG).show()

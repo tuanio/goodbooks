@@ -37,7 +37,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="220dp"
+                android:background="#9CF4F4F4"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -61,7 +62,6 @@
                     android:rating="5"
                     android:isIndicator="true"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
                     style="?android:attr/ratingBarStyleSmall"
                     android:stepSize="0.01" />
                 </LinearLayout>
@@ -186,7 +186,6 @@
                 android:id="@+id/top100BookScroll"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                android:background="@drawable/list_book_background"
                 tools:listitem="@layout/top_book_home_view" />
 
             <TextView
@@ -203,6 +202,7 @@
                 android:id="@+id/topBookByAuthorScroll"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
+                android:background="@drawable/list_book_background"
                 tools:listitem="@layout/top_book_home_view" />
 
             <TextView
@@ -219,7 +219,6 @@
                 android:id="@+id/topBookByGenreScroll"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
-                android:background="@drawable/list_book_background"
                 tools:listitem="@layout/top_book_home_view" />
 
             <TextView
@@ -237,6 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
                 android:layout_marginBottom="15dp"
+                android:background="@drawable/list_book_background"
                 tools:listitem="@layout/top_book_home_view" />
 
         </LinearLayout>
