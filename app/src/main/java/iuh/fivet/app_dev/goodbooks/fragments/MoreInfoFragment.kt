@@ -12,7 +12,7 @@ import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.models.get_book.DataBook
 import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
-import iuh.fivet.app_dev.goodbooks.utils.Variables
+import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import kotlinx.android.synthetic.main.fragment_more_info.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +26,7 @@ class MoreInfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val bookId = Variables.bookId
+        val bookId = GlobalVariables.bookId
 
         val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
         requestGetBookDetail.enqueue(object : Callback<DataGetBook> {

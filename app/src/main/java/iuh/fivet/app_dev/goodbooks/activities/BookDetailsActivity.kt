@@ -21,7 +21,7 @@ import iuh.fivet.app_dev.goodbooks.models.get_book_similar.BookSimilar
 import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataBookSimilar
 import iuh.fivet.app_dev.goodbooks.utils.Constants.Companion.BASE_URL
 import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
-import iuh.fivet.app_dev.goodbooks.utils.Variables
+import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import kotlinx.android.synthetic.main.activity_book_details.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,23 +31,27 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class BookDetailsActivity : AppCompatActivity() {
 
-    private var bookId = 1
-    private val userId = 1
+    private var bookId = GlobalVariables.bookId
+    private var userId = GlobalVariables.userId
     private var clickChecker:Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_details)
 
-        try {
+        bookId = GlobalVariables.bookId
+        userId = GlobalVariables.userId
+
+//        try {
 //            val sharedPref = this.getSharedPreferences(
 //                getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 //            bookId = sharedPref.getInt(R.string.preference_file_key.toString(), 1)
-            bookId = Variables.bookId
-        } catch (e: Exception) {
-            Toast.makeText(this@BookDetailsActivity, "ExceptionBookId, $e", Toast.LENGTH_SHORT).show()
-            Log.e("bookId_error", "$e")
-        }
+//            bookId = GlobalVariables.bookId
+//            bookId = GlobalVariables.bookId
+//        } catch (e: Exception) {
+//            Toast.makeText(this@BookDetailsActivity, "ExceptionBookId, $e", Toast.LENGTH_SHORT).show()
+//            Log.e("bookId_error", "$e")
+//        }
     }
 
     // Functions to Setup UI and display API data
@@ -183,7 +187,7 @@ class BookDetailsActivity : AppCompatActivity() {
                 val data:ArrayList<BookSimilar> = response.body()!!.data.listBook as ArrayList<BookSimilar>
                 var listId: Array<Int> = arrayOf()
                 for (i in 0 until data.size) {
-                    val b:BookSimilar = data[i]
+                    val b: BookSimilar = data[i]
                     ratingBookSuggest[i].rating = b.rating.toFloat()
                     listId += b.id
                     Picasso.get().load(b.imageUrl).into(bookSuggest[i])
