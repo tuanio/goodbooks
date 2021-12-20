@@ -56,6 +56,7 @@ class BookCaseFragment : Fragment() {
         val context = container!!.context as Context
         initView(view,context)
         initBookFavorited(view,context)
+        initBookHistory(view,context)
         return view
     }
 
@@ -93,6 +94,29 @@ class BookCaseFragment : Fragment() {
                 val res = response.body()!!
                 arrayBooks = res.data.listBooks as MutableList<BookRated>
                 rcvCategory = view.findViewById(R.id.rcv_book_favorited)
+                bookAdapter = BookRatedAdapter(context,arrayBooks)
+                val linearLayoutManager =
+                    LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                rcvCategory.layoutManager = linearLayoutManager
+                rcvCategory.adapter = bookAdapter
+                Log.d("res",arrayBooks.toString())
+            }
+
+            override fun onFailure(call: Call<DataBookRated>, t: Throwable) {
+                Log.d("bookcasefragmentfail",t.toString())
+            }
+        })
+    }
+    private fun initBookHistory(view: View,context: Context){
+        val retrofitData = Api.retrofitService.getBookListBookHistory(userId)
+        retrofitData.enqueue(object :Callback<DataBookRated>{
+            override fun onResponse(
+                call: Call<DataBookRated>,
+                response: Response<DataBookRated>
+            ){  Log.d("bookcasefragment", response.body()?.statusCode.toString())
+                val res = response.body()!!
+                arrayBooks = res.data.listBooks as MutableList<BookRated>
+                rcvCategory = view.findViewById(R.id.rcv_book_history)
                 bookAdapter = BookRatedAdapter(context,arrayBooks)
                 val linearLayoutManager =
                     LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
