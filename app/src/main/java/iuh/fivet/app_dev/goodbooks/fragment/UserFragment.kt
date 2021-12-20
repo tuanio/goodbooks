@@ -14,6 +14,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import iuh.fivet.app_dev.goodbooks.LoginActivity
 import iuh.fivet.app_dev.goodbooks.databinding.FragmentUserBinding
+import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import iuh.fivet.app_dev.goodbooks.utils.Utils
 
 class UserFragment : Fragment() {
@@ -32,10 +33,7 @@ class UserFragment : Fragment() {
 
         binding.buttonLogout.setOnClickListener { processSignOut() }
         binding.buttonTest.setOnClickListener {
-            val userId = Utils.readContentFromFile(
-                binding.root.context.applicationContext, // always application context
-                "userid"
-            )
+            val userId = GlobalVariables.userId
             Toast.makeText(
                 binding.root.context,
                 "UserID: $userId",
