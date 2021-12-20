@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.models.book_rated_favorited.*
+import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -34,6 +36,7 @@ class BookCaseFragment : Fragment() {
     private lateinit var rcvCategory : RecyclerView
     private lateinit var bookAdapter: BookRatedAdapter
     private var arrayBooks :MutableList<BookRated> = ArrayList<BookRated>()
+    private var userId by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,8 @@ class BookCaseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        userId = GlobalVariables.userId
+
         val view = inflater.inflate(R.layout.fragment_my_fav, container, false)
         val context = container!!.context as Context
         initView(view,context)
@@ -55,7 +60,7 @@ class BookCaseFragment : Fragment() {
     }
 
     private fun initView(view : View,context: Context){
-        val retrofitData = Api.retrofitService.getBookListBookRated(1)
+        val retrofitData = Api.retrofitService.getBookListBookRated(userId)
             retrofitData.enqueue(object :Callback<DataBookRated>{
                     override fun onResponse(
                         call: Call<DataBookRated>,
@@ -79,7 +84,7 @@ class BookCaseFragment : Fragment() {
                 })
     }
     private fun initBookFavorited(view: View,context: Context){
-        val retrofitData = Api.retrofitService.getBookListBookFavorited(1)
+        val retrofitData = Api.retrofitService.getBookListBookFavorited(userId)
         retrofitData.enqueue(object :Callback<DataBookRated>{
             override fun onResponse(
                 call: Call<DataBookRated>,
