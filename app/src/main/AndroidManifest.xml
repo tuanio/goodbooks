@@ -16,11 +16,11 @@
         android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".SplashScreenActivity"
-            android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activities.BookDetailsActivity"
@@ -34,12 +34,7 @@
             android:exported="false"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-            </activity>
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -32,7 +32,7 @@ class BookAdapter(var context: Context, private val listBooks: List<Book>): Recy
         val book: Book = listBooks[position]
         Picasso.get().load(book.imageUrl).into(holder.image)
         holder.title.text = book.title
-        holder.tvAuthors.text = concatString(book.authors)
+        holder.tvAuthors.text = context.getString(R.string.txtByAuthor, concatString(book.authors))
         holder.tvGenres.text = concatString(book.genres)
         holder.mRating.rating = book.rating.toFloat()
         holder.bookItem.setOnClickListener { showBook(context, book.id) }

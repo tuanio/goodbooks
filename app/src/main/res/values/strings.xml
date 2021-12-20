@@ -5,6 +5,7 @@
     <string name="txtAuthor">Authors</string>
     <string name="txtDiscover">Discover</string>
     <string name="txtPlaceHolder">TextView</string>
+    <string name="txtByAuthor">by %s</string>
     <string name="txtSkeleton">Explore books using filters</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
