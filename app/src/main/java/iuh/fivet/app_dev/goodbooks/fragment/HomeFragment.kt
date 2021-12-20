@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.RatingBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
@@ -19,6 +16,8 @@ import iuh.fivet.app_dev.goodbooks.fragment.adapter.TopBookHomeAdapter
 import iuh.fivet.app_dev.goodbooks.models.list_books.Book
 import iuh.fivet.app_dev.goodbooks.models.DataBooksHome
 import iuh.fivet.app_dev.goodbooks.models.DataTop1Book
+import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.fragment_user.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -90,24 +89,23 @@ class HomeFragment : Fragment() {
                 val theBestBookGenre: TextView = view.findViewById(R.id.theBestBookGenre)
                 val theBestBookAuthor: TextView = view.findViewById(R.id.theBestBookAuthor)
                 val theBestBookRating: RatingBar = view.findViewById(R.id.theBestBookRating)
-                val theBestBookImgUrl: ImageButton = view.findViewById(R.id.theBestBookImgUrl)
+                val theBestBookImgUrl: ImageView = view.findViewById(R.id.theBestBookImgUrl)
                 val theBestBookDesc: TextView = view.findViewById(R.id.theBestBookDesc)
+                val theBestBookTitle: TextView = view.findViewById(R.id.theBestBookTitle)
 
-                theBestBookTotalRating.text = resBestBook.title
+                theBestBookTotalRating.text = resBestBook.total_ratings.toString()
                 theBestBookTotalReview.text = resBestBook.reviews.toString()
-                theBestBookGenre.text = resBestBook.genres
-                theBestBookAuthor.text = resBestBook.authors
+                theBestBookGenre.text = resBestBook.genres.toString().replace("[","").replace("]","")
+                theBestBookAuthor.text = resBestBook.authors.toString().replace("[","").replace("]","")
                 theBestBookRating.rating = resBestBook.rating
-                Picasso.get().load(resBestBook.image_url).into(theBestBookImgUrl)
                 theBestBookDesc.text = resBestBook.desc
+                theBestBookTitle.text = resBestBook.title
+                Picasso.get().load(resBestBook.image_url).into(theBestBookImgUrl)
             }
             override fun onFailure(call: Call<DataTop1Book>, t: Throwable) {
-                Toast.makeText(context, "get the best book failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "get the best book failed", Toast.LENGTH_LONG).show()
             }
         })
-
-
-
     }
 
     private fun bindTop100(view: View, context: Context) {
