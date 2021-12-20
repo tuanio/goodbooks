@@ -12,7 +12,7 @@
         android:layout_marginRight="10dp"
         tools:ignore="MissingConstraints">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/topBookImgUrl"
             android:layout_width="150dp"
             android:layout_height="200dp"

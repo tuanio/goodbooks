@@ -15,7 +15,7 @@ import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.databinding.ActivityRegisterBinding
 import iuh.fivet.app_dev.goodbooks.models.create_user.CreateUserData
 import iuh.fivet.app_dev.goodbooks.models.create_user.PostUserData
-import iuh.fivet.app_dev.goodbooks.utils.Utils
+import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -113,15 +113,11 @@ class RegisterActivity : AppCompatActivity() {
                                     1 -> { // success
                                         setLoading(true)
 
-                                        Utils.writeContentToFile(
-                                            applicationContext,
-                                            "userid",
-                                            res.data.userId.toString()
-                                        )
+                                        GlobalVariables.userId = res.data.userId
 
                                         Toast.makeText(
                                             applicationContext,
-                                            "Create account successfully!",
+                                            "Create account successfully! ${GlobalVariables.userId}",
                                             Toast.LENGTH_SHORT
                                         ).show()
 

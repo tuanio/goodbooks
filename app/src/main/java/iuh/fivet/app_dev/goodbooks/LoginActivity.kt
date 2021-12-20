@@ -11,7 +11,7 @@ import com.google.firebase.ktx.Firebase
 import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.databinding.ActivityLoginBinding
 import iuh.fivet.app_dev.goodbooks.models.get_user.GetUserData
-import iuh.fivet.app_dev.goodbooks.utils.Utils
+import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -88,11 +88,7 @@ class LoginActivity : AppCompatActivity() {
                                 val res = response.body()!!
                                 when (res.statusCode) {
                                     1 -> {
-                                        Utils.writeContentToFile(
-                                            applicationContext,
-                                            "userid",
-                                            res.data.user.id.toString()
-                                        )
+                                        GlobalVariables.userId = res.data.user.id
 
                                         Toast.makeText(
                                             baseContext,

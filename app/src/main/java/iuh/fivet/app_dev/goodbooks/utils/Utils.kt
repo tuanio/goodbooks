@@ -23,23 +23,10 @@ object Utils {
         return UserData(displayName, email, photoUrl, uid)
     }
 
-    @JvmStatic
-    fun writeContentToFile(context: Context, filename: String = "userid", fileContent: String) {
-        // context is always applicationContext
-        context.openFileOutput(filename, Context.MODE_PRIVATE).use {
-            it.write(fileContent.toByteArray())
-        }
-    }
-
-    @JvmStatic
-    fun readContentFromFile(context: Context, filename: String): String {
-        val file = File(context.filesDir, filename)
-        return file.readText()
-    }
-
     fun showBook(context: Context, bookId: Int) {
-        Variables.bookId = bookId
+        GlobalVariables.bookId = bookId
         val intent = Intent(context, BookDetailsActivity::class.java)
         context.startActivity(intent)
     }
+
 }

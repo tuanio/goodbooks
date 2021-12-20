@@ -17,24 +17,14 @@ import iuh.fivet.app_dev.goodbooks.fragment.adapter.TopBookHomeAdapter
 import iuh.fivet.app_dev.goodbooks.models.list_books.Book
 import iuh.fivet.app_dev.goodbooks.models.DataBooksHome
 import iuh.fivet.app_dev.goodbooks.models.DataTop1Book
+import iuh.fivet.app_dev.goodbooks.utils.Utils
+import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.properties.Delegates
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     private lateinit var top100BookAdapter: TopBookHomeAdapter
     private lateinit var topAuthorBookAdapter: TopBookHomeAdapter
@@ -51,23 +41,20 @@ class HomeFragment : Fragment() {
     private var listTopBookByGenre: ArrayList<Book> = ArrayList()
     private var listTopBookSimilar: ArrayList<Book> = ArrayList()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var userId by Delegates.notNull<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        userId = GlobalVariables.userId
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         val context = container!!.context as Context
 
-        bindTheBestBook(view,context)
+        bindTheBestBook(view, context)
         bindTop100(view, context)
         bindTopAuthor(view, context)
         bindTopGenre(view, context)
@@ -76,7 +63,7 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    private fun bindTheBestBook(view: View,context: Context) {
+    private fun bindTheBestBook(view: View, context: Context) {
 
         val theBestBook = Api.retrofitService.getTheBestBooks()
         theBestBook.enqueue(object: Callback<DataTop1Book> {
@@ -89,25 +76,25 @@ class HomeFragment : Fragment() {
                 val theBestBookRating: RatingBar = view.findViewById(R.id.theBestBookRating)
                 val theBestBookImgUrl: ImageView = view.findViewById(R.id.theBestBookImgUrl)
                 val theBestBookDesc: TextView = view.findViewById(R.id.theBestBookDesc)
+                val theBestBookTitle: TextView = view.findViewById(R.id.theBestBookTitle)
 
-                theBestBookTotalRating.text = resBestBook.title
+                theBestBookTotalRating.text = resBestBook.total_ratings.toString()
                 theBestBookTotalReview.text = resBestBook.reviews.toString()
-                theBestBookGenre.text = resBestBook.genres[0]
-                theBestBookAuthor.text = resBestBook.authors[0]
+                theBestBookGenre.text = resBestBook.genres.toString().replace("[","").replace("]","")
+                theBestBookAuthor.text = resBestBook.authors.toString().replace("[","").replace("]","")
                 theBestBookRating.rating = resBestBook.rating
-                Picasso.get().load(resBestBook.image_url).into(theBestBookImgUrl)
-                theBestBookImgUrl.setOnClickListener {
-                    Toast.makeText(context, resBestBook.image_url.toString(), Toast.LENGTH_SHORT).show()
-                }
                 theBestBookDesc.text = resBestBook.desc
+                theBestBookTitle.text = resBestBook.title
+                Picasso.get().load(resBestBook.image_url).into(theBestBookImgUrl)
+
+                theBestBookImgUrl.setOnClickListener {
+                    Utils.showBook(context, resBestBook.id)
+                }
             }
             override fun onFailure(call: Call<DataTop1Book>, t: Throwable) {
-                Toast.makeText(context, "get the best book failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "get the best book failed", Toast.LENGTH_LONG).show()
             }
         })
-
-
-
     }
 
     private fun bindTop100(view: View, context: Context) {
@@ -131,7 +118,7 @@ class HomeFragment : Fragment() {
 
     private fun bindTopAuthor(view: View, context: Context) {
         topBookByAuthorView = view.findViewById(R.id.topBookByAuthorScroll)
-        val topBookByAuthor = Api.retrofitService.getTopBooksByAuthor(1)
+        val topBookByAuthor = Api.retrofitService.getTopBooksByAuthor(userId)
         topBookByAuthor.enqueue(object: Callback<DataBooksHome> {
             override fun onResponse(call: Call<DataBooksHome>, response: Response<DataBooksHome>) {
                 val resAuthor = response.body()!!
@@ -150,7 +137,7 @@ class HomeFragment : Fragment() {
 
     private fun bindTopGenre(view: View, context: Context) {
         topBookByGenreView = view.findViewById(R.id.topBookByGenreScroll)
-        val topBookByGenre = Api.retrofitService.getTopBooksByGenre(1)
+        val topBookByGenre = Api.retrofitService.getTopBooksByGenre(userId)
         topBookByGenre.enqueue(object: Callback<DataBooksHome> {
             override fun onResponse(call: Call<DataBooksHome>, response: Response<DataBooksHome>) {
                 val resGenre = response.body()!!
@@ -169,7 +156,7 @@ class HomeFragment : Fragment() {
 
     private fun bindTopSimilar(view: View, context: Context) {
         topBookSimilarView = view.findViewById(R.id.topBookSimilarScroll)
-        val topBookSimilar = Api.retrofitService.getTopBooksSimilar(1)
+        val topBookSimilar = Api.retrofitService.getTopBooksSimilar(userId)
         topBookSimilar.enqueue(object: Callback<DataBooksHome> {
             override fun onResponse(call: Call<DataBooksHome>, response: Response<DataBooksHome>) {
                 val resSimilar = response.body()!!
@@ -186,23 +173,4 @@ class HomeFragment : Fragment() {
         })
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
