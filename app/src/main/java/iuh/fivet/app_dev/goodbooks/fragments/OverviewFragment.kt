@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.api.Api
@@ -32,9 +31,8 @@ class OverviewFragment : Fragment() {
         val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
         requestGetBookDetail.enqueue(object : Callback<DataGetBook> {
             override fun onResponse(call: Call<DataGetBook>, response: Response<DataGetBook>) {
-                // val message = "Success get book!"
+
                 val book: DataBook = response.body()!!.data
-                val message = "Success get book!"
                 val bookDesc = book.desc
 
                 book_overview_text.movementMethod = ScrollingMovementMethod()
@@ -45,7 +43,6 @@ class OverviewFragment : Fragment() {
                 book_overview_text.setTrimLines(5)
                 book_overview_text.setColorClickableText(Color.BLUE)
 
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<DataGetBook>, t: Throwable) {

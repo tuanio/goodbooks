@@ -1,6 +1,5 @@
 package iuh.fivet.app_dev.goodbooks.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*

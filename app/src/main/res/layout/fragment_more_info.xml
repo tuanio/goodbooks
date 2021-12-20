@@ -15,11 +15,10 @@
         tools:context=".fragments.MoreInfoFragment">
 
         <com.borjabravo.readmoretextview.ReadMoreTextView
-            android:id="@+id/book_moreinfo_text"
+            android:id="@+id/book_more_info_text"
             style="@style/book_overview_text"
-            android:layout_height="wrap_content"
             android:scrollbars="vertical"
-            android:textAlignment="viewStart" />
+            android:layout_marginEnd="10dp"/>
 
 
     </RelativeLayout>
