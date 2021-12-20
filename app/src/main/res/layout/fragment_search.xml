@@ -7,53 +7,59 @@
     tools:context=".fragment.SearchFragment"
     tools:ignore="UsingOnClickInXml">
 
-    <TextView
-        android:id="@+id/tvDiscover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/teal_700"
-        android:text="@string/txtDiscover"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnFilter"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/ic_filter"
-        android:backgroundTint="@color/teal_700"
+    <LinearLayout
+        android:id="@+id/llHeaderSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tvDiscover"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvDiscover"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:text="@string/txtDiscover"
+            android:textColor="@color/teal_700"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnFilter"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_filter"
+            android:backgroundTint="@color/teal_700"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="8dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDiscover">
+        app:layout_constraintTop_toBottomOf="@+id/llHeaderSearch">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDiscover">
+            android:layout_marginTop="8dp">
 
             <AutoCompleteTextView
                 android:id="@+id/authorsFilter"
@@ -87,10 +93,11 @@
             android:id="@+id/btnSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:backgroundTint="@color/teal_700"
             android:text="@string/txtSearch"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 
@@ -98,25 +105,27 @@
         android:id="@+id/skeleton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
         android:text="@string/txtSkeleton"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDiscover" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvBooks"
-        android:layout_width="409dp"
-        android:layout_height="602dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDiscover"
+        app:layout_constraintTop_toBottomOf="@+id/llHeaderSearch"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBooks"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llHeaderSearch"
         tools:listitem="@layout/book_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
