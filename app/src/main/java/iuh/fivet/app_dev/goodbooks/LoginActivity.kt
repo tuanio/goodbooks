@@ -12,6 +12,7 @@ import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.databinding.ActivityLoginBinding
 import iuh.fivet.app_dev.goodbooks.models.get_user.GetUserData
 import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
+import iuh.fivet.app_dev.goodbooks.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,14 +38,20 @@ class LoginActivity : AppCompatActivity() {
         // check if user is signed in (not-null)
         val currentUser = auth.currentUser
         if (currentUser != null) {
+
+            GlobalVariables.userId = Utils.readContentFromFile(
+                applicationContext,
+                "userId"
+            ).toInt()
+
             Toast.makeText(
                 baseContext,
                 "Welcome back!",
                 Toast.LENGTH_LONG
             ).show()
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            val intentToMainActivity = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intentToMainActivity)
         }
     }
 
@@ -90,6 +97,12 @@ class LoginActivity : AppCompatActivity() {
                                     1 -> {
                                         GlobalVariables.userId = res.data.user.id
 
+                                        Utils.writeContentToFile(
+                                            applicationContext,
+                                            "userId",
+                                            res.data.user.id.toString()
+                                        )
+
                                         Toast.makeText(
                                             baseContext,
                                             "Login successfully!",
@@ -100,7 +113,7 @@ class LoginActivity : AppCompatActivity() {
                                         startActivity(intentToMainActivity)
                                     }
                                     else -> {
-                                        Log.e(loginActivityTag, "Fail to create user account!")
+                                        Log.e(loginActivityTag, "Fail to login account!")
                                         setLoading(false)
                                     }
                                 }
