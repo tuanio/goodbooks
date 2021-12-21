@@ -97,8 +97,8 @@ class BookDetailsActivity : AppCompatActivity() {
         tabs.setSelectedTabIndicatorGravity(INDICATOR_GRAVITY_BOTTOM)
     }
 
-    private fun updateUserFavourite() {
-    // TODO: Update favourite for User data via API
+    private fun updateCountAuthorAndGenre() {
+    // TODO: Update count Author and Genre via API
         try {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
@@ -112,17 +112,17 @@ class BookDetailsActivity : AppCompatActivity() {
                     call: Call<UpdateResponse>,
                     response: Response<UpdateResponse>
                 ) {
-                    Log.d("UserFavourite_Success", "Response: ${response.body()!!.msg}")
+                    Log.d("AuthorGenre_Success", "Response: ${response.body()!!.msg}")
                 }
 
                 override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
-                    Log.d("UserFavourite_Fail", "Failure: $t")
+                    Log.d("AuthorGenre_Fail", "Failure: $t")
                 }
 
             })
 
         } catch (e: Exception) {
-            Log.d("UserFavourite_Exception", "Exception: $e")
+            Log.d("AuthorGenreException", "Exception: $e")
         }
     }
 
@@ -215,6 +215,7 @@ class BookDetailsActivity : AppCompatActivity() {
                 bookRatingBar.rating = book.user_rating.toFloat()
                 if (book.is_favorite) {
                     heartBtn.setBackgroundResource(R.drawable.heart_on)
+                    clickChecker = book.is_favorite
                 }
 
 
@@ -283,8 +284,8 @@ class BookDetailsActivity : AppCompatActivity() {
                 }
             }
 
-        // TODO: update user favourite
-        updateUserFavourite()
+        // TODO: update count Author and Genre for user via API
+        updateCountAuthorAndGenre()
 
         // TODO: make heartButton interactive and update user LIKE
         setUpHeartButton(heartBtn)
