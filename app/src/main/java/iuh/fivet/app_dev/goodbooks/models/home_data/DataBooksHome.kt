@@ -1,6 +1,5 @@
-package iuh.fivet.app_dev.goodbooks.models
+package iuh.fivet.app_dev.goodbooks.models.home_data
 
-import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.Json
 
 data class DataBooksHome(
