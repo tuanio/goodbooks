@@ -177,7 +177,7 @@ class BookDetailsActivity : AppCompatActivity() {
             findViewById(R.id.bookSuggest7),
             findViewById(R.id.bookSuggest8),
             findViewById(R.id.bookSuggest9),
-            findViewById<ImageButton>(R.id.bookSuggest10)
+            findViewById<ImageView>(R.id.bookSuggest10)
         )
 
         // rating of 10 book suggest
@@ -254,9 +254,9 @@ class BookDetailsActivity : AppCompatActivity() {
         })
 
         // TODO: update user rating via API data
-        val checkRatingBox = findViewById<CheckBox>(R.id.checkRatingBox)
+//        val checkRatingBox = findViewById<CheckBox>(R.id.checkRatingBox)
         bookRatingBar.onRatingBarChangeListener =
-            RatingBar.OnRatingBarChangeListener { _, p1, p2 ->
+            RatingBar.OnRatingBarChangeListener { _, p1, _ ->
 
                 val message: String = when (p1.toInt()) {
                     0 -> "No Summit New Rating"
@@ -292,18 +292,7 @@ class BookDetailsActivity : AppCompatActivity() {
                     })
 
                     Toast.makeText(this@BookDetailsActivity, message, Toast.LENGTH_SHORT).show()
-                    checkRatingBox.isChecked = p2
-                    checkRatingBox.setOnClickListener {
-                        if (!checkRatingBox.isChecked) {
-                            bookRatingBar.rating = 0.toFloat()
-                            putCall.cancel()
-                        }
-                        else if ((bookRatingBar.rating == 0.toFloat()).and(checkRatingBox.isChecked)) {
-                            checkRatingBox.isChecked = false
-                            Toast.makeText(
-                                this@BookDetailsActivity, "Please rating!", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+
 
                 } catch (e: Exception) {
                     Toast.makeText(this@BookDetailsActivity, "$e", Toast.LENGTH_SHORT).show()
