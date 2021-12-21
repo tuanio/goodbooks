@@ -42,7 +42,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="bookSuggestDescription">BOOK SUGGEST</string>
+    <string name="bookSuggestDescription">BOOK SUGGEST></string>
     <string name="bookSuggest1">book suggest 1</string>
     <string name="bookSuggest2">book suggest 2</string>
     <string name="bookSuggest3">book suggest 3</string>

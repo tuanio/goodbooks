@@ -1,13 +1,13 @@
 package iuh.fivet.app_dev.goodbooks.fragments
 
 import android.graphics.Color
+
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.api.Api
@@ -28,12 +28,12 @@ class MoreInfoFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val bookId = GlobalVariables.bookId
+        val userId = GlobalVariables.userId
 
-        val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
+        val requestGetBookDetail = Api.retrofitService.getBookDetail(userId, bookId)
         requestGetBookDetail.enqueue(object : Callback<DataGetBook> {
             override fun onResponse(call: Call<DataGetBook>, response: Response<DataGetBook>) {
 
-                val message = "SetMoreInfoTab!"
                 val book: DataBook = response.body()!!.data
                 val authors: ArrayList<String> = book.authors as ArrayList<String>
 
@@ -67,15 +67,14 @@ class MoreInfoFragment : Fragment() {
                     Total_ratings 👉 $totalRatings
                     """.trimIndent()
 
-                book_moreinfo_text.movementMethod = ScrollingMovementMethod()
-                book_moreinfo_text.text = bookInfo
-                book_moreinfo_text.setTrimExpandedText(" show less")
-                book_moreinfo_text.setTrimCollapsedText(" show more")
-                book_moreinfo_text.setTrimLength(20)
-                book_moreinfo_text.setTrimLines(5)
-                book_moreinfo_text.setColorClickableText(Color.BLUE)
+                book_more_info_text.movementMethod = ScrollingMovementMethod()
+                book_more_info_text.text = bookInfo
+                book_more_info_text.setTrimExpandedText(" show less")
+                book_more_info_text.setTrimCollapsedText(" show more")
+                book_more_info_text.setTrimLength(20)
+                book_more_info_text.setTrimLines(5)
+                book_more_info_text.setColorClickableText(Color.BLUE)
 
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<DataGetBook>, t: Throwable) {

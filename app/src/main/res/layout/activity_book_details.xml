@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
+    android:id="@+id/bookRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/bookRoot">
+    android:layout_height="wrap_content">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -65,11 +65,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="14dp"
-                android:text="@string/book_title"
-                android:textStyle="bold"
                 android:ellipsize="end"
                 android:ems="13"
                 android:lines="1"
+                android:text="@string/book_title"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toTopOf="@+id/item_book_img" />
 
@@ -79,21 +79,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/book_authors"
                 android:ellipsize="end"
                 android:ems="13"
                 android:lines="1"
+                android:text="@string/book_authors"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toBottomOf="@+id/item_book_title" />
 
             <RatingBar
                 android:id="@+id/your_rating_bar"
                 style="?android:attr/ratingBarStyleSmall"
-                android:theme="@style/RatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:clickable="true"
+                android:focusable="true"
                 android:isIndicator="false"
                 android:numStars="5"
                 android:rating="0"
@@ -103,8 +103,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/container"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toBottomOf="@+id/your_rating_text"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-                android:focusable="true" />
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/your_rating_text"
@@ -130,13 +129,13 @@
             <RatingBar
                 android:id="@+id/averageRatingStar"
                 style="?android:attr/ratingBarStyleSmall"
-                android:rating="0"
-                android:clickable="false"
-                android:stepSize="0.01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
+                android:clickable="false"
                 android:contentDescription="@string/averageRatingStar"
+                android:rating="0"
+                android:stepSize="0.01"
                 app:layout_constraintStart_toStartOf="@+id/ratingText"
                 app:layout_constraintTop_toBottomOf="@+id/ratingText"
                 app:srcCompat="@drawable/star" />
@@ -160,15 +159,30 @@
                 app:layout_constraintStart_toStartOf="@id/totalRatingText"
                 app:layout_constraintTop_toBottomOf="@+id/totalRatingText" />
 
+            <TextView
+                android:id="@+id/breakLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/teal_700"
+                android:gravity="center_horizontal"
+                android:textSize="1sp"
+                app:layout_constraintBottom_toTopOf="@+id/tabBookInfo"
+                app:layout_constraintTop_toBottomOf="@+id/totalRating"
+                tools:layout_editor_absoluteX="24dp"
+                tools:ignore="SmallSp" />
+
             <RelativeLayout
                 android:id="@+id/tabBookInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/totalRating">
+                app:layout_constraintTop_toBottomOf="@id/breakLine">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/bookDetailTabLayout"
@@ -407,6 +421,7 @@
                         app:layout_constraintStart_toStartOf="@+id/bookSuggest7"
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest7"
                         app:srcCompat="@drawable/star" />
+
                     <ImageButton
                         android:id="@+id/bookSuggest8"
                         android:layout_width="110dp"

@@ -14,10 +14,7 @@
                 <com.borjabravo.readmoretextview.ReadMoreTextView
                     android:id="@+id/book_overview_text"
                     style="@style/book_overview_text"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="vertical"
-                    android:textAlignment="viewStart"
-                    android:textStyle="italic" />
+                    android:scrollbars="vertical"/>
 
         </RelativeLayout>
 </androidx.core.widget.NestedScrollView>
