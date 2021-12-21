@@ -126,6 +126,32 @@ class BookDetailsActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateWhenOpenBook() {
+        // TODO: update user rating via API data
+        val retrofit = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .build()
+        val apiServiceUpdate = retrofit.create(APIServiceUpdate::class.java)
+        val putCall: Call<UpdateResponse> = apiServiceUpdate.updateUserRating(userId, bookId, 0)
+
+        putCall.enqueue(object: Callback<UpdateResponse>
+        {
+            override fun onResponse(
+                call: Call<UpdateResponse>,
+                response: Response<UpdateResponse>
+            ) {
+                Log.d("updateBookClicked", response.body()!!.msg)
+            }
+
+            override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
+                Log.d("updateBookClickedFail", "Failure, $t")
+            }
+
+        })
+
+    }
+
 
     public override fun onStart() {
         super.onStart()
@@ -292,6 +318,9 @@ class BookDetailsActivity : AppCompatActivity() {
 
         // TODO: make Overview and More info tabs interactive
         setUpTabs()
+
+        // TODO: default rating if user no click this book before
+        updateWhenOpenBook()
 
         Toast.makeText(this, "$bookId", Toast.LENGTH_LONG).show()
 
