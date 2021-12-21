@@ -10,8 +10,9 @@ import iuh.fivet.app_dev.goodbooks.models.book_rated_favorited.DataBookRated
 import iuh.fivet.app_dev.goodbooks.models.create_user.CreateUserData
 import iuh.fivet.app_dev.goodbooks.models.create_user.PostUserData
 import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
-import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataBookSimilar
+import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataUserRating
 import iuh.fivet.app_dev.goodbooks.models.get_user.GetUserData
+import iuh.fivet.app_dev.goodbooks.models.get_user_rating.UserRatingBook
 import iuh.fivet.app_dev.goodbooks.utils.Constants
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -75,11 +76,24 @@ interface ApiService {
     fun getTopBooksSimilar(
         @Path("user_id") userId: Int
     ): Call<DataBooksHome>
-    @GET("/api/get-book-similar/{book_id}")
-    fun getBookSimilar(@Path("book_id") book_id: Int): Call<DataBookSimilar>
 
-    @GET("/api/get-book/{book_id}")
-    fun getBookDetail(@Path("book_id") book_id: Int): Call<DataGetBook>
+    @GET("/api/get-book-similar/{book_id}")
+    fun getBookSimilar(@Path("book_id") book_id: Int): Call<DataUserRating>
+
+    @GET("/api/get-book/{user_id}/{book_id}")
+    fun getBookDetail(
+        @Path("user_id") user_id: Int,
+        @Path("book_id") book_id: Int
+    ): Call<DataGetBook>
+
+    @GET("/api/get-user-rating/{user_id}/{book_id}")
+    fun getUserRating(
+        @Path("user_id") user_id: Int,
+        @Path("book_id") book_id: Int
+    ): Call<UserRatingBook>
+
+    @GET("/api/get-list-book-rated/{user_id}")
+    fun getListBookHearted(@Path("user_id") user_id: Int): Call<DataUserRating>
 }
 
 object Api {

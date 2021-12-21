@@ -18,11 +18,12 @@ import iuh.fivet.app_dev.goodbooks.model.UpdateResponse
 import iuh.fivet.app_dev.goodbooks.models.get_book.DataBook
 import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
 import iuh.fivet.app_dev.goodbooks.models.get_book_similar.BookSimilar
-import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataBookSimilar
+import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataUserRating
 import iuh.fivet.app_dev.goodbooks.utils.Constants.Companion.BASE_URL
 import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
 import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import kotlinx.android.synthetic.main.activity_book_details.*
+import kotlinx.android.synthetic.main.activity_book_details.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,22 +43,10 @@ class BookDetailsActivity : AppCompatActivity() {
         bookId = GlobalVariables.bookId
         userId = GlobalVariables.userId
 
-//        try {
-//            val sharedPref = this.getSharedPreferences(
-//                getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-//            bookId = sharedPref.getInt(R.string.preference_file_key.toString(), 1)
-//            bookId = GlobalVariables.bookId
-//            bookId = GlobalVariables.bookId
-//        } catch (e: Exception) {
-//            Toast.makeText(this@BookDetailsActivity, "ExceptionBookId, $e", Toast.LENGTH_SHORT).show()
-//            Log.e("bookId_error", "$e")
-//        }
     }
 
-    // Functions to Setup UI and display API data
-
-    private fun setUpHeartButton() {
-        val heartBtn = findViewById<Button>(R.id.heartBnt)
+    private fun setUpHeartButton(heartBtn: Button) {
+        // TODO: make heart button interactive and commune to API
         heartBtn.setOnClickListener {
             clickChecker = clickChecker xor true
             if (clickChecker) {
@@ -148,6 +137,8 @@ class BookDetailsActivity : AppCompatActivity() {
         val bookTotalRating = findViewById<TextView>(R.id.totalRating)
         val bookAverageRating = findViewById<RatingBar>(R.id.averageRatingStar)
         val bookPoster = findViewById<ImageView>(R.id.item_book_img)
+        val heartBtn = findViewById<Button>(R.id.heartBnt)
+
 
         // 10 book suggested
         val bookSuggest = arrayOf(
@@ -177,12 +168,12 @@ class BookDetailsActivity : AppCompatActivity() {
             findViewById<RatingBar>(R.id.averageRatingStar10)
         )
 
-        // TODO: get and display 10BookSimilar via API
+        // TODO: get and display 10BookSimilar via API data
         val requestGetBookSimilar = Api.retrofitService.getBookSimilar(bookId)
-        requestGetBookSimilar.enqueue(object : Callback<DataBookSimilar> {
+        requestGetBookSimilar.enqueue(object : Callback<DataUserRating> {
             override fun onResponse(
-                call: Call<DataBookSimilar>,
-                response: Response<DataBookSimilar>
+                call: Call<DataUserRating>,
+                response: Response<DataUserRating>
             ) {
                 val data:ArrayList<BookSimilar> = response.body()!!.data.listBook as ArrayList<BookSimilar>
                 var listId: Array<Int> = arrayOf()
@@ -196,14 +187,6 @@ class BookDetailsActivity : AppCompatActivity() {
                 for (i in listId.indices) {
                     // TODO: make new book view when click
                     bookSuggest[i].setOnClickListener {
-//                        Utils.writeContentToFile(applicationContext, "BookId", listId[i].toString())
-//                        val intent = Intent(this@BookDetailsActivity, BookDetailsActivity::class.java)
-//                        startActivity(intent)
-//                        val sharedPref = this@BookDetailsActivity.getPreferences(Context.MODE_PRIVATE)
-//                        with (sharedPref.edit()) {
-//                            putInt(getString(R.string.preference_file_key), listId[i])
-//                            apply()
-//                        }
                         showBook(this@BookDetailsActivity, listId[i])
                     }
                 }
@@ -211,13 +194,13 @@ class BookDetailsActivity : AppCompatActivity() {
                 // Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
 
-            override fun onFailure(call: Call<DataBookSimilar>, t: Throwable) {
+            override fun onFailure(call: Call<DataUserRating>, t: Throwable) {
                 Log.d("bookSimilar_Failure", "$t")
             }
         })
 
         // TODO: get and display information of main book
-        val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
+        val requestGetBookDetail = Api.retrofitService.getBookDetail(userId, bookId)
         requestGetBookDetail.enqueue(object : Callback<DataGetBook> {
             override fun onResponse(call: Call<DataGetBook>, response: Response<DataGetBook>) {
                 // val message = "Success get book!"
@@ -229,6 +212,11 @@ class BookDetailsActivity : AppCompatActivity() {
                 Picasso.get().load(book.imageUrl).into(bookPoster)
                 bookAverageRating.rating = book.rating.toFloat()
                 bookTotalRating.text = book.totalRatings.toString()
+                bookRatingBar.rating = book.user_rating.toFloat()
+                if (book.is_favorite) {
+                    heartBtn.setBackgroundResource(R.drawable.heart_on)
+                }
+
 
                 // Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
@@ -238,7 +226,7 @@ class BookDetailsActivity : AppCompatActivity() {
             }
         })
 
-        // TODO: update user rating via API
+        // TODO: update user rating via API data
         val checkRatingBox = findViewById<CheckBox>(R.id.checkRatingBox)
         bookRatingBar.onRatingBarChangeListener =
             RatingBar.OnRatingBarChangeListener { _, p1, p2 ->
@@ -260,6 +248,7 @@ class BookDetailsActivity : AppCompatActivity() {
                         .build()
                     val apiServiceUpdate = retrofit.create(APIServiceUpdate::class.java)
                     val putCall: Call<UpdateResponse> = apiServiceUpdate.updateUserRating(userId, bookId, p1.toInt())
+
                     putCall.enqueue(object: Callback<UpdateResponse>
                     {
                         override fun onResponse(
@@ -282,6 +271,11 @@ class BookDetailsActivity : AppCompatActivity() {
                             bookRatingBar.rating = 0.toFloat()
                             putCall.cancel()
                         }
+                        else if ((bookRatingBar.rating == 0.toFloat()).and(checkRatingBox.isChecked)) {
+                            checkRatingBox.isChecked = false
+                            Toast.makeText(
+                                this@BookDetailsActivity, "Please rating!", Toast.LENGTH_SHORT).show()
+                        }
                     }
 
                 } catch (e: Exception) {
@@ -293,12 +287,13 @@ class BookDetailsActivity : AppCompatActivity() {
         updateUserFavourite()
 
         // TODO: make heartButton interactive and update user LIKE
-        setUpHeartButton()
+        setUpHeartButton(heartBtn)
 
         // TODO: make Overview and More info tabs interactive
         setUpTabs()
 
         Toast.makeText(this, "$bookId", Toast.LENGTH_LONG).show()
+
     }
 
 }

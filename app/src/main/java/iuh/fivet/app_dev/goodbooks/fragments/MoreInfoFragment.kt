@@ -1,6 +1,7 @@
 package iuh.fivet.app_dev.goodbooks.fragments
 
 import android.graphics.Color
+
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
@@ -27,8 +28,9 @@ class MoreInfoFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val bookId = GlobalVariables.bookId
+        val userId = GlobalVariables.userId
 
-        val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
+        val requestGetBookDetail = Api.retrofitService.getBookDetail(userId, bookId)
         requestGetBookDetail.enqueue(object : Callback<DataGetBook> {
             override fun onResponse(call: Call<DataGetBook>, response: Response<DataGetBook>) {
 

@@ -27,8 +27,9 @@ class OverviewFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val bookId = GlobalVariables.bookId
+        val userId = GlobalVariables.userId
 
-        val requestGetBookDetail = Api.retrofitService.getBookDetail(bookId)
+        val requestGetBookDetail = Api.retrofitService.getBookDetail(userId, bookId)
         requestGetBookDetail.enqueue(object : Callback<DataGetBook> {
             override fun onResponse(call: Call<DataGetBook>, response: Response<DataGetBook>) {
 

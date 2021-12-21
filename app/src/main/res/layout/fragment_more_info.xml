@@ -17,8 +17,7 @@
         <com.borjabravo.readmoretextview.ReadMoreTextView
             android:id="@+id/book_more_info_text"
             style="@style/book_overview_text"
-            android:scrollbars="vertical"
-            android:layout_marginEnd="10dp"/>
+            android:scrollbars="vertical" />
 
 
     </RelativeLayout>
