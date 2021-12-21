@@ -1,12 +1,12 @@
-package iuh.fivet.app_dev.goodbooks.models.get_book_similar
+package iuh.fivet.app_dev.goodbooks.models.get_user_rating
 
 
 import com.squareup.moshi.Json
 import com.google.gson.annotations.Expose
 
-data class DataBookSimilar(
+data class UserRatingBook(
     @Json(name = "data")
-    val `data`: Data,
+    val `data`: RatingData,
     @Json(name = "msg")
     val msg: String,
     @Json(name = "status_code")

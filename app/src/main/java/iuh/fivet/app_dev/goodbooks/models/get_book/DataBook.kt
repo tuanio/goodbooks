@@ -2,7 +2,6 @@ package iuh.fivet.app_dev.goodbooks.models.get_book
 
 
 import com.squareup.moshi.Json
-import com.google.gson.annotations.Expose
 
 data class DataBook(
     @Json(name = "authors")
@@ -17,6 +16,8 @@ data class DataBook(
     val id: Int,
     @Json(name = "image_url")
     val imageUrl: String,
+    @Json(name = "is_favorite")
+    val is_favorite: Boolean,
     @Json(name = "isbn")
     val isbn: String,
     @Json(name = "isbn13")
@@ -30,5 +31,7 @@ data class DataBook(
     @Json(name = "title")
     val title: String,
     @Json(name = "total_ratings")
-    val totalRatings: Int
+    val totalRatings: Int,
+    @Json(name = "user_rating")
+    val user_rating: Int
 )
