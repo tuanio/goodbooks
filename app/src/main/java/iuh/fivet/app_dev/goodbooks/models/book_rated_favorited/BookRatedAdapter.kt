@@ -27,7 +27,6 @@ class BookRatedAdapter(var context:Context ,private var mBooksRated : MutableLis
             Picasso.get().load(bookRated.imageUrl).into(holder.imageBookRated)
             holder.imageBookRated.setOnClickListener {
                 showBook(context, bookRated.id)
-                Toast.makeText(context, "id :" + bookRated.id.toString(), Toast.LENGTH_SHORT).show()
             }
 
     }

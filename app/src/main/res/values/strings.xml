@@ -62,4 +62,7 @@
     <string name="text_view_user_id">User id %s</string>
     <string name="click_to_test">Click to test</string>
     <string name="get_user_id">Get user id</string>
+    <string name="powered_by_5t">Powered by 5T</string>
+    <string name="history">History</string>
+    <string name="my_favorited">My Favorited</string>
 </resources>
