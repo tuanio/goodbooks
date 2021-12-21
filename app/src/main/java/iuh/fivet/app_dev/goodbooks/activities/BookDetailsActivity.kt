@@ -34,7 +34,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
     private var bookId = GlobalVariables.bookId
     private var userId = GlobalVariables.userId
-    private var clickChecker:Boolean = false
+    private var clickChecker: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

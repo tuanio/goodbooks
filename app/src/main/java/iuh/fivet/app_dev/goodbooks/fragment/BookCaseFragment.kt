@@ -19,6 +19,7 @@ import retrofit2.Response
 import kotlin.properties.Delegates
 
 class BookCaseFragment : Fragment() {
+
     private lateinit var rcvCategory : RecyclerView
     private lateinit var bookAdapter: BookRatedAdapter
     private var arrayBooks :MutableList<BookRated> = ArrayList<BookRated>()
