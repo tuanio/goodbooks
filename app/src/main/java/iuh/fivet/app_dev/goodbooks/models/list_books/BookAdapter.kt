@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,8 +16,11 @@ import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
 class BookAdapter(var context: Context, private val listBooks: List<Book>): RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
     class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.bookImage)
-        val title: TextView = itemView.findViewById(R.id.txtBookTitle)
-        val mRating: RatingBar = itemView.findViewById(R.id.ratingStar)
+        val title: TextView = itemView.findViewById(R.id.tvBookTitle)
+        val tvAuthors: TextView = itemView.findViewById(R.id.tvAuthors)
+        val tvGenres: TextView = itemView.findViewById(R.id.tvGenres)
+        val mRating: RatingBar = itemView.findViewById(R.id.discoverRatingStar)
+        val bookItem: LinearLayout = itemView.findViewById(R.id.bookItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
@@ -28,12 +32,17 @@ class BookAdapter(var context: Context, private val listBooks: List<Book>): Recy
         val book: Book = listBooks[position]
         Picasso.get().load(book.imageUrl).into(holder.image)
         holder.title.text = book.title
+        holder.tvAuthors.text = context.getString(R.string.txtByAuthor, concatString(book.authors))
+        holder.tvGenres.text = concatString(book.genres)
         holder.mRating.rating = book.rating.toFloat()
-        holder.title.setOnClickListener { showBook(context, book.id) }
-        holder.image.setOnClickListener { showBook(context, book.id) }
+        holder.bookItem.setOnClickListener { showBook(context, book.id) }
     }
 
     override fun getItemCount(): Int {
         return listBooks.size
+    }
+
+    private fun concatString(listString: List<String>): String {
+        return listString.joinToString(separator = ", ")
     }
 }

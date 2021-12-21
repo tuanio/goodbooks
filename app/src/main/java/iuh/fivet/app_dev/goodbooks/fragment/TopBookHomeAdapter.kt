@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +14,9 @@ import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.models.list_books.Book
 import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
 
-class TopBookHomeAdapter(val context: Context, private val listBooks: List<Book>): RecyclerView.Adapter<TopBookHomeAdapter.BookViewHolder>() {
+class TopBookHomeAdapter(var context: Context, private val listBooks: List<Book>): RecyclerView.Adapter<TopBookHomeAdapter.BookViewHolder>() {
     class BookViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val image: ImageButton = itemView.findViewById(R.id.topBookImgUrl)
+        val image: ImageView = itemView.findViewById(R.id.topBookImgUrl)
         val title: TextView = itemView.findViewById(R.id.topBookTitle)
         val rating: RatingBar = itemView.findViewById(R.id.topBookRating)
     }
@@ -30,7 +30,7 @@ class TopBookHomeAdapter(val context: Context, private val listBooks: List<Book>
         val book: Book = listBooks[position]
         Picasso.get().load(book.imageUrl).into(holder.image)
         holder.title.text = book.title
-        holder.rating.rating = String.format("%.1f", book.rating).toFloat()
+        holder.rating.rating = book.rating.toFloat()
 
         holder.image.setOnClickListener {
             showBook(context, book.id)

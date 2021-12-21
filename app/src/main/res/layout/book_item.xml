@@ -1,52 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bookItem"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="12dp"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/bookImage"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/book__1_"
-        tools:ignore="ContentDescription,ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars[0]" />
+        android:layout_width="90dp"
+        android:layout_height="135dp"
+        app:srcCompat="@drawable/book1"
+        tools:ignore="ContentDescription,ImageContrastCheck"/>
 
-    <TextView
-        android:id="@+id/txtBookTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:ellipsize="end"
-        android:ems="15"
-        android:singleLine="true"
-        android:text="@string/txtPlaceHolder"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/ratingStar"
-        app:layout_constraintStart_toEndOf="@+id/bookImage"
-        app:layout_constraintTop_toTopOf="@+id/bookImage"
-        app:layout_constraintVertical_chainStyle="packed" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="6dp"
+        android:paddingEnd="0dp"
+        android:orientation="vertical">
 
-    <RatingBar
-        android:id="@+id/ratingStar"
-        style="?android:attr/ratingBarStyleSmall"
-        android:theme="@style/RatingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:stepSize="0.1"
-        app:layout_constraintBottom_toBottomOf="@+id/bookImage"
-        app:layout_constraintStart_toStartOf="@+id/txtBookTitle"
-        app:layout_constraintTop_toBottomOf="@+id/txtBookTitle" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvBookTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:ems="12"
+            android:maxLines="2"
+            android:text="@string/txtPlaceHolder"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingTop="8dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvAuthors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:ems="15"
+            android:paddingTop="4dp"
+            android:singleLine="true"
+            android:text="@string/txtByAuthor"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/tvGenres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:ems="15"
+            android:paddingTop="4dp"
+            android:singleLine="true"
+            android:text="@string/txtPlaceHolder"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck" />
+
+        <RatingBar
+            android:id="@+id/discoverRatingStar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:theme="@style/RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.1"
+            android:paddingTop="4dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

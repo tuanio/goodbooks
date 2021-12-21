@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserFragment">
+
     <TextView
         android:id="@+id/text_view_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/teal_700"
         android:text="User"
-        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,23 +24,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/username"
         android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_user" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
 
     <TextView
         android:id="@+id/text_view_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="192dp"
+        android:layout_height="30dp"
         android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/email"
+        android:textStyle="italic"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_username" />
-
 
     <Button
         android:id="@+id/button_logout"
@@ -47,12 +52,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="16dp"
+        android:layout_marginTop="56dp"
         android:text="Log out"
         app:circularflow_radiusInDP="10dp"
         app:cornerRadius="@android:dimen/thumbnail_width"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_email" />
 
     <Button
         android:id="@+id/button_test"
@@ -70,13 +77,13 @@
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="70dp"
-        android:scaleType="centerCrop"
+        android:layout_marginTop="76dp"
         android:src="@drawable/avt"
+        app:layout_constraintCircleRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_email" />
+        app:layout_constraintTop_toBottomOf="@+id/text_view_user" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@
     <string name="txtAuthor">Authors</string>
     <string name="txtDiscover">Discover</string>
     <string name="txtPlaceHolder">TextView</string>
+    <string name="txtByAuthor">by %s</string>
     <string name="txtSkeleton">Explore books using filters</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
@@ -53,7 +54,7 @@
     <string name="bookSuggest9">book suggest 9</string>
     <string name="bookSuggest10">book suggest 10</string>
     <string name="bookSuggestImage">book Suggest Image</string>
-    <string name="nameCategory">BookRated > </string>
+    <string name="nameCategory">Book Rated</string>
 
     <string name="username">Username: %s</string>
     <string name="email">Email: %s</string>

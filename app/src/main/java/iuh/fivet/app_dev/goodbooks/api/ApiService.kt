@@ -48,6 +48,10 @@ interface ApiService {
     fun getBookListBookFavorited(
         @Path("user_id") userId : Int,
     ): Call<DataBookRated>
+    @GET("/api/get-reading-list-history/{user_id}")
+    fun getBookListBookHistory(
+        @Path("user_id") userId : Int,
+    ): Call<DataBookRated>
 
     @Headers("Content-Type: application/json")
     @POST("/api/create-user")
