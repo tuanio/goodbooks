@@ -2,7 +2,6 @@ package iuh.fivet.app_dev.goodbooks.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +13,9 @@ import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.api.Api
 import iuh.fivet.app_dev.goodbooks.fragment.adapter.TopBookHomeAdapter
-import iuh.fivet.app_dev.goodbooks.models.list_books.Book
-import iuh.fivet.app_dev.goodbooks.models.DataBooksHome
-import iuh.fivet.app_dev.goodbooks.models.DataTop1Book
+import iuh.fivet.app_dev.goodbooks.models.homeData.BookHome
+import iuh.fivet.app_dev.goodbooks.models.homeData.DataBooksHome
+import iuh.fivet.app_dev.goodbooks.models.homeData.DataTop1Book
 import iuh.fivet.app_dev.goodbooks.utils.Utils
 import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import retrofit2.Call
@@ -36,10 +35,10 @@ class HomeFragment : Fragment() {
     private lateinit var topBookByGenreView: RecyclerView
     private lateinit var topBookSimilarView: RecyclerView
 
-    private var listTop100Book: ArrayList<Book> = ArrayList()
-    private var listTopBookByAuthor: ArrayList<Book> = ArrayList()
-    private var listTopBookByGenre: ArrayList<Book> = ArrayList()
-    private var listTopBookSimilar: ArrayList<Book> = ArrayList()
+    private var listTop100Book: ArrayList<BookHome> = ArrayList()
+    private var listTopBookByAuthor: ArrayList<BookHome> = ArrayList()
+    private var listTopBookByGenre: ArrayList<BookHome> = ArrayList()
+    private var listTopBookSimilar: ArrayList<BookHome> = ArrayList()
 
     private var userId by Delegates.notNull<Int>()
 
@@ -103,7 +102,7 @@ class HomeFragment : Fragment() {
         top100Book.enqueue(object: Callback<DataBooksHome> {
             override fun onResponse(call: Call<DataBooksHome>, response: Response<DataBooksHome>) {
                 val res100 = response.body()!!
-                listTop100Book = res100.data.listBooks as ArrayList<Book>
+                listTop100Book = res100.data.listBooks as ArrayList<BookHome>
 
                 top100BookAdapter = TopBookHomeAdapter(context, listTop100Book)
                 val llManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
@@ -122,7 +121,7 @@ class HomeFragment : Fragment() {
         topBookByAuthor.enqueue(object: Callback<DataBooksHome> {
             override fun onResponse(call: Call<DataBooksHome>, response: Response<DataBooksHome>) {
                 val resAuthor = response.body()!!
-                listTopBookByAuthor = resAuthor.data.listBooks as ArrayList<Book>
+                listTopBookByAuthor = resAuthor.data.listBooks as ArrayList<BookHome>
 
                 topAuthorBookAdapter = TopBookHomeAdapter(context, listTopBookByAuthor)
                 val llManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
@@ -141,7 +140,7 @@ class HomeFragment : Fragment() {
         topBookByGenre.enqueue(object: Callback<DataBooksHome> {
             override fun onResponse(call: Call<DataBooksHome>, response: Response<DataBooksHome>) {
                 val resGenre = response.body()!!
-                listTopBookByGenre = resGenre.data.listBooks as ArrayList<Book>
+                listTopBookByGenre = resGenre.data.listBooks as ArrayList<BookHome>
 
                 topGenreBookAdapter = TopBookHomeAdapter(context, listTopBookByGenre)
                 val llManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
@@ -160,7 +159,7 @@ class HomeFragment : Fragment() {
         topBookSimilar.enqueue(object: Callback<DataBooksHome> {
             override fun onResponse(call: Call<DataBooksHome>, response: Response<DataBooksHome>) {
                 val resSimilar = response.body()!!
-                listTopBookSimilar = resSimilar.data.listBooks as ArrayList<Book>
+                listTopBookSimilar = resSimilar.data.listBooks as ArrayList<BookHome>
 
                 topSimilarBookAdapter = TopBookHomeAdapter(context, listTopBookSimilar)
                 val llManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)

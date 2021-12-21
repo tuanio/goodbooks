@@ -2,7 +2,6 @@ package iuh.fivet.app_dev.goodbooks.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import iuh.fivet.app_dev.goodbooks.models.*
 import iuh.fivet.app_dev.goodbooks.models.list_authors.DataAuthors
 import iuh.fivet.app_dev.goodbooks.models.list_books.DataBooks
 import iuh.fivet.app_dev.goodbooks.models.list_genres.DataGenres
@@ -12,6 +11,8 @@ import iuh.fivet.app_dev.goodbooks.models.create_user.PostUserData
 import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
 import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataBookSimilar
 import iuh.fivet.app_dev.goodbooks.models.get_user.GetUserData
+import iuh.fivet.app_dev.goodbooks.models.homeData.DataBooksHome
+import iuh.fivet.app_dev.goodbooks.models.homeData.DataTop1Book
 import iuh.fivet.app_dev.goodbooks.utils.Constants
 import retrofit2.Call
 import retrofit2.Retrofit

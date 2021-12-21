@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/img_book_rated"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
             android:src="@drawable/book__1_"
-            android:scaleType="fitCenter"
-            android:layout_marginStart="5dp">
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:background="@drawable/book_view"
+            android:padding="10dp"
+            android:scaleType="fitXY">
         </ImageView>
 
 </LinearLayout>
