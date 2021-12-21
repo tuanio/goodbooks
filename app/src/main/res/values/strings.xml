@@ -62,4 +62,5 @@
     <string name="text_view_user_id">User id %s</string>
     <string name="click_to_test">Click to test</string>
     <string name="get_user_id">Get user id</string>
+    <string name="the_best_book">The Best Book</string>
 </resources>

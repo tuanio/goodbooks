@@ -45,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:text="The Best Book"
+                android:text="@string/the_best_book"
+                android:textColor="@color/teal_700"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -71,6 +72,7 @@
                     </ImageView>
 
                     <RatingBar
+                        android:textColor="@color/teal_700"
                         android:id="@+id/theBestBookRating"
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
@@ -93,6 +95,7 @@
 
 
                         <TextView
+                            android:textColor="@color/teal_700"
                             android:id="@+id/theBestBookTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
