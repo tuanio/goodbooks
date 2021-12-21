@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.IntentCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -13,6 +14,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import iuh.fivet.app_dev.goodbooks.LoginActivity
+import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.databinding.FragmentUserBinding
 import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
 import iuh.fivet.app_dev.goodbooks.utils.Utils
@@ -32,14 +34,6 @@ class UserFragment : Fragment() {
         database = Firebase.database.reference
 
         binding.buttonLogout.setOnClickListener { processSignOut() }
-        binding.buttonTest.setOnClickListener {
-            val userId = GlobalVariables.userId
-            Toast.makeText(
-                binding.root.context,
-                "UserID: $userId",
-                Toast.LENGTH_LONG
-            ).show()
-        }
 
         return binding.root
     }
@@ -47,10 +41,8 @@ class UserFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val userData = Utils.getUserData()
-
-        binding.textViewUsername.text = userData.displayName
-        binding.textViewEmail.text = userData.email
+        binding.textViewUsername.text = getString(R.string.username, auth.currentUser!!.displayName)
+        binding.textViewEmail.text = getString(R.string.email, auth.currentUser!!.email)
     }
 
     private fun processSignOut() {
@@ -62,6 +54,7 @@ class UserFragment : Fragment() {
         ).show()
 
         val intent = Intent(binding.root.context, LoginActivity::class.java)
+        requireActivity().finish()
         startActivity(intent)
     }
 

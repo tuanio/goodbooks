@@ -69,6 +69,7 @@
                 android:ems="13"
                 android:lines="1"
                 android:text="@string/book_title"
+                android:textColor="@color/teal_700"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toTopOf="@+id/item_book_img" />
@@ -89,8 +90,8 @@
             <RatingBar
                 android:id="@+id/your_rating_bar"
                 style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="82dp"
+                android:layout_height="17dp"
                 android:layout_marginStart="28dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -100,6 +101,7 @@
                 android:scaleX="1.3"
                 android:scaleY="1.3"
                 android:stepSize="1"
+                android:theme="@style/RatingBar"
                 app:layout_constraintBottom_toBottomOf="@+id/container"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toBottomOf="@+id/your_rating_text"
@@ -112,6 +114,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/your_rating_text"
+                android:textColor="@color/teal_700"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toBottomOf="@+id/item_book_author" />
@@ -123,6 +126,8 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/average_rating_text"
+                android:textColor="@color/teal_700"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/item_book_img" />
 
@@ -136,6 +141,7 @@
                 android:contentDescription="@string/averageRatingStar"
                 android:rating="0"
                 android:stepSize="0.01"
+                android:theme="@style/RatingBar"
                 app:layout_constraintStart_toStartOf="@+id/ratingText"
                 app:layout_constraintTop_toBottomOf="@+id/ratingText"
                 app:srcCompat="@drawable/star" />
@@ -147,6 +153,8 @@
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/total_rating_text"
+                android:textColor="@color/teal_700"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/ratingText"
                 app:layout_constraintTop_toBottomOf="@+id/item_book_img" />
 
@@ -224,12 +232,13 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/bookSuggestDescription"
                 android:textStyle="bold"
+                android:textColor="@color/teal_700"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabBookInfo" />
 
             <HorizontalScrollView
-                android:layout_width="391dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
@@ -240,10 +249,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest1"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
                         android:layout_marginStart="12dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
@@ -257,7 +266,7 @@
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="7dp"
                         android:clickable="false"
                         android:contentDescription="@string/averageRatingStar"
                         android:rating="0"
@@ -266,11 +275,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest1"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest2"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest1"
@@ -292,11 +301,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest2"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest3"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest2"
@@ -318,11 +327,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest4"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest4"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest3"
@@ -344,11 +353,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest4"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest5"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest4"
@@ -370,11 +379,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest5"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest6"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest5"
@@ -386,8 +395,8 @@
                         android:id="@+id/averageRatingStar6"
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:clickable="false"
                         android:contentDescription="@string/averageRatingStar"
                         android:rating="0"
@@ -396,11 +405,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest6"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest7"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest6"
@@ -422,11 +431,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest7"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest8"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest7"
@@ -448,11 +457,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest8"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest9"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest8"
@@ -474,11 +483,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/bookSuggest9"
                         app:srcCompat="@drawable/star" />
 
-                    <ImageButton
+                    <ImageView
                         android:id="@+id/bookSuggest10"
-                        android:layout_width="110dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="7dp"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="5dp"
                         android:contentDescription="@string/bookSuggestImage"
                         android:scaleType="fitCenter"
                         app:layout_constraintStart_toEndOf="@+id/bookSuggest9"
@@ -502,16 +511,6 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </HorizontalScrollView>
-
-            <CheckBox
-                android:id="@+id/checkRatingBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/container"
-                app:layout_constraintStart_toEndOf="@+id/your_rating_bar"
-                app:layout_constraintTop_toBottomOf="@+id/your_rating_text"
-                tools:ignore="TouchTargetSizeCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

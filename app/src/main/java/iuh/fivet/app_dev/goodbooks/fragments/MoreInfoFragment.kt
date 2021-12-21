@@ -48,23 +48,23 @@ class MoreInfoFragment : Fragment() {
                 val genres = book.genres.joinToString(", ")
 
                 val bookInfo = """
-                    Title 👉 $title
+                    Title: $title
                     
-                    Authors 👉 $authorsString
+                    Authors: $authorsString
 
-                    Book's link 👉 $bookUrl
+                    Book's link: $bookUrl
 
-                    Genres 👉 $genres
+                    Genres: $genres
 
-                    isbn 👉 $isbn
+                    ISBN: $isbn
 
-                    Pages 👉 $pages
+                    Pages: $pages
 
-                    Rating 👉 $rating
+                    Rating: $rating
 
-                    Reviews 👉 $reviews
-
-                    Total Ratings 👉 $totalRatings
+                    Reviews: $reviews
+                    
+                    Total Ratings: $totalRatings
                     """.trimIndent()
 
                 book_more_info_text.movementMethod = ScrollingMovementMethod()
