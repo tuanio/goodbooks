@@ -2,6 +2,10 @@ package iuh.fivet.app_dev.goodbooks.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+
+import iuh.fivet.app_dev.goodbooks.models.home_data.DataBooksHome
+import iuh.fivet.app_dev.goodbooks.models.home_data.DataTop1Book
+
 import iuh.fivet.app_dev.goodbooks.models.list_authors.DataAuthors
 import iuh.fivet.app_dev.goodbooks.models.list_books.DataBooks
 import iuh.fivet.app_dev.goodbooks.models.list_genres.DataGenres
@@ -11,8 +15,6 @@ import iuh.fivet.app_dev.goodbooks.models.create_user.PostUserData
 import iuh.fivet.app_dev.goodbooks.models.get_book.DataGetBook
 import iuh.fivet.app_dev.goodbooks.models.get_book_similar.DataUserRating
 import iuh.fivet.app_dev.goodbooks.models.get_user.GetUserData
-import iuh.fivet.app_dev.goodbooks.models.homeData.DataBooksHome
-import iuh.fivet.app_dev.goodbooks.models.homeData.DataTop1Book
 import iuh.fivet.app_dev.goodbooks.models.get_user_rating.UserRatingBook
 import iuh.fivet.app_dev.goodbooks.utils.Constants
 import retrofit2.Call
@@ -97,6 +99,8 @@ interface ApiService {
         @Path("book_id") book_id: Int
     ): Call<UserRatingBook>
 
+    @GET("/api/get-list-book-rated/{user_id}")
+    fun getListBookHearted(@Path("user_id") user_id: Int): Call<DataUserRating>
 }
 
 object Api {

@@ -19,11 +19,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-<<<<<<< HEAD
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-=======
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,7 +30,6 @@
 <!--                <action android:name="android.intent.action.MAIN" />-->
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
->>>>>>> ef7dd5a63927860275cc20632ab05ad7ed46f5d6
         </activity>
 
         <activity
@@ -46,16 +40,12 @@
             android:exported="false"/>
         <activity
             android:name=".MainActivity"
-<<<<<<< HEAD
             android:exported="false">
 <!--                <intent-filter>-->
 <!--                    <action android:name="android.intent.action.MAIN" />-->
 <!--                    <category android:name="android.intent.category.LAUNCHER" />-->
 <!--                </intent-filter>-->
             </activity>
-=======
-            android:exported="false"/>
->>>>>>> ef7dd5a63927860275cc20632ab05ad7ed46f5d6
     </application>
 
 </manifest>

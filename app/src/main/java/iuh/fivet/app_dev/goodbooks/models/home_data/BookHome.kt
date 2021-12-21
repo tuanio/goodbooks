@@ -1,4 +1,4 @@
-package iuh.fivet.app_dev.goodbooks.models.homeData
+package iuh.fivet.app_dev.goodbooks.models.home_data
 
 import com.squareup.moshi.Json
 
