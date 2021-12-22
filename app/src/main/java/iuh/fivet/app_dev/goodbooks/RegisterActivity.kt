@@ -124,7 +124,7 @@ class RegisterActivity : AppCompatActivity() {
 
                                         Toast.makeText(
                                             applicationContext,
-                                            "Create account successfully! ${GlobalVariables.userId}",
+                                            "Create account successfully!",
                                             Toast.LENGTH_SHORT
                                         ).show()
 
