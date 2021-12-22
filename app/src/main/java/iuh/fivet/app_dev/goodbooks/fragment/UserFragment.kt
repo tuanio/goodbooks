@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.IntentCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -16,8 +15,6 @@ import com.google.firebase.ktx.Firebase
 import iuh.fivet.app_dev.goodbooks.LoginActivity
 import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.databinding.FragmentUserBinding
-import iuh.fivet.app_dev.goodbooks.utils.GlobalVariables
-import iuh.fivet.app_dev.goodbooks.utils.Utils
 
 class UserFragment : Fragment() {
     private lateinit var binding: FragmentUserBinding
@@ -41,8 +38,11 @@ class UserFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        binding.textViewUsername.text = getString(R.string.username, auth.currentUser!!.displayName)
-        binding.textViewEmail.text = getString(R.string.email, auth.currentUser!!.email)
+        val user = auth.currentUser
+        user?.let {
+            binding.textViewUsername.text = getString(R.string.username, it.displayName)
+            binding.textViewEmail.text = getString(R.string.email, it.email)
+        }
     }
 
     private fun processSignOut() {
