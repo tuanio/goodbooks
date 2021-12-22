@@ -1,4 +1,4 @@
-package iuh.fivet.app_dev.goodbooks.fragment.adapter
+package iuh.fivet.app_dev.goodbooks.models.home_data
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.R
-import iuh.fivet.app_dev.goodbooks.models.home_data.BookHome
 import iuh.fivet.app_dev.goodbooks.utils.Utils.showBook
 
 class TopBookHomeAdapter(var context: Context, private val listBooks: List<BookHome>): RecyclerView.Adapter<TopBookHomeAdapter.BookViewHolder>() {

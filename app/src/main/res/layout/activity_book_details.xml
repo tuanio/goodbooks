@@ -90,8 +90,8 @@
             <RatingBar
                 android:id="@+id/your_rating_bar"
                 style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="82dp"
+                android:layout_height="17dp"
                 android:layout_marginStart="28dp"
                 android:clickable="true"
                 android:focusable="true"
@@ -101,6 +101,7 @@
                 android:scaleX="1.3"
                 android:scaleY="1.3"
                 android:stepSize="1"
+                android:theme="@style/RatingBar"
                 app:layout_constraintBottom_toBottomOf="@+id/container"
                 app:layout_constraintStart_toEndOf="@+id/item_book_img"
                 app:layout_constraintTop_toBottomOf="@+id/your_rating_text"
@@ -140,6 +141,7 @@
                 android:contentDescription="@string/averageRatingStar"
                 android:rating="0"
                 android:stepSize="0.01"
+                android:theme="@style/RatingBar"
                 app:layout_constraintStart_toStartOf="@+id/ratingText"
                 app:layout_constraintTop_toBottomOf="@+id/ratingText"
                 app:srcCompat="@drawable/star" />
@@ -213,7 +215,7 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="300dp"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="45dp"
                     tools:ignore="SpeakableTextPresentCheck">
@@ -230,6 +232,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/bookSuggestDescription"
                 android:textStyle="bold"
+                android:textColor="@color/teal_700"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tabBookInfo" />
 

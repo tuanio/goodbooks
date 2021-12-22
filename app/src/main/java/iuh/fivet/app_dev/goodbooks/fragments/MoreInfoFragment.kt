@@ -56,15 +56,15 @@ class MoreInfoFragment : Fragment() {
 
                     Genres: $genres
 
-                    isbn: $isbn
+                    ISBN: $isbn
 
                     Pages: $pages
 
                     Rating: $rating
 
                     Reviews: $reviews
-
-                    Total_ratings: $totalRatings
+                    
+                    Total Ratings: $totalRatings
                     """.trimIndent()
 
                 book_more_info_text.movementMethod = ScrollingMovementMethod()

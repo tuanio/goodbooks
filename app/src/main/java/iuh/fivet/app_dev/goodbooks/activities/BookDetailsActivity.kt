@@ -34,7 +34,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
     private var bookId = GlobalVariables.bookId
     private var userId = GlobalVariables.userId
-    private var clickChecker:Boolean = false
+    private var clickChecker: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -282,7 +282,7 @@ class BookDetailsActivity : AppCompatActivity() {
                             call: Call<UpdateResponse>,
                             response: Response<UpdateResponse>
                         ) {
-                            Toast.makeText(this@BookDetailsActivity, "Response, ${p1.toInt()}, ${response.body()!!.msg}", Toast.LENGTH_LONG).show()
+                            Log.d("UpdateRatingResponse: ", response.body()!!.msg)
                         }
 
                         override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
@@ -311,7 +311,7 @@ class BookDetailsActivity : AppCompatActivity() {
         // TODO: default rating if user no click this book before
         updateWhenOpenBook()
 
-        Toast.makeText(this, "$bookId", Toast.LENGTH_LONG).show()
+//        Toast.makeText(this, "$bookId", Toast.LENGTH_LONG).show()
 
     }
 

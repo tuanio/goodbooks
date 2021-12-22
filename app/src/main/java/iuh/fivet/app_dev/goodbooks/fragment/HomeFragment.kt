@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import iuh.fivet.app_dev.goodbooks.R
 import iuh.fivet.app_dev.goodbooks.api.Api
-import iuh.fivet.app_dev.goodbooks.fragment.adapter.TopBookHomeAdapter
+import iuh.fivet.app_dev.goodbooks.models.home_data.TopBookHomeAdapter
 import iuh.fivet.app_dev.goodbooks.models.home_data.BookHome
 import iuh.fivet.app_dev.goodbooks.models.home_data.DataBooksHome
 import iuh.fivet.app_dev.goodbooks.models.home_data.DataTop1Book
